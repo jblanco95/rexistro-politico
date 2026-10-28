@@ -1,3 +1,4 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
 <!doctype html>
 <html lang="gl">
 <head>
@@ -117,6 +118,18 @@ dl.stats{display:grid;grid-template-columns:1fr;gap:6px;margin:0 0 6px;font-size
 dl.stats div{display:flex;justify-content:space-between;gap:10px;border-bottom:1px dashed var(--line);padding-bottom:4px}
 dl.stats dt{color:var(--muted)} dl.stats dd{margin:0;font-variant-numeric:tabular-nums;text-align:right}
 .cmp .up{color:var(--ok)} .cmp .down{color:var(--warn)}
+.eltabs{display:flex;flex-wrap:wrap;gap:0 6px;border-bottom:1px solid var(--line);margin:0 0 8px}
+.eltabs button{font:inherit;font-size:.8rem;font-weight:600;background:none;border:0;border-bottom:2px solid transparent;margin-bottom:-1px;padding:6px 4px 7px;color:var(--muted);cursor:pointer;text-align:left}
+.eltabs button:hover{color:var(--ink)}
+.eltabs button[aria-selected="true"]{color:var(--ink);border-bottom-color:var(--accent)}
+.nelist{display:grid;gap:10px;max-height:70vh;overflow:auto;padding-right:4px;align-content:start}
+.negrp .neh,.negrp>summary{font-size:.8rem;font-weight:600;margin:2px 0 4px}
+.negrp>summary,.nesec>summary{cursor:pointer}
+.nesub{font-size:.7rem;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);margin:6px 0 2px}
+.nenote{color:var(--muted);font-size:.78rem;margin:0}
+a.nenote{color:var(--accent)}
+.nesec>summary{font-size:.86rem;padding:4px 0}
+.nesec[open]{display:grid;gap:8px;padding-bottom:6px;border-bottom:1px dashed var(--line)}
 .corp li span{color:var(--muted);font-size:.78rem;text-align:right}
 .party-bar{display:flex;height:10px;border-radius:5px;overflow:hidden;background:var(--soft)}
 .party-bar i{display:block;height:100%}
@@ -166,6 +179,27 @@ details.fontes>summary{cursor:pointer;list-style:none}details.fontes>summary::-w
 .errdlg a.btn[aria-disabled="true"]{opacity:.45;pointer-events:none}
 .errdlg .hint{font-size:.78rem;color:var(--muted);margin:12px 0 0}
 .errdlg .msg{font-size:.78rem;min-height:1em;margin-top:6px}
+.card[hidden]{display:none!important}
+/* v87: páxinas territoriais */
+.mx{font-size:.82rem;min-width:0}.mx th,.mx td{padding:5px 8px;white-space:nowrap}.mx th a{color:inherit}.mx td:first-child,.mx th:first-child{position:sticky;left:0;background:var(--bg);z-index:1}.mx tr.mxe td{color:var(--muted);border-bottom:0;font-size:.78rem}.mx tr.mxe:first-of-type td{border-top:1px solid var(--line)}
+.tnote{color:var(--muted);font-size:.8rem;margin:0}
+.tnav{display:flex;flex-wrap:wrap;gap:4px 14px;font-size:.85rem}
+.terr{display:flex;flex-wrap:wrap;gap:4px 12px;align-items:baseline;font-size:.85rem;margin:0 0 10px}.terr .k{font-family:var(--f-mono);font-size:.68rem;letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
+.ctab th,.ctab td{text-align:left!important;vertical-align:top}.ctab td:last-child,.ctab th:last-child{text-align:right!important}.ctab td:first-child{white-space:nowrap}.ctabm td:last-child,.ctabm th:last-child{text-align:left!important}.ctab .chips{gap:4px}.ctab .chip{font-size:.74rem;padding:2px 7px}
+html{scroll-padding-top:90px}
+/* v89: mapa */
+.tmap{position:relative}.tmapsvg{display:block;width:100%;height:auto}.tmap path{vector-effect:non-scaling-stroke}
+.mf path{fill:var(--surface);stroke:var(--ink);stroke-width:.6px;transition:fill .1s}.mf.mhas path{fill:var(--soft)}.mf:hover path,a.mf:focus path{fill:var(--line)}a.mf:focus-visible path{stroke-width:2.2px}a.mf{outline:none}.mf.mhl path{fill:var(--ink)}.mctx{fill:none;stroke:var(--line);stroke-width:.6px;pointer-events:none}.mover{fill:none;stroke:var(--ink);stroke-width:1.5px;pointer-events:none}.mprov{fill:none;stroke:var(--muted);stroke-width:.35px;pointer-events:none}.mcb{fill:none;stroke:var(--muted);stroke-width:.8px;pointer-events:none}
+.mlab{font-size:.85rem;color:var(--muted);min-height:1.4em;margin-top:4px}
+.pendnote{margin:0 0 14px;padding:10px 14px;border:1px solid var(--line,#ccc);border-left:4px solid var(--ink,#111);border-radius:6px;font-size:.9rem;line-height:1.45}
+.pcands{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:12px}
+.pcand{border:1px solid var(--line,#ddd);border-radius:8px;padding:10px 12px;min-width:0}
+.pcand>summary{cursor:pointer;line-height:1.35}
+.pch{line-height:1.35;margin-bottom:6px}
+.plist{margin:6px 0 0;padding-left:1.6em;font-size:.9rem}
+.plist li{margin:2px 0}
+.psup{font-size:.8rem;color:var(--muted);margin:1px 0 4px}
+.pmeta{color:var(--muted);font-size:.8rem}
 .betabar{background:#fff4d6;color:#5a4300;border-bottom:1px solid #ecd9a0;font-size:.82rem}
 .betabar .wrap{padding-top:6px;padding-bottom:6px}
 .betabar a{color:inherit}
@@ -221,17 +255,17 @@ details.fontes>summary{cursor:pointer;list-style:none}details.fontes>summary::-w
 const $=s=>document.querySelector(s);
 const app=$('#app');
 // Ficheiros de datos (xerado por _scripts/build_portal_gz.py; non editar a man)
-const MANIFEST={"core":["data/core1-b0b5439712.wasm","data/core2-07347eb4ec.wasm","data/core3-2eff8fe5b5.wasm","data/core4-01ecd3b742.wasm"],"rest":["data/rest1-e992bf9913.wasm","data/rest2-1b3bb1803c.wasm","data/rest3-d018e061c9.wasm","data/rest4-0ace256773.wasm"],"n":{"core":188712,"rest":283896},"d0":"data/d0-476d9c649e.wasm","v":"bc4b4cc007"};
+const MANIFEST={"core":["data/core1-53ebfbccc6.wasm","data/core2-c653355dcd.wasm","data/core3-5e8f1492e3.wasm","data/core4-495021d7de.wasm"],"rest":["data/rest1-316f7fa65c.wasm","data/rest2-22492ddc99.wasm","data/rest3-3895be49ac.wasm","data/rest4-1ed49aa7a3.wasm"],"n":{"core":263726,"rest":282380},"d0":"data/d0-57cb9cd0f5.wasm","v":"a22cca7d46"};
 let DATA=null, P=[], BYID={}, FULL=false;
 const COLL=new Intl.Collator('gl');
 const state={q:'',amb:'',ccaa:'',prov:'',mun:'',cargo:'',per:'',part:'',limit:60};
 const AMB=[['eur','Europeo'],['est','Estatal'],['aut','Autonómico'],['prov','Provincial'],['loc','Local']];
-const CARGOS=[['candEur','Candidato/a ao Parlamento Europeo','eur'],['elEur','Eurodeputado/a electo/a','eur'],['candEst','Candidato/a ao Congreso','est'],['elEst','Deputado/a electo/a ao Congreso','est'],['candSen','Candidato/a ao Senado','est'],['elSen','Senador/a electo/a','est'],['goberno','Cargo no Goberno de España','est'],['dep','Deputado/a provincial','prov'],['candLoc','Candidato/a local','loc'],['elLoc','Electo/a local','loc'],['cargoLoc','Cargo local (alcalde/sa, concelleiro/a, tenente de alcalde)','loc'],['candAut','Candidato/a autonómico/a','aut'],['elAut','Electo/a autonómico/a','aut'],['xunta','Cargo na Xunta','aut']];
-const AMBT={eur:'U',est:'GN',aut:'CX',prov:'D',loc:'LMA'};
-const CARGOT={candEur:r=>r.t==='U',elEur:r=>r.t==='U'&&r.el,candSen:r=>r.t==='N',elSen:r=>r.t==='N'&&r.el,candEst:r=>r.t==='G',elEst:r=>r.t==='G'&&r.el,candLoc:r=>r.t==='M',elLoc:r=>r.t==='M'&&r.el,cargoLoc:r=>r.t==='L'||r.t==='A',dep:r=>r.t==='D',candAut:r=>r.t==='C',elAut:r=>r.t==='C'&&r.el,xunta:r=>r.t==='X',goberno:r=>r.t==='E'};
-const LOCY=[['2023','Eleccións municipais 2023'],['2019','Eleccións municipais 2019'],['2015','Eleccións municipais 2015'],['2011','Eleccións municipais 2011'],['2007','Eleccións municipais 2007'],['2003','Eleccións municipais 2003'],['1999','Eleccións municipais 1999 (só listas publicadas)']];
+const CARGOS=[['candEur','Candidato/a ao Parlamento Europeo','eur'],['elEur','Eurodeputado/a electo/a','eur'],['candEst','Candidato/a ao Congreso','est'],['elEst','Deputado/a electo/a ao Congreso','est'],['candSen','Candidato/a ao Senado','est'],['elSen','Senador/a (electo/a ou designado/a)','est'],['desSen','Senador/a designado/a (autonómico/a ou real)','est'],['goberno','Cargo no Goberno de España','est'],['candAut','Candidato/a autonómico/a','aut'],['elAut','Electo/a autonómico/a','aut'],['cargoAut','Cargo autonómico','aut'],['dep','Deputado/a provincial','prov'],['candLoc','Candidato/a local','loc'],['elLoc','Electo/a local','loc'],['cargoLoc','Cargo local (alcalde/sa, concelleiro/a, tenente de alcalde)','loc']];
+const AMBT={eur:'U',est:'GNQS',aut:'CXK',prov:'D',loc:'LMA'};
+const CARGOT={candEur:r=>r.t==='U',elEur:r=>r.t==='U'&&r.el,candSen:r=>r.t==='N',elSen:r=>(r.t==='N'&&r.el)||r.t==='Q'||r.t==='S',desSen:r=>(r.t==='Q'&&r.pt!=='E')||r.t==='S',candEst:r=>r.t==='G',elEst:r=>r.t==='G'&&r.el,candLoc:r=>r.t==='M',elLoc:r=>r.t==='M'&&r.el,cargoLoc:r=>r.t==='L'||r.t==='A',dep:r=>r.t==='D',candAut:r=>r.t==='C',elAut:r=>r.t==='C'&&r.el,cargoAut:r=>r.t==='X'||r.t==='K',goberno:r=>r.t==='E'};
+const LOCY=[['2023','Eleccións municipais 2023'],['2019','Eleccións municipais 2019'],['2015','Eleccións municipais 2015'],['2011','Eleccións municipais 2011'],['2007','Eleccións municipais 2007'],['2003','Eleccións municipais 2003'],['1999','Eleccións municipais 1999'],['1995','Eleccións municipais 1995'],['1991','Eleccións municipais 1991'],['1987','Eleccións municipais 1987'],['1983','Eleccións municipais 1983'],['1979','Eleccións municipais 1979']];
 const AUTY=[['2024','Eleccións 2024'],['2020','Eleccións 2020 · XI lexislatura (2020–2024)'],['2016','Eleccións 2016 · X lexislatura (2016–2020)'],['2012','Eleccións 2012 · IX lexislatura (2012–2016)'],['2009','Eleccións 2009 · VIII lexislatura (2009–2012)'],['2005','Eleccións 2005 · VII lexislatura (2005–2009)'],['2001','Eleccións 2001 · VI lexislatura (2001–2005)'],['1997','Eleccións 1997 · V lexislatura (1997–2001)'],['1993','Eleccións 1993 · IV lexislatura (1993–1997)'],['1989','Eleccións 1989 · III lexislatura (1989–1993)'],['1985','Eleccións 1985 · II lexislatura (1985–1989)'],['1981','Eleccións 1981 · I lexislatura (1981–1985)']];
-const GLIST=[['2023','2023-07-23','XV'],['2019N','2019-11-10','XIV'],['2019A','2019-04-28','XIII'],['2016','2016-06-26','XII'],['2015','2015-12-20','XI'],['2011','2011-11-20','X'],['2008','2008-03-09','IX'],['2004','2004-03-14','VIII'],['2000','2000-03-12','VII'],['1996','1996-03-03','VI'],['1993','1993-06-06','V'],['1989','1989-10-29','IV'],['1986','1986-06-22','III'],['1982','1982-10-28','II'],['1979','1979-03-01','I'],['1977','1977-06-15','Constituínte']];
+const GLIST=[['2026','2026-11-29','XVI'],['2023','2023-07-23','XV'],['2019N','2019-11-10','XIV'],['2019A','2019-04-28','XIII'],['2016','2016-06-26','XII'],['2015','2015-12-20','XI'],['2011','2011-11-20','X'],['2008','2008-03-09','IX'],['2004','2004-03-14','VIII'],['2000','2000-03-12','VII'],['1996','1996-03-03','VI'],['1993','1993-06-06','V'],['1989','1989-10-29','IV'],['1986','1986-06-22','III'],['1982','1982-10-28','II'],['1979','1979-03-01','I'],['1977','1977-06-15','Constituínte']];
 // Parlamentos autonómicos no rexistro: circunscricións, datas, barreira e fonte
 const AUTCFG={
   'Galicia':{nome:'Parlamento de Galicia',provs:['A Coruña','Lugo','Ourense','Pontevedra'],tot:'Galicia',thr:5,
@@ -260,6 +294,7 @@ const AUTCFG={
   "La Rioja":{"nome": "Parlamento de La Rioja", "provs": ["La Rioja"], "tot": "La Rioja", "thr": 5, "thrTxt": "Reparto D'Hondt entre as listas con polo menos o 5 % dos votos válidos da circunscrición (única: La Rioja).", "ys": ["2023"], "dt": {"2023": "28/05/2023 · XI legislatura"}, "lex": {"2023": "XI legislatura"}, "fonte": "BOR núm. 125, 20/06/2023, acta de proclamación de electos da Xunta Electoral da Comunidade Autónoma de La Rioja (resultados e electos)."}};
 const AUTE={'Parlamento de Galicia':'Galicia','Parlament de Catalunya':'Cataluña', "Parlamento de Andalucía":"Andalucía", "Cortes de Aragón":"Aragón", "Junta General del Principado de Asturias":"Principado de Asturias", "Parlament de les Illes Balears":"Illes Balears", "Parlamento de Canarias":"Canarias", "Parlamento de Cantabria":"Cantabria", "Cortes de Castilla y León":"Castilla y León", "Cortes de Castilla-La Mancha":"Castilla-La Mancha", "Corts Valencianes":"Comunitat Valenciana", "Asamblea de Extremadura":"Extremadura", "Asamblea de Madrid":"Comunidad de Madrid", "Asamblea Regional de Murcia":"Región de Murcia", "Parlamento de Navarra":"Comunidad Foral de Navarra", "Parlamento Vasco":"País Vasco", "Parlamento de La Rioja":"La Rioja"};
 function autCA(c){ return AUTCFG[c]?c:(PR2CA[c]||'Galicia'); }
+const GPEND={'2026':1}; // eleccións convocadas sen resultados
 const GBYD=Object.fromEntries(GLIST.map(x=>[x[1],x[0]]));
 function gk(r){return GBYD[r.d]||r.d.slice(0,4);}
 function glab(k){return k==='2019A'?'2019 (abril)':k==='2019N'?'2019 (novembro)':k;}
@@ -273,9 +308,10 @@ const UEND={'1987':'1989'};
 const EURY=ULIST.map(([y],i)=>[y,'Eleccións europeas '+y+' · lexislatura '+y+'–'+(UEND[y]||String(Number(y)+5))]);
 const UDT=Object.fromEntries(ULIST.map(([y,d])=>[y,d.slice(8,10)+'/'+d.slice(5,7)+'/'+d.slice(0,4)]));
 const UNOTE={'2019':' España tiña 54 escanos; tras o Brexit (2020) incorporáronse 5 máis, que a fonte non marca como electos.','1994':' Algunhas listas teñen postos sen nome na fonte.','1989':' Algunhas listas teñen postos sen nome na fonte.','1987':' Algunhas listas teñen postos sen nome na fonte.'};
-const PERS={dep:['2023–2027','2015–2019','2011–2015','2007–2011','2003–2007','1999–2003','1995–1999','1991–1995','1987–1991','1983–1987','1979–1983'].map(x=>[x,'Mandato '+x]),candEur:EURY,elEur:EURY,candEst:ESTY,elEst:ESTY,candSen:SENY,elSen:SENY,candLoc:LOCY,elLoc:LOCY,cargoLoc:[['2023–2027','Corporación 2023–2027 (actual)'],['2019–2023','Mandato 2019–2023 (alcaldías)'],['2011–2015','Mandato 2011–2015 (alcaldías)']],candAut:AUTY,elAut:AUTY,
+const PERS={dep:['2023–2027','2015–2019','2011–2015','2007–2011','2003–2007','1999–2003','1995–1999','1991–1995','1987–1991','1983–1987','1979–1983'].map(x=>[x,'Mandato '+x]),candEur:EURY,elEur:EURY,candEst:ESTY,elEst:ESTY.filter(x=>!GPEND[x[0]]),candSen:SENY,elSen:SENY.filter(x=>!GPEND[x[0]]),candLoc:LOCY,elLoc:LOCY,cargoLoc:[['2023–2027','Corporación 2023–2027 (actual)'],['2019–2023','Mandato 2019–2023 (alcaldías)'],['2015–2019','Mandato 2015–2019 (alcaldías)'],['2011–2015','Mandato 2011–2015 (alcaldías)'],['2007–2011','Mandato 2007–2011 (alcaldías)'],['2003–2007','Mandato 2003–2007 (alcaldías)'],['1999–2003','Mandato 1999–2003 (alcaldías)'],['1995–1999','Mandato 1995–1999 (alcaldías)'],['1991–1995','Mandato 1991–1995 (alcaldías)'],['1987–1991','Mandato 1987–1991 (alcaldías)'],['1983–1987','Mandato 1983–1987 (alcaldías)'],['1979–1983','Mandato 1979–1983 (alcaldías)']],candAut:AUTY,elAut:AUTY,
   goberno:[['XV','XV lexislatura (2023–)']],
-  xunta:[['XII','XII lexislatura (2024–)'],['XI','XI lexislatura (2020–2024)'],['X','X lexislatura (2016–2020)'],['IX','IX lexislatura (2012–2016)'],['VIII','VIII lexislatura (2009–2012)'],['VII','VII lexislatura (2005–2009)'],['VI','VI lexislatura (2001–2005)'],['V','V lexislatura (1997–2001)'],['IV','IV lexislatura (1993–1997)'],['III','III lexislatura (1989–1993)'],['II','II lexislatura (1985–1989)'],['I','I lexislatura (1981–1985)']]};
+  cargoAutK:[["Andalucía", "Andalucía · XIII lexislatura (2026–)"], ["Aragón", "Aragón · XII lexislatura (2026–)"], ["Principado de Asturias", "Principado de Asturias · XII lexislatura (2023–)"], ["Illes Balears", "Illes Balears · XI lexislatura (2023–)"], ["Canarias", "Canarias · XI lexislatura (2023–)"], ["Cantabria", "Cantabria · XI lexislatura (2023–)"], ["Castilla y León", "Castilla y León · XII lexislatura (2026–)"], ["Castilla-La Mancha", "Castilla-La Mancha · XI lexislatura (2023–)"], ["Cataluña", "Cataluña · XV lexislatura (2024–)"], ["Comunitat Valenciana", "Comunitat Valenciana · XI lexislatura (2023–)"], ["Extremadura", "Extremadura · XII lexislatura (2025–)"], ["Comunidad de Madrid", "Comunidad de Madrid · XIII lexislatura (2023–)"], ["Región de Murcia", "Región de Murcia · XI lexislatura (2023–)"], ["Comunidad Foral de Navarra", "Comunidad Foral de Navarra · XI lexislatura (2023–)"], ["País Vasco", "País Vasco · XIII lexislatura (2024–)"], ["La Rioja", "La Rioja · XI lexislatura (2023–)"]],
+  cargoAutG:[['XII','XII lexislatura (2024–)'],['XI','XI lexislatura (2020–2024)'],['X','X lexislatura (2016–2020)'],['IX','IX lexislatura (2012–2016)'],['VIII','VIII lexislatura (2009–2012)'],['VII','VII lexislatura (2005–2009)'],['VI','VI lexislatura (2001–2005)'],['V','V lexislatura (1997–2001)'],['IV','IV lexislatura (1993–1997)'],['III','III lexislatura (1989–1993)'],['II','II lexislatura (1985–1989)'],['I','I lexislatura (1981–1985)']]};
 // eleccións autonómicas por comunidade: cada parlamento co seu calendario
 function autOpts(){
   const out=[];
@@ -285,17 +321,25 @@ function autOpts(){
   });
   return out;
 }
-function perOpts(){ return (state.cargo==='candAut'||state.cargo==='elAut')?autOpts():PERS[state.cargo]; }
+function cargoAutOpts(){
+  const g=(!state.ccaa||state.ccaa==='Galicia')?PERS.cargoAutG.map(([v,l])=>['Galicia|'+v,(state.ccaa?'':'Galicia · ')+l]):[];
+  const k=PERS.cargoAutK.filter(([ca])=>!state.ccaa||ca===state.ccaa).map(([ca,l])=>[ca+'|act',state.ccaa?l.replace(ca+' · ',''):l]);
+  return [...g,...k];
+}
+function perOpts(){ return (state.cargo==='candAut'||state.cargo==='elAut')?autOpts():state.cargo==='cargoAut'?cargoAutOpts():PERS[state.cargo]; }
 function perOK(r){
   const v=state.per; if(!v) return true;
   if(r.t==='M') return r.y===v;
   if(r.t==='G'||r.t==='N') return gk(r)===v;
+  if(r.t==='Q') return r.k===v;
+  if(r.t==='S') return v==='2023';
   if(r.t==='C'&&v.includes('|')){ const [ca,y]=v.split('|'); return (AUTE[r.e]||'Galicia')===ca&&r.d.slice(0,4)===y; }
   if(r.t==='C'||r.t==='U') return r.d.slice(0,4)===v;
   if(r.t==='L') return v==='2023–2027';
   if(r.t==='A'||r.t==='D') return r.mn===v;
-  if(r.t==='X') return lxs(r.lx).includes(v);
+  if(r.t==='X'){ const [ca,lx]=v.split('|'); return ca==='Galicia'&&lxs(r.lx).includes(lx); }
   if(r.t==='E') return String(r.lx||'').split('–').includes(v);
+  if(r.t==='K') return r.cc===v.split('|')[0];
   return false;
 }
 // Comunidades e provincias na orde oficial do INE (código de CA e de provincia). [CA, [ [valor nos datos, etiqueta INE, illas do Senado] ] ]
@@ -303,7 +347,7 @@ const INE_CA=[
  ['Andalucía',[['Almería'],['Cádiz'],['Córdoba'],['Granada'],['Huelva'],['Jaén'],['Málaga'],['Sevilla']]],
  ['Aragón',[['Huesca'],['Teruel'],['Zaragoza']]],
  ['Principado de Asturias',[['Asturias']]],
- ['Illes Balears',[['Illes Balears','Illes Balears',['Mallorca','Menorca','Eivissa-Formentera']]]],
+ ['Illes Balears',[['Illes Balears','Illes Balears',['Mallorca','Menorca','Eivissa-Formentera','Eivissa','Formentera']]]],
  ['Canarias',[['Las Palmas','Las Palmas',['Gran Canaria','Lanzarote','Fuerteventura']],['Santa Cruz de Tenerife','Santa Cruz de Tenerife',['Tenerife','La Palma','La Gomera','El Hierro']]]],
  ['Cantabria',[['Cantabria']]],
  ['Castilla y León',[['Ávila'],['Burgos'],['León'],['Palencia'],['Salamanca'],['Segovia'],['Soria'],['Valladolid'],['Zamora']]],
@@ -322,7 +366,7 @@ const INE_CA=[
 const PR2CA={}; INE_CA.forEach(([ca,pl])=>pl.forEach(([v,l,isl])=>{PR2CA[v]=ca;(isl||[]).forEach(i=>PR2CA[i]=ca);}));
 const CPROV={'Asturias Central':'Asturias','Asturias Occidental':'Asturias','Asturias Oriental':'Asturias','Mallorca':'Illes Balears','Menorca':'Illes Balears','Eivissa':'Illes Balears','Formentera':'Illes Balears','Eivissa-Formentera':'Illes Balears','Gran Canaria':'Las Palmas','Lanzarote':'Las Palmas','Fuerteventura':'Las Palmas','Tenerife':'Santa Cruz de Tenerife','La Palma':'Santa Cruz de Tenerife','La Gomera':'Santa Cruz de Tenerife','El Hierro':'Santa Cruz de Tenerife'};
 Object.assign(PR2CA,{'Asturias Central':'Principado de Asturias','Asturias Occidental':'Principado de Asturias','Asturias Oriental':'Principado de Asturias','Eivissa':'Illes Balears','Formentera':'Illes Balears','Canarias (circunscrición autonómica)':'Canarias'});
-function recCA(r){ if(r.pr) return PR2CA[r.pr]||null; if(r.ine) return 'Galicia'; return r.t==='X'?'Galicia':null; }
+function recCA(r){ if(r.pr) return PR2CA[r.pr]||null; if(r.ine) return 'Galicia'; return r.t==='X'?'Galicia':r.t==='K'?r.cc:null; }
 function provOpts(){
   const out=[]; INE_CA.filter(([ca])=>!state.ccaa||ca===state.ccaa).forEach(([ca,pl])=>pl.forEach(([v,l,isl])=>{out.push([v,l||v]);(isl||[]).forEach(i=>out.push([i,'· '+i+' (Senado)']));}));
   return out;
@@ -358,8 +402,11 @@ function roleChips(p,max){
   p.r.filter(r=>r.t==='G').forEach(r=>out.push(`<span class="chip ${r.el?'el':''}"><span class="k">${r.el?'Deputado/a ':'Candidat. '}Congreso ${glab(gk(r))}</span>${esc(r.sg)} · ${esc(r.pr)} nº${r.o}${r.tp==='Suplente'?' (supl.)':''}</span>`));
   p.r.filter(r=>r.t==='U').forEach(r=>out.push(`<span class="chip ${r.el?'el':''}"><span class="k">${r.el?'Eurodeputado/a ':'Candidat. '}Europeas ${r.d.slice(0,4)}</span>${esc(r.sg)} nº${r.o}${r.tp==='Suplente'?' (supl.)':''}</span>`));
   p.r.filter(r=>r.t==='N').forEach(r=>out.push(`<span class="chip ${r.el?'el':''}"><span class="k">${r.el?'Senador/a ':'Candidat. '}Senado ${glab(gk(r))}</span>${esc(r.sg)} · ${esc(r.pr)}${r.tp==='Suplente'?' (supl.)':''}</span>`));
+  p.r.filter(r=>r.t==='Q').sort((a,b)=>b.i.localeCompare(a.i)).forEach(r=>out.push(`<span class="chip x past"><span class="k">Senado ${esc(r.lx)} · ${qProc(r,p)}</span>${esc(r.lu)}${r.sg?' · '+esc(r.sg):r.gr?' · '+esc(r.gr):''}</span>`));
+  p.r.filter(r=>r.t==='S').forEach(r=>out.push(`<span class="chip x ${r.f?'past':''}"><span class="k">Senado ${esc(r.lx)} · designación</span>${esc(r.ca)} · ${esc(r.sg||'')}</span>`));
   p.r.filter(r=>r.t==='D').forEach(r=>out.push(`<span class="chip x ${r.f?'past':''}"><span class="k">Deputación ${esc(r.pr)} ${r.mn.replace(/(19|20)(\d\d)/g,'$2')}</span>${esc(depCargo(r,p))} · ${esc(r.pa)}</span>`));
   p.r.filter(r=>r.t==='E').sort((a,b)=>(a.f?1:0)-(b.f?1:0)||String(b.i||'').localeCompare(String(a.i||''))).forEach(r=>out.push(`<span class="chip x ${r.f?'past':''}"><span class="k">Goberno de España</span>${esc(r.c)}${r.f?' · ata '+fmtD(r.f).slice(-4):''}</span>`));
+  p.r.filter(r=>r.t==='K').sort((a,b)=>(a.f?1:0)-(b.f?1:0)||String(b.i||'').localeCompare(String(a.i||''))).forEach(r=>out.push(`<span class="chip x ${r.f?'past':''}"><span class="k">${esc(r.ins)}</span>${esc(r.c)}${r.f?' · ata '+fmtD(r.f).slice(-4):''}</span>`));
   X.forEach(r=>out.push(`<span class="chip x ${r.f?'past':''}"><span class="k">Xunta</span>${esc(r.c)}${r.f?' · ata '+fmtD(r.f).slice(-4):''}</span>`));
   p.r.filter(r=>r.t==='C').sort((a,b)=>b.d.localeCompare(a.d)).forEach(r=>out.push(`<span class="chip ${r.el||r.tm?'el':''}"><span class="k">${r.el?'Electo/a ':r.tm?'Deput. (subst.) ':'Candidat. '}${r.e==='Parlament de Catalunya'?'Parlament ':''}${r.d.slice(0,4)}</span>${esc(r.sg)} · ${esc(r.pr)}${r.o!=null?' nº'+r.o:''}${r.tp==='Suplente'?' (supl.)':''}</span>`));
   p.r.filter(r=>r.t==='A').forEach(r=>out.push(`<span class="chip ${r.f?'past':'x'}"><span class="k">${p.s==='M'?'Alcaldesa':'Alcalde'} ${r.mn.replace(/20(\d\d)$/,'$1')}</span>${esc(r.m)} · ${esc(r.ls)}${(midStart(r)||r.f)?' · '+yr(r.i)+'–'+(r.f?yr(r.f):r.mn.slice(-4)):''}</span>`));
@@ -372,9 +419,11 @@ function score(p){
   let s=0;
   for(const r of p.r){
     if(r.t==='X') s=Math.max(s, r.f?40:({'Presidencia':100,'Conselleiro/a':90}[r.nv]||70));
+    if(r.t==='K') s=Math.max(s, r.f?38:({'Presidencia':100,'Vicepresidencia':90,'Consejero/a':88}[r.nv]||66));
     if(r.t==='E') s=Math.max(s, r.f?45:({'Presidencia':110,'Ministro/a':95,'Secretaría de Estado':85}[r.nv]||72));
     if(r.t==='G') s=Math.max(s, r.el?65:10);
     if(r.t==='N') s=Math.max(s, r.el?62:10);
+    if(r.t==='Q'||r.t==='S') s=Math.max(s, 62);
     if(r.t==='U') s=Math.max(s, r.el?64:3);
     if(r.t==='C') s=Math.max(s, r.el?(r.d>'2024'?60:55):10);
     if(r.t==='L') s=Math.max(s, ({0:50,1:20,2:5})[rankLocal[r.c]]);
@@ -391,7 +440,7 @@ function normC(s){ if(!s) return ''; let v=NC.get(s); if(v===undefined){ v=norm(
 function indexPerson(p){
     BYID[p.id]=p;
     const bits=[];
-    p.r.forEach(r=>{bits.push(r.c,r.m,r.pr,r.pa,r.sg,r.ca,r.dp,r.nv,r.pi,r.al, r.t==='L'?cargoLocal(r.c,p.s):'', r.t==='C'?'candidato candidata parlamento '+r.d.slice(0,4)+(r.e==='Parlament de Catalunya'?' parlament catalunya cataluna diputat diputada deputado deputada':''):'', r.t==='X'?'xunta goberno':'', r.t==='G'?'congreso deputado deputada xerais '+r.d.slice(0,4)+' '+glab(gk(r)):'', r.t==='N'?'senado senador senadora xerais '+r.d.slice(0,4)+' '+glab(gk(r)):'', r.t==='U'?'europeas parlamento europeo eurodeputado eurodeputada '+r.d.slice(0,4):'', r.t==='A'?'alcalde alcaldesa mandato 2019 2023 '+(r.ls||''):'', r.t==='D'?'deputacion deputación provincial deputado deputada '+(r.px||'')+' '+(r.cg||[]).map(x=>x[0]).join(' '):'', r.t==='M'?'municipais '+r.y+' candidato candidata '+(r.el?'concelleiro concelleira electo electa':''):'', r.sn||'' )});
+    p.r.forEach(r=>{bits.push(r.c,r.m,r.pr,r.pa,r.sg,r.ca,r.dp,r.nv,r.pi,r.al, r.t==='L'?cargoLocal(r.c,p.s):'', r.t==='C'?'candidato candidata parlamento '+r.d.slice(0,4)+(r.e==='Parlament de Catalunya'?' parlament catalunya cataluna diputat diputada deputado deputada':''):'', r.t==='X'?'xunta goberno':'', r.t==='K'?'goberno autonomico gobierno '+(r.ins||'')+' '+(r.cc||''):'', r.t==='S'?'senado senador senadora designado designada designacion autonomica '+(r.ca||''):'', r.t==='Q'?'senado senador senadora '+(r.pt==='D'?'designado designada designacion autonomica ':r.pt==='R'?'designacion real ':'electo electa ')+(r.lu||'')+' '+(r.gr||'')+' '+(r.sg||''):'', r.t==='G'?'congreso deputado deputada xerais '+r.d.slice(0,4)+' '+glab(gk(r)):'', r.t==='N'?'senado senador senadora xerais '+r.d.slice(0,4)+' '+glab(gk(r)):'', r.t==='U'?'europeas parlamento europeo eurodeputado eurodeputada '+r.d.slice(0,4):'', r.t==='A'?'alcalde alcaldesa mandato '+String(r.mn||'').replace('–',' ')+' '+(r.ls||''):'', r.t==='D'?'deputacion deputación provincial deputado deputada '+(r.px||'')+' '+(r.cg||[]).map(x=>x[0]).join(' '):'', r.t==='M'?'municipais '+r.y+' candidato candidata '+(r.el?'concelleiro concelleira electo electa':''):'', r.sn||'' )});
     // mesmo resultado que norm(todo xunto): norm(a+' '+b) = norm(a)+' '+norm(b)
     p._nn=norm(p.n);
     p._k=[p._nn,...(p.alt||[]).map(norm),...bits.map(normC)].filter(Boolean).join(' ');
@@ -431,24 +480,28 @@ function optionList0(){
 }
 
 function renderSearch(){
+  const EUR=state.amb==='eur'||state.cargo==='candEur'||state.cargo==='elEur'; // europeas: circunscrición única, sen CCAA nin provincia
+  if(EUR){state.ccaa='';state.prov='';state.mun='';}
   const res=filtered();
   const parts=optionList();
   const sel=(id,label,opts)=>`<select id="${id}" aria-label="${label}"><option value="">${label}</option>${opts.map(([v,t])=>`<option value="${esc(v)}" ${state[id]===v?'selected':''}>${esc(t)}</option>`).join('')}</select>`;
-  const NA={U:0,G:0,N:0,X:0,C:0,L:0,M:0,D:0}; for(const p of res) for(const t of p._amb) if(t in NA) NA[t]++;
+  const NA={U:0,G:0,N:0,X:0,C:0,L:0,M:0,D:0}; for(const p of res) for(const t of p._amb) if(t in NA&&t!=='X') NA[t]++; for(const p of res) if(p._amb.has('X')||p._amb.has('K')) NA.X++;
   const {U:nU,G:nG,N:nN,X:nX,C:nC,L:nL,M:nM,D:nD}=NA;
   app.innerHTML=`
   <div class="filters">
     ${sel('amb','Calquera ámbito',AMB)}
     ${sel('cargo','Calquera cargo',CARGOS.filter(c=>!state.amb||c[2]===state.amb).map(c=>[c[0],c[1]]))}
-    ${sel('ccaa','Calquera comunidade',INE_CA.map(([ca])=>[ca,ca]))}
-    ${state.cargo?sel('per',state.cargo==='xunta'?'Calquera lexislatura':state.cargo==='cargoLoc'?'Calquera mandato':'Calquera elección',perOpts()):''}
-    ${sel('prov','Calquera provincia',provOpts())}
-    ${state.prov&&Object.values(DATA.cn).some(v=>v[1]===state.prov)?sel('mun','Calquera concello',Object.entries(DATA.cn).filter(([k,v])=>v[1]===state.prov).sort((a,b)=>a[1][0].localeCompare(b[1][0],'gl')).map(([k,v])=>[k,v[0]])):''}
+    ${EUR?'':sel('ccaa','Calquera comunidade',INE_CA.map(([ca])=>[ca,ca]))}
+    ${state.cargo?sel('per',state.cargo==='cargoAut'?'Calquera lexislatura':state.cargo==='cargoLoc'?'Calquera mandato':'Calquera elección',perOpts()):''}
+    ${EUR?'':sel('prov','Calquera provincia',provOpts())}
+    ${!EUR&&state.prov&&Object.values(DATA.cn).some(v=>v[1]===state.prov)?sel('mun','Calquera concello',Object.entries(DATA.cn).filter(([k,v])=>v[1]===state.prov).sort((a,b)=>a[1][0].localeCompare(b[1][0],'gl')).map(([k,v])=>[k,v[0]])):''}
     ${sel('part','Calquera partido',parts.map(([k,v])=>[k,`${k} (${nf(v)})`]))}
     <button class="btn" id="reset" type="button">Limpar filtros</button>
   </div>
   ${FULL?'':`<p class="loadbar note">${loadMsg()}</p>`}
-  <div class="summary"><span><strong>${nf(res.length)}</strong> persoas</span><span>${nf(nU)} nas europeas</span><span>${nf(nG)} en candidaturas ao Congreso</span><span>${nf(nN)} ao Senado</span><span>${nf(nX)} na Xunta</span><span>${nf(nC)} en candidaturas autonómicas</span><span>${nf(nD)} en deputacións</span><span>${nf(nL)} en corporacións locais</span><span>${nf(nM)} en eleccións municipais</span></div>
+  <p class="terr"><span class="k">Territorios</span><a href="#mapa">Mapa</a><a href="#ca-gal">Galicia</a>${GPROV.map(([k,n])=>`<a href="#pr-${k}">${esc(n)}</a>`).join('')}${state.prov&&PRC[state.prov]?` · <a href="#pr-${PRC[state.prov]}">Páxina da provincia de ${esc(state.prov)}</a>`:''}${state.mun&&DATA.cn[state.mun]?` · <a href="#c-${state.mun}">Páxina do concello de ${esc(DATA.cn[state.mun][0])}</a>`:''}</p>
+  <p class="terr"><span class="k">Xerais 2026</span><a href="#e-G2026-es">Candidaturas ao Congreso en toda España</a><a href="#e-N2026-es">Candidaturas ao Senado</a></p>
+  <div class="summary"><span><strong>${nf(res.length)}</strong> persoas</span><span>${nf(nU)} nas europeas</span><span>${nf(nG)} en candidaturas ao Congreso</span><span>${nf(nN)} ao Senado</span><span>${nf(nX)} en gobernos autonómicos</span><span>${nf(nC)} en candidaturas autonómicas</span><span>${nf(nD)} en deputacións</span><span>${nf(nL)} en corporacións locais</span><span>${nf(nM)} en eleccións municipais</span></div>
   ${res.length?`<ul class="list">${res.slice(0,state.limit).map(p=>`<li class="row"><a class="name" href="#p-${p.id}">${esc(p.n)}</a><div class="chips">${roleChips(p,6)}</div></li>`).join('')}</ul>`:
     `<p class="empty">Non hai ningunha persoa que cumpra estes criterios. Proba cunha palabra máis curta ou limpa os filtros.</p>`}
   ${res.length>state.limit?`<div class="more"><button class="btn" id="more" type="button">Amosar ${Math.min(60,res.length-state.limit)} máis de ${nf(res.length-state.limit)}</button></div>`:''}`;
@@ -470,6 +523,18 @@ function tenureE(r){
   const marks=LEGS_E.slice(1).map(([n,d])=>`<b style="left:${pc(Date.parse(d)).toFixed(2)}%"></b>`).join('');
   const labs=LEGS_E.map(([n,d],i)=>{const x0=pc(Date.parse(d)), x1=i<LEGS_E.length-1?pc(Date.parse(LEGS_E[i+1][1])):100; return `<span style="position:absolute;left:${((x0+x1)/2).toFixed(2)}%;transform:translateX(-50%)" title="${n} lexislatura (desde ${fmtD(d)})">${n}</span>`;}).join('');
   return `<div class="tenure" title="Período no cargo (xullo 2016 – outubro 2026), con marcas en cada cambio de lexislatura das Cortes Xerais"><i style="left:${L.toFixed(2)}%;width:${W.toFixed(2)}%"></i>${marks}</div><div class="tenure-axis" style="height:1.1em">${labs}</div>`;
+}
+const KLEX={"Andalucía": [["XI", "2018-12-02"], ["XII", "2022-06-19"], ["XIII", "2026-05-17"]], "Aragón": [["XI", "2023-05-28"], ["XII", "2026-02-08"]], "Principado de Asturias": [["XI", "2019-05-26"], ["XII", "2023-05-28"]], "Illes Balears": [["X", "2019-05-26"], ["XI", "2023-05-28"]], "Canarias": [["X", "2019-05-26"], ["XI", "2023-05-28"]], "Cantabria": [["X", "2019-05-26"], ["XI", "2023-05-28"]], "Castilla y León": [["X", "2019-05-26"], ["XI", "2022-02-13"], ["XII", "2026-03-15"]], "Castilla-La Mancha": [["X", "2019-05-26"], ["XI", "2023-05-28"]], "Cataluña": [["XIV", "2021-02-14"], ["XV", "2024-05-12"]], "Comunitat Valenciana": [["X", "2019-04-28"], ["XI", "2023-05-28"]], "Extremadura": [["XI", "2023-05-28"], ["XII", "2025-12-21"]], "Comunidad de Madrid": [["XII", "2021-05-04"], ["XIII", "2023-05-28"]], "Región de Murcia": [["X", "2019-05-26"], ["XI", "2023-05-28"]], "Comunidad Foral de Navarra": [["X", "2019-05-26"], ["XI", "2023-05-28"]], "País Vasco": [["XII", "2020-07-12"], ["XIII", "2024-04-21"]], "La Rioja": [["X", "2019-05-26"], ["XI", "2023-05-28"]]};
+const KEND=Date.parse('2026-10-18');
+function tenureK(r){
+  const LL=KLEX[r.cc]||[]; if(!LL.length) return '';
+  const T0=Date.parse(LL[0][1]), T1=KEND;
+  const a=Math.max(T0, r.i?Date.parse(r.i):T0), b=r.f?Date.parse(r.f):T1;
+  const pc=t=>((t-T0)/(T1-T0)*100);
+  const L=pc(a), W=Math.max(.8,pc(b)-L);
+  const marks=LL.slice(1).map(([n,d])=>`<b style="left:${pc(Date.parse(d)).toFixed(2)}%"></b>`).join('');
+  const labs=LL.map(([n,d],i)=>{const x0=pc(Date.parse(d)), x1=i<LL.length-1?pc(Date.parse(LL[i+1][1])):100; return `<span style="position:absolute;left:${((x0+x1)/2).toFixed(2)}%;transform:translateX(-50%)" title="${n} lexislatura (eleccións do ${fmtD(d)})">${n}</span>`;}).join('');
+  return `<div class="tenure" title="Período no cargo (${fmtD(LL[0][1])} – outubro 2026), con marcas nas eleccións autonómicas"><i style="left:${L.toFixed(2)}%;width:${W.toFixed(2)}%"></i>${marks}</div><div class="tenure-axis" style="height:1.1em">${labs}</div>`;
 }
 function tenure(r){
   const a=Math.max(LEG0, r.i?Date.parse(r.i):LEG0), b=r.f?Date.parse(r.f):LEG1;
@@ -550,13 +615,22 @@ function renderPerson(id){
   if(!p){app.innerHTML=`<p class="empty">Non atopamos esta ficha. <a href="#inicio">Volver á busca</a>.</p>`;return;}
   const X=p.r.filter(r=>r.t==='X').sort((a,b)=>String(b.i||'0').localeCompare(String(a.i||'0')));
   const EG=p.r.filter(r=>r.t==='E').sort((a,b)=>String(b.i||'0').localeCompare(String(a.i||'0')));
+  const KG=p.r.filter(r=>r.t==='K').sort((a,b)=>String(b.i||'0').localeCompare(String(a.i||'0')));
   const C=p.r.filter(r=>r.t==='C').sort((a,b)=>b.d.localeCompare(a.d)), L=p.r.filter(r=>r.t==='L');
   const DD=p.r.filter(r=>r.t==='D');
-  const actives=[...DD.filter(r=>!r.f).map(r=>depCargo(r,p).replace(/ da Deputación$/,'')+(/^(President|Vicepresident)/.test(depCargo(r,p))?' da Deputación de ':' na Deputación de ')+r.pr), ...(p.bp?[(p.s==='M'?'Deputada':'Deputado')+' no Parlamento de Galicia (XII lex.)']:[]), ...(p.bc&&p.bce?[(p.s==='M'?'Deputada':'Deputado')+' no Parlament de Catalunya (XV leg.)']:[]), ...(p.bce?(p.bcm||[]).filter(x=>/Mesa do Parlament/.test(x)&&!/ ata /.test(x)).map(x=>x.replace(/ \(desde.*$/,'')):[]), ...EG.filter(r=>!r.f).map(r=>r.c),...X.filter(r=>!r.f).map(r=>r.c), ...L.map(r=>cargoLocal(r.c,p.s)+' de '+r.m)];
+  const actives=[...DD.filter(r=>!r.f).map(r=>depCargo(r,p).replace(/ da Deputación$/,'')+(/^(President|Vicepresident)/.test(depCargo(r,p))?' da Deputación de ':' na Deputación de ')+r.pr), ...(p.bp?[(p.s==='M'?'Deputada':'Deputado')+' no Parlamento de Galicia (XII lex.)']:[]), ...(p.bc&&p.bce?[(p.s==='M'?'Deputada':'Deputado')+' no Parlament de Catalunya (XV leg.)']:[]), ...(p.bce?(p.bcm||[]).filter(x=>/Mesa do Parlament/.test(x)&&!/ ata /.test(x)).map(x=>x.replace(/ \(desde.*$/,'')):[]), ...EG.filter(r=>!r.f).map(r=>r.c),...KG.filter(r=>!r.f).map(r=>r.c+' · '+r.ins),...X.filter(r=>!r.f).map(r=>r.c), ...L.map(r=>cargoLocal(r.c,p.s)+' de '+r.m)];
   const sexL=p.s==='M'?'Muller':p.s==='H'?'Home':'';
   const multi=p.r.length>1;
   const LEX={'1981':'I lexislatura','1985':'II lexislatura','1989':'III lexislatura','1993':'IV lexislatura','1997':'V lexislatura','2001':'VI lexislatura','2005':'VII lexislatura','2009':'VIII lexislatura','2012':'IX lexislatura','2016':'X lexislatura','2020':'XI lexislatura','2024':'XII lexislatura'};
-  const xh=X.length?`<section class="blk"><h2>Goberno Autonómico</h2>${X.map(r=>`
+  const kh=KG.length?KG.map(r=>`
+    <div class="ev"><div class="when">${r.i?fmtD(r.i):'antes do período rastrexado'}<br>${r.f?'→ '+fmtD(r.f):'→ actualidade'}</div>
+    <div><div class="what">${esc(r.c)} <span class="badge ${r.f?'off':'on'}">${r.f?(/^\(renovado/.test(r.dc||'')?'renovado':'cesou'):'en activo'}</span></div>
+    <div class="sub">${esc(r.ins)}${r.dp&&r.dp!==r.c?' · '+esc(r.dp):''}${r.nv?' · '+esc(r.nv):''}${r.lx?' · '+esc(r.lx)+' lexislatura'+(r.lx.includes('–')?'s':''):''}</div>
+    ${tenureK(r)}
+    <div class="links">${r.un?`<a href="${esc(r.un)}" target="_blank" rel="noopener">${esc(r.dn||'Nomeamento')}${r.bn?' ('+esc(r.bn)+')':''}</a>`:r.dn?`<span>${esc(r.dn)}</span>`:''}${r.uc?`<a href="${esc(r.uc)}" target="_blank" rel="noopener">${/^\(/.test(r.dc||'')?esc(r.dc.replace(/[()]/g,'')):esc(r.dc)+' · cesamento'}${r.bc?' ('+esc(r.bc)+')':''}</a>`:/^\(/.test(r.dc||'')?`<span>${esc(r.dc.replace(/[()]/g,''))}</span>`:''}</div>
+    ${r.oi?`<div class="sub">Inicio: ${esc(r.oi)}</div>`:''}${r.nt?`<div class="sub">${esc(r.nt)}</div>`:''}
+    </div></div>`).join(''):'';
+  const xh=(X.length||KG.length)?`<section class="blk"><h2>Goberno Autonómico</h2>${KG.length?kh:''}${X.map(r=>`
     <div class="ev"><div class="when">${r.i?fmtD(r.i):(/anterior a 1982/.test(r.oi||'')?'antes de 1982':/anterior a (1993|1997|20(05|11))/.test(r.oi||'')?'antes de 1993':'sen data')}<br>${r.f?'→ '+(r.fe?'c. ':'')+fmtD(r.f)+(r.fe?' (est.)':''):'→ actualidade'}</div>
     <div><div class="what">${esc(r.c)} <span class="badge ${r.f?'off':'on'}">${r.f?(/^\(renovado/.test(r.dc||'')?'renovado':'cesou'):'en activo'}</span></div>
     ${r.da?`<div class="sub">Denominación actual: ${esc(r.da)}</div>`:''}
@@ -583,8 +657,8 @@ function renderPerson(id){
   const G=p.r.filter(r=>r.t==='G').sort((a,b)=>b.d.localeCompare(a.d));
   const gh=G.length?`<section class="blk"><h2>Eleccións ao Congreso</h2>${G.map(r=>`
     <div class="ev"><div class="when">${fmtD(r.d)}</div>
-    <div><div class="what">${esc(r.e)} ${glab(gk(r))} · ${esc(r.pr)} ${r.el?'<span class="badge on">electo/a</span>':'<span class="badge off">non electo/a</span>'}</div>
-    <div class="sub">${esc(r.ca)} (${esc(r.sg)}) · ${r.tp==='Suplente'?'suplente nº':'posto nº'}${r.o}${r.al?' · alcume «'+esc(r.al)+'»':''}</div>
+    <div><div class="what">${esc(r.e)} ${glab(gk(r))} · ${esc(r.pr)} ${GPEND[gk(r)]?'<span class="badge off">candidatura presentada</span>':r.el?'<span class="badge on">electo/a</span>':'<span class="badge off">non electo/a</span>'}</div>
+    <div class="sub">${esc(r.ca)} (${esc(r.sg)}) · ${r.tp==='Suplente'?'suplente nº':'posto nº'}${r.o}${r.ind?' · independente':''}${r.pi?' · '+esc(r.pi):''}${r.al?' · alcume «'+esc(r.al)+'»':''}</div>${GPEND[gk(r)]?`<div class="sub"><a href="#e-G${gk(r)}-${CIRC[r.pr]}">Candidaturas presentadas en ${esc(r.pr)}</a> · eleccións o ${fmtD(r.d)}, aínda sen resultados</div>`:''}
     ${r.vt?`<div class="sub">${genLine(r)} · ${GLEX[gk(r)]||''}</div>`:''}
     ${r.nt?`<div class="sub">${esc(r.nt)}</div>`:''}
     </div></div>`).join('')}</section>`:'';
@@ -598,10 +672,24 @@ function renderPerson(id){
   const N=p.r.filter(r=>r.t==='N').sort((a,b)=>b.d.localeCompare(a.d));
   const nh=N.length?`<section class="blk"><h2>Eleccións ao Senado</h2>${N.map(r=>`
     <div class="ev"><div class="when">${fmtD(r.d)}</div>
-    <div><div class="what">${esc(r.e)} ${glab(gk(r))} · ${esc(r.pr)} ${r.tp==='Suplente'?'<span class="badge off">suplente</span>':r.el?'<span class="badge on">electo/a</span>':'<span class="badge off">non electo/a</span>'}</div>
-    <div class="sub">${esc(r.ca)} (${esc(r.sg)})${r.al?' · alcume «'+esc(r.al)+'»':''}${r.tp==='Suplente'&&r.ti?' · suplente de '+esc(r.ti):''}</div>
+    <div><div class="what">${esc(r.e)} ${glab(gk(r))} · ${esc(r.pr)} ${r.tp==='Suplente'?'<span class="badge off">suplente</span>':GPEND[gk(r)]?'<span class="badge off">candidatura presentada</span>':r.el?'<span class="badge on">electo/a</span>':'<span class="badge off">non electo/a</span>'}</div>
+    <div class="sub">${esc(r.ca)} (${esc(r.sg)})${r.ind?' · independente':''}${r.pi?' · '+esc(r.pi):''}${r.al?' · alcume «'+esc(r.al)+'»':''}${r.tp==='Suplente'&&r.ti?' · suplente '+(r.ns?r.ns+' ':'')+'de '+esc(r.ti):''}</div>${GPEND[gk(r)]?`<div class="sub"><a href="#e-N${gk(r)}-${CIRC[r.pr]}">Candidaturas presentadas en ${esc(r.pr)}</a> · eleccións o ${fmtD(r.d)}, aínda sen resultados</div>`:''}
     ${r.vp?`<div class="sub"><a href="#e-N${gk(r)}-${CIRC[r.pr]}">${nf(r.vp)} votos persoais</a> · ${r.pv}º máis votado/a na provincia (${(DATA.nr[gk(r)+'|'+r.pr]||[])[5]||4} escanos) · ${GLEX[gk(r)]||''}</div>`:''}
-    ${r.nt?`<div class="sub">${esc(r.nt)}</div>`:''}
+    ${r.nt?`<div class="sub">${esc(r.nt)}</div>`:''}${r.en?`<div class="sub">Ocupou o escano ${r.en>'2023-07-23'||r.d!=='2023-07-23'?'desde o '+fmtD(r.en)+' ':''}en substitución de ${esc(r.ens||'')}.</div>`:''}${r.bx?`<div class="sub">${r.bxt==='non tomou posesión'?'Non tomou posesión do escano.':'Baixa no Senado: '+fmtD(r.bx)+(r.bxt?' ('+esc(r.bxt)+')':'')+'.'}</div>`:''}
+    </div></div>`).join('')}</section>`:'';
+  const QQ=p.r.filter(r=>r.t==='Q').sort((a,b)=>b.i.localeCompare(a.i));
+  const qh=QQ.length?`<section class="blk"><h2>Senado · mandatos ${QQ.length>1?'(lexislaturas '+[...new Set(QQ.map(r=>r.lx))].reverse().join(', ')+')':'('+lexL(QQ[0].lx)+')'}</h2>${QQ.map(r=>`
+    <div class="ev"><div class="when">${fmtD(r.i)}<br>→ ${fmtD(r.f)}</div>
+    <div><div class="what">${qProcLong(r,p)} <span class="badge off">${r.lx==='Constituínte'?'lexislatura constituínte':esc(r.lx)+' lexislatura'}</span></div>
+    <div class="sub">${r.pa?esc(r.pa)+(r.sg&&r.sg!==r.pa?' ('+esc(r.sg)+')':''):''}${r.gr?(r.pa?' · ':'')+'grupo '+esc((r.grs||[r.gr]).join(' → ')):''}${r.fe&&r.fe!==r.sg?' · presentouse por '+esc(r.fe):''}${r.bt&&!/^(disoluci|extinci|cese$|fin)/i.test(r.bt)?' · baixa por '+esc(r.bt):''}${r.cr>1?' · '+r.cr+' credenciais':''}</div>
+    <div class="sub"><a href="#e-N${r.k}-es">Composición do Senado ${glab(r.k)}</a> · <a href="https://www.senado.es/web/composicionorganizacion/senadores/composicionsenado/fichasenador/index.html?id1=${r.sid}&legis=${r.lg}" target="_blank" rel="noopener">ficha no Senado</a></div>
+    </div></div>`).join('')}</section>`:'';
+  const SD=p.r.filter(r=>r.t==='S').sort((a,b)=>b.i.localeCompare(a.i));
+  const sdh=SD.length?`<section class="blk"><h2>Senado · designación autonómica</h2>${SD.map(r=>`
+    <div class="ev"><div class="when">${fmtD(r.i)}<br>→ ${r.f?fmtD(r.f):'disolución'}</div>
+    <div><div class="what">${p.s==='M'?'Senadora designada':'Senador designado'} pola comunidade: ${esc(r.ca)} <span class="badge off">${esc(r.lx)} lexislatura</span></div>
+    <div class="sub">${esc(r.sg||'')}${r.gr?' · grupo '+esc(r.gr):''}${r.bt&&r.bt!=='disolución'?' · baixa por '+esc(r.bt):''}${r.su?' · substituído/a por '+esc(r.su.toLowerCase().replace(/(^|[\s-])\S/g,t=>t.toUpperCase())):''}</div>
+    <div class="sub"><a href="#e-N2023-es">Composición do Senado</a></div>
     </div></div>`).join('')}</section>`:'';
   const M=p.r.filter(r=>r.t==='M').sort((a,b)=>b.y.localeCompare(a.y));
   const mh=M.length?`<section class="blk"><h2>Eleccións municipais</h2>${M.map(r=>`
@@ -621,11 +709,12 @@ function renderPerson(id){
     </div></div>`).join('')}</section>`:'';
   const AA=p.r.filter(r=>r.t==='A').sort((a,b)=>String(a.i).localeCompare(String(b.i)));
   const curA=L.filter(r=>r.c==='Alcalde'||r.c==='Alcalde en Funciones');
-  const ah=(AA.length||curA.length)?`<section class="blk"><h2>Alcaldías</h2>${[...curA.map(r=>({t:'L',m:r.m,ine:r.ine,i:iso(r.d),f:null,ls:r.pa,man:'2023–2027'})),...AA.map(r=>({...r,man:r.mn}))].sort((a,b)=>String(b.i).localeCompare(String(a.i))).map(r=>`
-    <div class="ev"><div class="when">${fmtD(r.i)}<br>→ ${r.f?fmtD(r.f):(r.man!=='2023–2027'?'fin do mandato':'actualidade')}</div>
-    <div><div class="what">${p.s==='M'?'Alcaldesa':'Alcalde'} de <a href="#c-${r.ine}">${esc(r.m)}</a> <span class="badge ${r.f||r.man!=='2023–2027'?'off':'on'}">mandato ${r.man}</span></div>
-    <div class="sub">${esc(r.ls||'')}${r.f?' · deixou a alcaldía antes do fin do mandato':''}${r.man!=='2023–2027'&&midStart({i:r.i,mn:r.man})?' · accedeu á alcaldía a metade do mandato':''}</div>
-    ${mandBar(r.i,r.f,r.man)}</div></div>`).join('')}</section>`:'';
+  const AR=alcRuns([...curA.map(r=>({k:r.ine,m:r.m,ine:r.ine,i:iso(r.d),f:null,ls:r.pa,man:'2023–2027'})),...AA.map(r=>({k:r.ine,m:r.m,ine:r.ine,i:r.i,f:r.f||null,ls:r.ls,man:r.mn}))].sort((a,b)=>String(a.i).localeCompare(String(b.i)))).reverse();
+  const ah=AR.length?`<section class="blk"><h2>Alcaldías</h2>${AR.map(r=>`
+    <div class="ev"><div class="when">${runWhen(r)}</div>
+    <div><div class="what">${p.s==='M'?'Alcaldesa':'Alcalde'} de <a href="#c-${r.ine}">${esc(r.m)}</a> <span class="badge ${runCur(r)?'on':'off'}">${r.mans.length>1?runMan(r):'mandato '+r.mans[0]}</span></div>
+    <div class="sub">${esc(r.ls.join(' → '))}${r.f?' · deixou a alcaldía antes do fin do mandato':''}${r.i0man!=='2023–2027'&&midStart({i:r.i,mn:r.i0man})?' · accedeu á alcaldía a metade do mandato':''}</div>
+    ${runBar(r)}</div></div>`).join('')}</section>`:'';
   const lh=L.length?`<section class="blk"><h2>Cargos locais · corporación 2023</h2>${L.map(r=>`
     <div class="ev"><div class="when">${fmtD(r.d)}</div>
     <div><div class="what">${esc(cargoLocal(r.c,p.s))} de <a href="#c-${r.ine}">${esc(r.m)}</a></div>
@@ -657,7 +746,7 @@ function renderPerson(id){
     ${actives.length?`<div class="chips">${actives.map(a=>`<span class="chip x">${esc(a)}</span>`).join('')}</div>`:''}
   </div>
   <div class="grid">
-    <div>${bh}${eh}${xh}${uh}${gh}${nh}${ch}${dh}${ah}${lh}${mh}${!uh&&!gh&&!nh&&!eh&&!xh&&!ch&&!dh&&!lh&&!mh&&!ah?'<p class="empty">Sen rexistros.</p>':''}</div>
+    <div>${bh}${eh}${xh}${uh}${gh}${nh}${qh}${sdh}${ch}${dh}${ah}${lh}${mh}${!uh&&!gh&&!nh&&!qh&&!sdh&&!eh&&!xh&&!ch&&!dh&&!lh&&!mh&&!ah?'<p class="empty">Sen rexistros.</p>':''}</div>
     <aside>
       <div class="card"><dl>
         <dt>Rexistros</dt><dd>${p.r.length}</dd>
@@ -667,8 +756,8 @@ function renderPerson(id){
         <dt>Eleccións Autonómicas</dt><dd>${C.length||'—'}</dd>
         <dt>Eleccións Locais</dt><dd>${M.length||'—'}</dd>
         <dt title="Eurodeputado/a electo/a">Cargo Europeo</dt><dd>${U.filter(r=>r.el).length||'—'}</dd>
-        <dt title="Deputado/a ou senador/a electo/a e cargos no Goberno de España">Cargo Estatal</dt><dd>${(G.filter(r=>r.el).length+N.filter(r=>r.el).length+EG.length)||'—'}</dd>
-        <dt title="Deputado/a electo/a nun parlamento autonómico (ou que entrou por substitución) e cargos na Xunta">Cargo Autonómico</dt><dd>${(C.filter(r=>r.el||r.tm).length+X.length)||'—'}</dd>
+        <dt title="Deputado/a ou senador/a electo/a e cargos no Goberno de España">Cargo Estatal</dt><dd>${(G.filter(r=>r.el).length+N.filter(r=>r.el).length+SD.length+EG.length)||'—'}</dd>
+        <dt title="Deputado/a electo/a nun parlamento autonómico (ou que entrou por substitución) e cargos na Xunta e noutros gobernos autonómicos">Cargo Autonómico</dt><dd>${(C.filter(r=>r.el||r.tm).length+X.length+KG.length)||'—'}</dd>
         <dt title="Mandatos como deputado/a na Deputación Provincial">Cargo Provincial</dt><dd>${DD.length||'—'}</dd>
         <dt title="Concelleiro/a electo/a, alcaldías e entradas na corporación 2023 por substitución">Cargo Local</dt><dd>${(M.filter(r=>r.el).length+AA.length+curA.length+L.filter(r=>r.su).length)||'—'}</dd>
       </dl>
@@ -701,29 +790,56 @@ function corpBlock(ine,hl,limit){
     ${limit?`<a href="#c-${ine}">Ver a corporación completa</a>`:''}</div>`;
 }
 
-const DTE={'1999':'1999-06-13','2003':'2003-05-25','2007':'2007-05-27','2011':'2011-05-22','2015':'2015-05-24','2019':'2019-05-26','2023':'2023-05-28'};
+const DTE={'1979':'1979-04-03','1983':'1983-05-08','1987':'1987-06-10','1991':'1991-05-26','1995':'1995-05-28','1999':'1999-06-13','2003':'2003-05-25','2007':'2007-05-27','2011':'2011-05-22','2015':'2015-05-24','2019':'2019-05-26','2023':'2023-05-28'};
 const CIRC={'A Coruña':'15','Lugo':'27','Ourense':'32','Pontevedra':'36','Galicia':'gal'}, CIRCR=Object.fromEntries(Object.entries(CIRC).map(([a,b])=>[b,a]));
 // v69: formato numérico único — miles con «.», decimais con «,» (tamén en números de 4 cifras)
 function nf(n){return Number(n).toLocaleString('de-DE',{maximumFractionDigits:20});}
 function df(x,d){return Number(x).toLocaleString('de-DE',{minimumFractionDigits:d,maximumFractionDigits:d});}
 function pf(x){return df(x,2)+' %';}
 const yr=d=>String(d||'').slice(0,4);
-const MAND={'2011–2015':['2011-06-11','2015-06-13'],'2019–2023':['2019-06-15','2023-06-17'],'2023–2027':['2023-06-17','2027-06-15']};
+const MAND={'1979–1983':['1979-04-19','1983-05-23'],'1983–1987':['1983-05-23','1987-06-30'],'1987–1991':['1987-06-30','1991-06-15'],'1991–1995':['1991-06-15','1995-06-17'],'1995–1999':['1995-06-17','1999-07-03'],'1999–2003':['1999-07-03','2003-06-14'],'2003–2007':['2003-06-14','2007-06-16'],'2007–2011':['2007-06-16','2011-06-11'],'2011–2015':['2011-06-11','2015-06-13'],'2015–2019':['2015-06-13','2019-06-15'],'2019–2023':['2019-06-15','2023-06-17'],'2023–2027':['2023-06-17','2027-06-15']};
 const midStart=r=>r.i>(String(Number(r.mn.slice(0,4)))+'-07-31');
-function mandBar(i,f,man){
-  const a0=Date.parse(MAND[man][0]), a1=Date.parse(MAND[man][1]);
-  const now=Date.parse('2026-10-01'); const b=Math.min(f?Date.parse(f):(man!=='2023–2027'?a1:now),a1); const a=Math.max(Date.parse(i)||a0,a0);
-  const L=(a-a0)/(a1-a0)*100, W=Math.max(1,(b-a)/(a1-a0)*100);
-  return `<div class="tenure" title="Período dentro do mandato ${man}"><i style="left:${L.toFixed(1)}%;width:${W.toFixed(1)}%"></i></div><div class="tenure-axis"><span>xuño ${man.slice(0,4)}</span><span>xuño ${man.slice(-4)}</span></div>`;
+// Barra de alcaldía co mesmo formato cá da presidencia da Xunta: eixo común (abril 1979 – outubro 2026) con marcas en cada mandato municipal, para comparar duracións
+const ALC0=Date.parse('1979-04-19'), ALC1=Date.parse('2026-10-01');
+function mandEnd(f,man){ return f||(man!=='2023–2027'&&MAND[man]?MAND[man][1]:null); }
+function alcBar(i,e,ttl){
+  const pc=t=>((t-ALC0)/(ALC1-ALC0)*100);
+  const a=Math.max(Date.parse(i)||ALC0,ALC0), b=Math.min(e?Date.parse(e):ALC1,ALC1);
+  const L=pc(a), W=Math.max(.8,pc(b)-L);
+  const MM=Object.entries(MAND);
+  const marks=MM.slice(1).map(([n,d])=>`<b style="left:${pc(Date.parse(d[0])).toFixed(2)}%"></b>`).join('');
+  const labs=MM.map(([n,d],k)=>{const x0=pc(Date.parse(d[0])), x1=k<MM.length-1?pc(Date.parse(MM[k+1][1][0])):100; return `<span style="position:absolute;left:${((x0+x1)/2).toFixed(2)}%;transform:translateX(-50%)" title="Mandato ${n}">${n.slice(2,4)}</span>`;}).join('');
+  return `<div class="tenure" title="${ttl||'Período na alcaldía'} sobre o eixo abril 1979 – outubro 2026, con marcas en cada mandato municipal"><i style="left:${L.toFixed(2)}%;width:${W.toFixed(2)}%"></i>${marks}</div><div class="tenure-axis" style="height:1.1em">${labs}</div>`;
 }
+function mandBar(i,f,man){ const M=MAND[man]; return alcBar(M&&i<M[0]?M[0]:i, mandEnd(f,man), 'Período na alcaldía (mandato '+man+')'); }
+// Une en tramos as alcaldías consecutivas da mesma persoa no mesmo concello (aínda que sexan mandatos distintos).
+// xs: lista cronolóxica de {k (persoa|concello), i, f, man, ls, ...}; os elementos {gap:1} cortan a unión.
+function alcRuns(xs){
+  const out=[], TOL=120*864e5;
+  xs.forEach(x=>{
+    if(x.gap){ out.push(x); return; }
+    const e=mandEnd(x.f,x.man), z=out[out.length-1];
+    if(z&&!z.gap&&z.k===x.k&&z.e&&(Date.parse(x.i)||0)-Date.parse(z.e)<=TOL){
+      if(!z.mans.includes(x.man)) z.mans.push(x.man);
+      if(x.ls&&z.ls[z.ls.length-1]!==x.ls) z.ls.push(x.ls);
+      z.f=x.f||null; z.man=x.man; z.e=(e&&z.e&&!x.f&&e<z.e)?z.e:e; z.n++;
+    } else out.push({...x, i0man:x.man, mans:[x.man], ls:x.ls?[x.ls]:[], e, n:1});
+  });
+  return out;
+}
+const runCur=z=>!z.f&&z.man==='2023–2027';
+const runWhen=z=>`${fmtD(z.i)}<br>→ ${z.f?fmtD(z.f):runCur(z)?'actualidade':'fin do mandato'}`;
+const runMan=z=>z.mans.length>1?`${z.mans.length} mandatos · ${runCur(z)?'desde '+z.mans[0].slice(0,4):z.mans[0].slice(0,4)+'–'+z.mans[z.mans.length-1].slice(-4)}`:z.mans[0];
+const runBar=z=>alcBar(MAND[z.i0man]&&z.i<MAND[z.i0man][0]?MAND[z.i0man][0]:z.i, z.e, 'Período na alcaldía ('+(z.mans.length>1?'mandatos '+z.mans.join(', '):'mandato '+z.mans[0])+')');
 function alcBlock(ine){
   const rows=[];
-  (DATA.alc[ine]||[]).forEach(id=>BYID[id].r.filter(r=>r.t==='A'&&r.ine===ine).forEach(r=>rows.push({p:BYID[id],r,man:r.mn})));
-  (DATA.corp[ine]||[]).forEach(id=>BYID[id].r.filter(r=>r.t==='L'&&r.ine===ine&&(r.c==='Alcalde'||r.c==='Alcalde en Funciones')).forEach(r=>rows.push({p:BYID[id],r:{i:iso(r.d),f:null,ls:r.pa},man:'2023–2027'})));
+  (DATA.alc[ine]||[]).forEach(id=>BYID[id].r.filter(r=>r.t==='A'&&r.ine===ine).forEach(r=>rows.push({p:BYID[id],k:id,i:r.i,f:r.f||null,ls:r.ls,man:r.mn})));
+  (DATA.corp[ine]||[]).forEach(id=>BYID[id].r.filter(r=>r.t==='L'&&r.ine===ine&&(r.c==='Alcalde'||r.c==='Alcalde en Funciones')).forEach(r=>rows.push({p:BYID[id],k:id,i:iso(r.d),f:null,ls:r.pa,man:'2023–2027'})));
   if(!rows.length) return '';
-  rows.sort((a,b)=>String(a.r.i).localeCompare(String(b.r.i)));
-  const k=rows.findIndex(x=>x.man!=='2011–2015'); if(rows.some(x=>x.man==='2011–2015')&&k>0) rows.splice(k,0,{gap:1});
-  return rows.map(x=>x.gap?`<div class="ev"><div class="when">2015–2019</div><div class="sub" style="color:var(--muted)">Mandato 2015–2019: sen datos de alcaldes. Electos/as en 2015 na táboa de concelleiros.</div></div>`:`<div class="ev"><div class="when">${fmtD(x.r.i)}<br>→ ${x.r.f?fmtD(x.r.f):(x.man!=='2023–2027'?'fin do mandato':'actualidade')}</div><div><div class="what"><a href="#p-${x.p.id}">${esc(x.p.n)}</a> <span class="badge ${x.r.f||x.man!=='2023–2027'?'off':'on'}">${x.man}</span></div><div class="sub">${esc(x.r.ls||'')}</div>${mandBar(x.r.i,x.r.f,x.man)}</div></div>`).join('');
+  rows.sort((a,b)=>String(a.i).localeCompare(String(b.i)));
+  const k=rows.findIndex(x=>x.man==='2019–2023'||x.man==='2023–2027'); if(k>0&&!rows.some(x=>x.man==='2015–2019')) rows.splice(k,0,{gap:1});
+  const runs=alcRuns(rows).reverse();
+  return runs.map(x=>x.gap?`<div class="ev"><div class="when">2015–2019</div><div class="sub" style="color:var(--muted)">Mandato 2015–2019: sen datos de alcaldes. Electos/as en 2015 na táboa de concelleiros.</div></div>`:`<div class="ev"><div class="when">${runWhen(x)}</div><div><div class="what"><a href="#p-${x.p.id}">${esc(x.p.n)}</a> <span class="badge ${runCur(x)?'on':'off'}">${runMan(x)}</span></div><div class="sub">${esc(x.ls.join(' → '))}</div>${runBar(x)}</div></div>`).join('');
 }
 
 function eurLine(r){
@@ -758,6 +874,100 @@ function seatStrip(rows,total){
 function statsDl(o){ return `<dl class="stats">${o.map(([k,v])=>`<div><dt>${k}</dt><dd>${v}</dd></div>`).join('')}</dl>`; }
 const t5=R=>R.t[5];
 const PRV_ISP=x=>INE_CA.some(([ca,pl])=>pl.some(v=>v[0]===x));
+
+// ---- Senado: composición completa (electos + designados autonómicos) ----
+function sxCanon(sg,ca){ const k=String(sg||'').toUpperCase(), c=String(ca||'').toUpperCase();
+  if(/EIVISSA/.test(c)) return 'EIVISSA I FORMENTERA AL SENAT';
+  if(/^(PSC|PSOE|PSDEG|PSE|PSN|PSIB)/.test(k)) return 'PSOE';
+  if(/^ERC/.test(k)) return 'ERC'; if(/JUNTS|JXCAT/.test(k)) return 'JUNTS'; if(/BILDU/.test(k)) return 'EH BILDU'; if(/PNV/.test(k)) return 'EAJ-PNV';
+  if(/^CC/.test(k)) return 'CC'; return sg||'—'; }
+function sxElectos(y){
+  const X=DATA.sx[y], base=[];
+  DATA.p.forEach(p=>p.r.forEach(r=>{if(r.t==='N'&&gk(r)===y&&r.tp==='Titular'&&r.el) base.push({pid:p.id,sg:sxCanon(r.sg,r.ca),pr:r.pr,raw:r.sg});}));
+  return base;
+}
+function sxComp(y,D){
+  const X=DATA.sx[y]; let E=sxElectos(y).map(x=>({...x}));
+  X.ch.slice().sort((a,b)=>a.baja.localeCompare(b.baja)).forEach(c=>{ if(c.baja<=D){ const i=E.findIndex(x=>x.pid===c.out); if(i>=0&&c.in) E[i]={...E[i],pid:c.in,sub:1}; }});
+  const Ds=X.ep.filter(e=>e.des<=D&&(!e.baja||e.baja>D)).map(e=>({pid:e.pid,sg:sxCanon(e.sg),ca:e.ca}));
+  return {E,Ds};
+}
+function qProc(r,p){ return r.pt==='R'?'designación real':r.pt==='D'?(p.s==='M'?'designada':'designado'):(p.s==='M'?'electa':'electo'); }
+function qProcLong(r,p){ const sen=p.s==='M'?'Senadora':'Senador'; return r.pt==='R'?sen+' por designación real':r.pt==='D'?sen+' '+(p.s==='M'?'designada':'designado')+' por: '+esc(r.lu):sen+' '+(p.s==='M'?'electa':'electo')+' por '+esc(r.lu); }
+function sqCanon(r){ const k=String(r.sg||r.fe||'').toUpperCase().replace(/\s/g,'');
+  if(!k) return r.gr||'—';
+  if(/^(PSC|PSOE|PSDEG|PSE|PSN|PSIB|PSA|PSPV|PSC-PSOE)/.test(k)||/SOCIALISTAOBRERO/.test(k)) return 'PSOE';
+  if(/^(PP|PPDEG|PPC|UPN-PP)$/.test(k)||/^PP[-(]/.test(k)) return 'PP';
+  if(/^(AP|CP|ALIANZAPOPULAR)/.test(k)) return 'AP';
+  if(/^ERC/.test(k)) return 'ERC'; if(/JUNTS|JXCAT/.test(k)) return 'JUNTS'; if(/BILDU/.test(k)) return 'EH BILDU'; if(/PNV/.test(k)) return 'EAJ-PNV';
+  if(/^(CDC|UDC|CIU|PDECAT)/.test(k)) return 'CiU'; if(/^CC|AHI|ATI/.test(k)) return 'CC';
+  return r.sg||r.fe; }
+function renderSenadoLeg(y){
+  const X=DATA.sq[y]; CMAP={};
+  const M=[]; DATA.p.forEach(p=>p.r.forEach(r=>{ if(r.t==='Q'&&r.k===y) M.push({p,r}); }));
+  const moments=[[X.C,'Constitución da Cámara ('+fmtD(X.C)+')'],[X.F,'Ao final da lexislatura ('+fmtD(X.F)+', véspera da disolución)'],['all','Todos os que formaron parte do Senado na lexislatura']];
+  const sel=(window._sqD&&window._sqD[y]&&moments.some(m=>m[0]===window._sqD[y]))?window._sqD[y]:X.C;
+  const act=sel==='all'?M:M.filter(x=>x.r.i<=sel&&x.r.f>=sel);
+  const cnt={}; act.forEach(x=>{const sg=sqCanon(x.r); (cnt[sg]=cnt[sg]||{e:0,d:0}); x.r.pt==='E'?cnt[sg].e++:cnt[sg].d++;});
+  const rows=Object.entries(cnt).map(([sg,v])=>({sg,e:v.e,d:v.d,s:v.e+v.d})).sort((a,b)=>b.s-a.s||b.e-a.e);
+  const grc={}; act.forEach(x=>{const g=x.r.gr||'—'; grc[g]=(grc[g]||0)+1;});
+  const grows=Object.entries(grc).sort((a,b)=>b[1]-a[1]);
+  const nm=x=>`<a href="#p-${x.p.id}">${esc(x.p.n)}</a>`;
+  const per=x=>`${fmtD(x.r.i)} → ${fmtD(x.r.f)}${x.r.bt&&!/^(disoluci|extinci|cese$|fin)/i.test(x.r.bt)?' ('+esc(x.r.bt)+')':''}`;
+  const tot=act.length, nE=act.filter(x=>x.r.pt==='E').length, nD=act.filter(x=>x.r.pt==='D').length, nR=act.filter(x=>x.r.pt==='R').length;
+  const byLu={}; M.forEach(x=>{const k=(x.r.pt==='R'?'Designación real':x.r.lu); (byLu[k]=byLu[k]||{pt:x.r.pt,L:[]}).L.push(x);});
+  const luH=pt=>Object.keys(byLu).filter(k=>byLu[k].pt===pt).sort((a,b)=>a.localeCompare(b,'gl')).map(k=>{const L=byLu[k].L.slice().sort((a,b)=>a.r.i.localeCompare(b.r.i)||COLL.compare(a.p.n,b.p.n));
+    return `<div class="ev"><div class="when">${esc(k)}<br><span class="sub">${L.length} ${L.length===1?'persoa':'persoas'}</span></div><div><ul class="corp">${L.map(x=>`<li>${nm(x)}<span>${esc(x.r.sg||x.r.gr||'')} · ${per(x)}</span></li>`).join('')}</ul></div></div>`;}).join('');
+  const table=`<div style="overflow-x:auto"><table class="cmp res"><thead><tr><th>Partido</th><th>Electos/as</th><th>Designados/as${nR?' (inc. reais)':''}</th><th>Total</th><th class="barcol"></th></tr></thead><tbody>${rows.map(r=>`<tr><td><i style="width:8px;height:8px;border-radius:2px;background:${pcol(r.sg)};display:inline-block;margin-right:6px"></i>${esc(r.sg)}</td><td>${r.e||'—'}</td><td>${r.d||'—'}</td><td><b>${r.s}</b></td><td class="barcol"><span class="bar" style="width:${r.s/(rows[0]||{s:1}).s*100}%;background:${pcol(r.sg)}"></span></td></tr>`).join('')}<tr><td><b>Total</b></td><td><b>${nE}</b></td><td><b>${nD+nR}</b></td><td><b>${tot}</b></td><td></td></tr></tbody></table></div>`;
+  const gtable=`<div style="overflow-x:auto"><table class="cmp res"><thead><tr><th>Grupo parlamentario</th><th>Membros</th></tr></thead><tbody>${grows.map(g=>`<tr><td>${esc(g[0])}</td><td>${g[1]}</td></tr>`).join('')}</tbody></table></div>`;
+  const ys=Object.keys(DATA.sq).concat(DATA.sx?Object.keys(DATA.sx):[]).sort();
+  app.innerHTML=`<div class="crumbs"><a href="#inicio">← Volver á busca</a></div>
+  <div class="ph">${shareUI(`Senado ${glab(y)} · composición`,location.hash.slice(1),'Ligazón directa a esta elección')}
+  <div class="meta"><span>${X.lx==='Constituínte'?'Lexislatura constituínte':esc(X.lx)+' lexislatura'} · eleccións do ${fmtD(X.el)}</span><span>Constitución ${fmtD(X.C)} · fin ${fmtD(X.D)}</span><span>${M.length} mandatos de ${new Set(M.map(x=>x.p.id)).size} persoas</span><span>Outras lexislaturas: ${ys.filter(k=>k!==y).map(k=>`<a href="#e-N${k}-es">${glab(k)}</a>`).join(' · ')}</span></div></div>
+  <label class="sub" style="display:flex;align-items:center;gap:8px;color:var(--muted);font-size:.9rem;margin:6px 0 12px">Composición <select id="sqsel" style="font:inherit;color:var(--ink);background:var(--surface);border:1px solid var(--line);border-radius:6px;padding:4px 8px">${moments.map(m=>`<option value="${m[0]}" ${m[0]===sel?'selected':''}>${m[1]}</option>`).join('')}</select></label>
+  <div class="grid"><div>
+    <section class="blk"><h2>${sel==='all'?'Mandatos na lexislatura':'Reparto de escanos'} · ${tot}</h2>${seatStrip(rows,tot)}</section>
+    <section class="blk"><h2>Por partido</h2>${table}
+    <p class="sub" style="color:var(--muted);font-size:.8rem">Partido: o que consta na ficha oficial de cada senador/a (se non o trae, a formación pola que se presentou ou o grupo parlamentario). PSOE inclúe PSC, PSdeG, PSE e o resto de federacións. ${y==='1977'?'Na lexislatura constituínte o Rei designou 41 senadores/as (art. 2 da Lei para a Reforma Política). ':''}${y>='1980'||y==='1979'?'Os designados/as son os senadores/as de designación autonómica (art. 69.5 da Constitución), que cambian cando se renovan os parlamentos autonómicos. ':''}Fonte: Senado de España, fichas oficiais dos senadores e senadoras e «Composición del Senado desde 1977».</p></section>
+    <section class="blk"><h2>Por grupo parlamentario</h2>${gtable}<p class="sub" style="color:var(--muted);font-size:.8rem">Último grupo parlamentario de cada senador/a na lexislatura.</p></section>
+    <section class="blk"><h2>Electos/as por circunscrición</h2>${luH('E')}</section>
+    ${Object.values(byLu).some(v=>v.pt==='D')?`<section class="blk"><h2>Designados/as polos parlamentos autonómicos</h2>${luH('D')}</section>`:''}
+    ${Object.values(byLu).some(v=>v.pt==='R')?`<section class="blk"><h2>Senadores/as de designación real</h2>${luH('R')}</section>`:''}
+  </div><aside><div class="card">${statsDl([['Electos/as',nf(nE)],['Designados/as autonómicos',nf(nD)]].concat(nR?[['Designación real',nf(nR)]]:[]).concat([['Total',nf(tot)]]))}
+    <div class="sub" style="margin-top:8px">Resultados das eleccións: ${['Madrid','Barcelona','A Coruña','Sevilla','Valencia/València','València/Valencia'].filter(c=>CIRC[c]).map(c=>`<a href="#e-N${y}-${CIRC[c]}">${esc(c)}</a>`).join(' · ')} … · <a href="#e-G${y}-es">Congreso ${glab(y)}</a></div></div></aside></div>`;
+  const s=$('#sqsel'); if(s) s.onchange=e=>{window._sqD=window._sqD||{}; window._sqD[y]=e.target.value; renderSenadoLeg(y);};
+  window.scrollTo(0,0);
+}
+function renderSenadoTotal(y){
+  const X=DATA.sx[y]; CMAP={};
+  const moments=[[X.C,'Constitución da Cámara ('+fmtD(X.C)+')'],[X.full,'Composición completa ('+fmtD(X.full)+')'],['2026-10-04','Ao final da lexislatura (disolución: '+fmtD(X.D)+')']];
+  const sel=(window._sxD&&moments.some(m=>m[0]===window._sxD))?window._sxD:X.full;
+  const {E,Ds}=sxComp(y,sel);
+  const cnt={}; E.forEach(x=>{(cnt[x.sg]=cnt[x.sg]||{e:0,d:0}).e++;}); Ds.forEach(x=>{(cnt[x.sg]=cnt[x.sg]||{e:0,d:0}).d++;});
+  const rows=Object.entries(cnt).map(([sg,v])=>({sg,e:v.e,d:v.d,s:v.e+v.d})).sort((a,b)=>b.s-a.s||b.e-a.e);
+  const tot=E.length+Ds.length;
+  const byCA={}; X.ep.forEach(e=>(byCA[e.ca]=byCA[e.ca]||[]).push(e));
+  const nm=id=>BYID[id]?`<a href="#p-${id}">${esc(BYID[id].n)}</a>`:'—';
+  const caH=Object.keys(byCA).sort((a,b)=>a.localeCompare(b,'gl')).map(ca=>{const L=byCA[ca].slice().sort((a,b)=>a.des.localeCompare(b.des)||String(a.baja||'9').localeCompare(String(b.baja||'9')));
+    const act=L.filter(e=>e.des<=sel&&(!e.baja||e.baja>sel)).length;
+    return `<div class="ev"><div class="when">${esc(ca)}<br><span class="sub">${act} ${act===1?'escano':'escanos'}</span></div><div><ul class="corp">${L.map(e=>`<li>${nm(e.pid)}<span>${esc(e.sg||'')} · ${fmtD(e.des)} → ${e.baja?fmtD(e.baja)+(e.bt&&e.bt!=='disolución'?' ('+esc(e.bt)+')':''):'disolución'}${e.sust?' · substituído/a por '+esc(e.sust.toLowerCase().replace(/(^|[\s-])\S/g,t=>t.toUpperCase())):''}</span></li>`).join('')}</ul></div></div>`;}).join('');
+  const chH=X.ch.slice().sort((a,b)=>a.baja.localeCompare(b.baja)).map(c=>`<li>${c.out?nm(c.out):esc(c.outn)} → ${c.in?nm(c.in):esc(c.inn)}<span>${esc(c.c)} · ${c.bt==='non tomou posesión'?'non tomou posesión':fmtD(c.baja)+' ('+esc(c.bt||'baixa')+')'}</span></li>`).join('');
+  const table=`<div style="overflow-x:auto"><table class="cmp res"><thead><tr><th>Partido</th><th>Electos/as</th><th>Designados/as</th><th>Total</th><th class="barcol"></th></tr></thead><tbody>${rows.map(r=>`<tr><td><i style="width:8px;height:8px;border-radius:2px;background:${pcol(r.sg)};display:inline-block;margin-right:6px"></i>${esc(r.sg)}</td><td>${r.e||'—'}</td><td>${r.d||'—'}</td><td><b>${r.s}</b></td><td class="barcol"><span class="bar" style="width:${r.s/rows[0].s*100}%;background:${pcol(r.sg)}"></span></td></tr>`).join('')}<tr><td><b>Total</b></td><td><b>${E.length}</b></td><td><b>${Ds.length}</b></td><td><b>${tot}</b></td><td></td></tr></tbody></table></div>`;
+  app.innerHTML=`<div class="crumbs"><a href="#inicio">← Volver á busca</a></div>
+  <div class="ph">${shareUI(`Senado ${glab(y)} · composición completa`,location.hash.slice(1),'Ligazón directa a esta elección')}
+  <div class="meta"><span>Eleccións do ${fmtD('2023-07-23')} · XV lexislatura</span><span>Constitución ${fmtD(X.C)} · disolución ${fmtD(X.D)}</span><span>208 electos/as nas circunscricións + senadores/as designados/as polos parlamentos autonómicos</span></div></div>
+  <label class="sub" style="display:flex;align-items:center;gap:8px;color:var(--muted);font-size:.9rem;margin:6px 0 12px">Composición na data <select id="sxsel" style="font:inherit;color:var(--ink);background:var(--surface);border:1px solid var(--line);border-radius:6px;padding:4px 8px">${moments.map(m=>`<option value="${m[0]}" ${m[0]===sel?'selected':''}>${m[1]}</option>`).join('')}</select></label>
+  <div class="grid"><div>
+    <section class="blk"><h2>Reparto de escanos · ${tot} senadores/as</h2>${seatStrip(rows,tot)}</section>
+    <section class="blk"><h2>Por partido</h2>${table}
+    <p class="sub" style="color:var(--muted);font-size:.8rem">Os electos/as son os 208 senadores/as das circunscricións provinciais e insulares, cos substitutos que entraron ata a data escollida. Os designados/as non saen das eleccións xerais: cada parlamento autonómico designa un senador/a e outro máis por cada millón de habitantes (art. 69.5 da Constitución), ao comezo da súa propia lexislatura, polo que cambian durante a do Senado. PSOE inclúe PSC, PSdeG, PSE-EE e PSN. Partido: o que consta na ficha oficial de cada senador/a. Fonte: ${esc(X.fonte)}; electos: Infoelectoral (Ministerio do Interior).</p></section>
+    <section class="blk"><h2>Senadores/as designados/as por comunidade autónoma</h2>${caH}</section>
+    <section class="blk"><h2>Substitucións entre os electos/as</h2><ul class="corp">${chH}</ul></section>
+  </div><aside><div class="card">${statsDl([['Electos/as',nf(E.length)],['Designados/as',nf(Ds.length)],['Total',nf(tot)]])}
+    <div class="sub" style="margin-top:8px">Resultados por circunscrición: ${['Madrid','Barcelona','A Coruña','Sevilla','Valencia/València'].filter(c=>CIRC[c]).map(c=>`<a href="#e-N${y}-${CIRC[c]}">${esc(c)}</a>`).join(' · ')} … · <a href="#e-G${y}-es">Congreso ${glab(y)}</a></div></div></aside></div>`;
+  const s=$('#sxsel'); if(s) s.onchange=e=>{window._sxD=e.target.value; renderSenadoTotal(y);};
+  window.scrollTo(0,0);
+}
 function renderResult(code){
   CMAP={};
   let m=code.match(/^A(\d{4})-(\w+)$/);
@@ -771,8 +981,8 @@ function renderResult(code){
     const out=CA==='Cataluña'?el.filter(x=>x.p.bcb||x.p.bcs):[];
     const others=K.provs.concat(K.provs.includes(K.tot)?[]:[K.tot]).filter(x=>x!==c).map(x=>`<a href="#e-A${y}-${CIRC[x]}">${x===K.tot?nomeTot:x}</a>`).join(' · ');
     const otherY=K.ys.filter(x=>x!==y).map(x=>`<a href="#e-A${x}-${CIRC[c]}">${x}</a>`).join(' · ');
-    app.innerHTML=`<div class="crumbs"><a href="#inicio">← Volver á busca</a></div>
-    <div class="ph"><h1>${K.nome} ${y} · ${TOT?nomeTot:esc(c)}</h1>
+    app.innerHTML=`<div class="crumbs"><a href="#inicio">← Volver á busca</a>${CA==='Galicia'?terrCrumb(c):''}</div>
+    <div class="ph">${shareUI(`${K.nome} ${y} · ${TOT?nomeTot:esc(c)}`,location.hash.slice(1),'Ligazón directa a esta elección')}
     <div class="meta"><span>${K.dt[y]||y}</span><span>${K.provs.length===1?'Circunscrición única':TOT?(K.totTxt||'Suma das '+K.provs.length+' circunscricións'):(K.provs.length===K.provs.filter(x=>PRV_ISP(x)).length?'Circunscrición provincial':'Circunscrición')} · ${t5(R)} escanos</span>${others||otherY?`<span>Tamén: ${others}${others&&otherY?' · ':''}${otherY}</span>`:''}</div></div>
     <div class="grid"><div>
       <section class="blk"><h2>Reparto de escanos</h2>${seatStrip(rows,R.t[5])}</section>
@@ -784,10 +994,11 @@ function renderResult(code){
         <p class="sub" style="color:var(--muted);font-size:.8rem">Fonte: fichas do Parlament de Catalunya (as datas de baixa son aproximadas: última baixa rexistrada nos seus cargos).</p></section>`:''}
       ${CA==='Galicia'?galCambios(y,K,c,TOT):''}
     </div><aside><div class="card">${statsDl([['Electores',nf(R.t[0])],['Votantes',nf(R.t[1])+' ('+pf(100*R.t[1]/R.t[0])+')'],['Votos válidos',nf(R.t[2])],['En branco',nf(R.t[3])],['Nulos',nf(R.t[4])]])}
-      ${el.length?`<div><b>Deputados/as electos/as</b><ul class="corp">${el.map(x=>`<li><a href="#p-${x.p.id}">${esc(x.p.n)}</a><span>${TOT?esc(x.r.pr)+' · ':''}${esc(x.r.sg)}${x.r.o!=null?' · nº'+x.r.o:''}</span></li>`).join('')}</ul></div>`:''}</div></aside></div>`;
+      ${neTabs(el.length?`<ul class="corp">${el.map(x=>`<li><a href="#p-${x.p.id}">${esc(x.p.n)}</a><span>${TOT?esc(x.r.pr)+' · ':''}${esc(x.r.sg)}${x.r.o!=null?' · nº'+x.r.o:''}</span></li>`).join('')}</ul>`:'','Deputados/as electos/as',el.length,aNE(y,c,CA,K,TOT,R))}</div></aside></div>`;
     window.scrollTo(0,0); return;
   }
   m=code.match(/^G(\d{4}[AN]?)-(\w+)$/);
+  if(m&&GPEND[m[1]]){ renderPend('G',m[1],m[2]); return; }
   if(m){
     const y=m[1], c=CIRCR[m[2]], R=(DATA.gr||{})[y+'|'+c]||grCA(y,c);
     if(!R){app.innerHTML=`<p class="empty">Non atopamos este resultado. <a href="#inicio">Volver á busca</a>.</p>`;return;}
@@ -796,15 +1007,15 @@ function renderResult(code){
     const el=DATA.p.filter(pick).map(p=>({p,r:pick(p)})).sort((a,b)=>a.r.pr.localeCompare(b.r.pr)||pkey(a.r.sg).localeCompare(pkey(b.r.sg))||a.r.o-b.r.o);
     const others=circNav('G',y,c);
     const otherG=GLIST.map(x=>x[0]).filter(x=>x!==y).map(x=>`<a href="#e-G${x}-${CIRC[c]}">${glab(x)}</a>`).join(' · ');
-    app.innerHTML=`<div class="crumbs"><a href="#inicio">← Volver á busca</a></div>
-    <div class="ph"><h1>Congreso dos Deputados ${glab(y)} · ${CAP[c]?'Total '+esc(c):c==='España'?'Total España':esc(c)}</h1>
+    app.innerHTML=`<div class="crumbs"><a href="#inicio">← Volver á busca</a>${terrCrumb(c)}</div>
+    <div class="ph">${shareUI(`Congreso dos Deputados ${glab(y)} · ${CAP[c]?'Total '+esc(c):c==='España'?'Total España':esc(c)}`,location.hash.slice(1),'Ligazón directa a esta elección')}
     <div class="meta"><span>${GDT[y]||y}</span><span>${CAP[c]?'Suma das '+CAP[c].length+' circunscricións de '+esc(c):c==='España'?'Suma das 52 circunscricións':'Circunscrición provincial'} · ${t[5]} escanos</span><span>Tamén: ${others}</span><span>Outras eleccións: ${otherG}</span></div></div>
     <div class="grid"><div>
       <section class="blk"><h2>Reparto de escanos</h2>${seatStrip(rows,t[5])}</section>
       <section class="blk"><h2>Resultados por candidatura</h2>${resultTable(rows,t[5],'Escanos')}
       <p class="sub" style="color:var(--muted);font-size:.8rem">Reparto D'Hondt entre as listas con polo menos o 3 % dos votos válidos da circunscrición. Os votos inclúen o voto exterior (CERA). Fonte: Infoelectoral (Ministerio do Interior).${y==='2023'||y==='1977'||y==='1993'||y==='1979'||y==='1986'||y==='1982'||y==='1989'?'':' Listas: só titulares (a fonte non inclúe suplentes).'}${GNOTE[y]?' '+GNOTE[y]:''}</p></section>
     </div><aside><div class="card">${statsDl([['Censo',nf(t[0])],['Votantes',nf(t[1])+' ('+pf(100*t[1]/t[0])+')'],['Votos válidos',nf(t[2])],['En branco',nf(t[3])],['Nulos',nf(t[4])]])}
-      ${el.length?`<div><b>Deputados/as electos/as</b><ul class="corp">${el.map(x=>`<li><a href="#p-${x.p.id}">${esc(x.p.n)}</a><span>${CAP[c]||c==='España'?esc(x.r.pr)+' · ':''}${esc(x.r.sg)} · nº${x.r.o}</span></li>`).join('')}</ul></div>`:''}</div></aside></div>`;
+      ${neTabs(el.length?`<ul class="corp">${el.map(x=>`<li><a href="#p-${x.p.id}">${esc(x.p.n)}</a><span>${CAP[c]||c==='España'?esc(x.r.pr)+' · ':''}${esc(x.r.sg)} · nº${x.r.o}</span></li>`).join('')}</ul>`:'','Deputados/as electos/as',el.length,gNE(y,c,R))}</div></aside></div>`;
     window.scrollTo(0,0); return;
   }
   m=code.match(/^U(\d{4})-(\w+)$/);
@@ -814,18 +1025,21 @@ function renderResult(code){
     const rows=R.l.map(x=>({ca:x[0],sg:x[1],v:x[2],p:x[3],s:x[4]})); const t=R.t, ES=c==='España';
     const el=ES?DATA.p.filter(p=>p.r.some(r=>r.t==='U'&&r.el&&r.d.startsWith(y))).map(p=>({p,r:p.r.find(r=>r.t==='U'&&r.el&&r.d.startsWith(y))})).sort((a,b)=>(R.l.findIndex(x=>x[1]===a.r.sg)-R.l.findIndex(x=>x[1]===b.r.sg))||a.r.o-b.r.o):[];
     const others=[['es','España'],['gal','Galicia'],['15','A Coruña'],['27','Lugo'],['32','Ourense'],['36','Pontevedra']].filter(x=>x[1]!==c).map(([k,v])=>`<a href="#e-U${y}-${k}">${v}</a>`).join(' · ');
-    app.innerHTML=`<div class="crumbs"><a href="#inicio">← Volver á busca</a></div>
-    <div class="ph"><h1>Parlamento Europeo ${y} · ${esc(c)}</h1>
+    app.innerHTML=`<div class="crumbs"><a href="#inicio">← Volver á busca</a>${terrCrumb(c)}</div>
+    <div class="ph">${shareUI(`Parlamento Europeo ${y} · ${esc(c)}`,location.hash.slice(1),'Ligazón directa a esta elección')}
     <div class="meta"><span>${UDT[y]||y}</span><span>${ES?'Circunscrición única · '+t[5]+' escanos':'Votos en '+esc(c)+' (o reparto faise para toda España)'}</span><span>Tamén: ${others}</span><span>Outras eleccións: ${ULIST.map(x=>x[0]).filter(x=>x!==y).map(x=>`<a href="#e-U${x}-${m[2]}">${x}</a>`).join(' · ')}</span></div></div>
     <div class="grid"><div>
       ${ES?`<section class="blk"><h2>Reparto de escanos</h2>${seatStrip(rows,t[5])}</section>`:''}
       <section class="blk"><h2>Resultados por candidatura${ES?'':' en '+esc(c)}</h2>${ES?resultTable(rows.filter(x=>x.v>=10000||x.s>0),t[5],'Escanos'):resultTable(rows.filter(x=>x.v>=100).map(x=>({...x,s:null})),0,'')}
       <p class="sub" style="color:var(--muted);font-size:.8rem">${ES?'Reparto D\'Hondt en circunscrición única, sen barreira. Na táboa só as candidaturas con 10.000 votos ou máis.':'Só candidaturas con 100 votos ou máis. Algunhas coalicións preséntanse en Galicia con outra denominación (ex. BNG-Agora Repúblicas).'} Fonte: Infoelectoral (Ministerio do Interior).${y==='2024'?'':' Listas: só titulares (a fonte non inclúe suplentes).'}${ES?(UNOTE[y]||''):''}</p></section>
     </div><aside><div class="card">${statsDl([['Censo',nf(t[0])],['Votantes',nf(t[1])+' ('+pf(100*t[1]/t[0])+')'],['Votos válidos',nf(t[2])],['En branco',nf(t[3])],['Nulos',nf(t[4])]])}
-      ${el.length?`<div><b>Eurodeputados/as electos/as</b><ul class="corp">${el.map(x=>`<li><a href="#p-${x.p.id}">${esc(x.p.n)}</a><span>${esc(x.r.sg.length>14?x.r.sg.slice(0,14)+'…':x.r.sg)} · nº${x.r.o}</span></li>`).join('')}</ul></div>`:''}</div></aside></div>`;
+      ${neTabs(el.length?`<ul class="corp">${el.map(x=>`<li><a href="#p-${x.p.id}">${esc(x.p.n)}</a><span>${esc(x.r.sg.length>14?x.r.sg.slice(0,14)+'…':x.r.sg)} · nº${x.r.o}</span></li>`).join('')}</ul>`:'','Eurodeputados/as electos/as',el.length,uNE(y,ES,R))}</div></aside></div>`;
     window.scrollTo(0,0); return;
   }
   m=code.match(/^N(\d{4}[AN]?)-(\w+)$/);
+  if(m&&GPEND[m[1]]){ renderPend('N',m[1],m[2]); return; }
+  if(m&&m[2]==='es'&&DATA.sx&&DATA.sx[m[1]]){ renderSenadoTotal(m[1]); return; }
+  if(m&&m[2]==='es'&&DATA.sq&&DATA.sq[m[1]]){ renderSenadoLeg(m[1]); return; }
   if(m){
     const y=m[1], c=CIRCR[m[2]], t=(DATA.nr||{})[y+'|'+c];
     if(!t){app.innerHTML=`<p class="empty">Non atopamos este resultado. <a href="#inicio">Volver á busca</a>.</p>`;return;}
@@ -837,9 +1051,9 @@ function renderResult(code){
     const seats=Object.entries(bp).sort((a,b)=>b[1]-a[1]).map(([k,v])=>({sg:k,s:v}));
     const others=circNav('N',y,c);
     const otherN=GLIST.map(x=>x[0]).filter(x=>x!==y).map(x=>`<a href="#e-N${x}-${CIRC[c]}">${glab(x)}</a>`).join(' · ');
-    app.innerHTML=`<div class="crumbs"><a href="#inicio">← Volver á busca</a></div>
-    <div class="ph"><h1>Senado ${glab(y)} · ${esc(c)}</h1>
-    <div class="meta"><span>${GDT[y]||y}</span><span>${provOf(c)!==c?'Circunscrición insular':'Circunscrición provincial'} · ${t[5]} senadores/as electos/as</span><span>Tamén: ${others} · <a href="#e-G${y}-${CIRC[provOf(c)]}">Congreso ${glab(y)}${provOf(c)!==c?' ('+esc(provOf(c))+')':''}</a></span><span>Outras eleccións: ${otherN}</span></div></div>
+    app.innerHTML=`<div class="crumbs"><a href="#inicio">← Volver á busca</a>${terrCrumb(c)}</div>
+    <div class="ph">${shareUI(`Senado ${glab(y)} · ${esc(c)}`,location.hash.slice(1),'Ligazón directa a esta elección')}
+    <div class="meta"><span>${GDT[y]||y}</span><span>${provOf(c)!==c?'Circunscrición insular':'Circunscrición provincial'} · ${t[5]} senadores/as electos/as</span><span>Tamén: ${others} · <a href="#e-G${y}-${CIRC[provOf(c)]}">Congreso ${glab(y)}${provOf(c)!==c?' ('+esc(provOf(c))+')':''}</a></span><span>Outras eleccións: ${otherN}</span>${DATA.sx&&DATA.sx[y]?`<span><a href="#e-N${y}-es">Composición completa do Senado (con designados autonómicos)</a></span>`:DATA.sq&&DATA.sq[y]?`<span><a href="#e-N${y}-es">Composición do Senado na lexislatura (electos/as, substitutos/as e designados/as)</a></span>`:''}</div></div>
     <div class="grid"><div>
       <section class="blk"><h2>Senadores/as electos/as</h2>${seatStrip(seats,t[5])}</section>
       <section class="blk"><h2>Votos por candidato/a</h2><div style="overflow-x:auto"><table class="cmp res"><thead><tr><th>Candidato/a</th><th>Votos</th><th>%</th><th>Electo/a</th><th class="barcol"></th></tr></thead><tbody>${rows.map(x=>`<tr><td><i style="width:8px;height:8px;border-radius:2px;background:${pcol(x.r.sg)};display:inline-block;margin-right:6px"></i><a href="#p-${x.p.id}">${esc(x.p.n)}</a><div class="cand">${esc(x.r.sg)}${sup[x.r.cs]?' · suplente: <a href="#p-'+sup[x.r.cs].p.id+'">'+esc(sup[x.r.cs].p.n)+'</a>':''}</div></td><td>${nf(x.r.vp)}</td><td>${t[2]?pf(100*x.r.vp/t[2]):'—'}</td><td>${x.r.el?'<b>Si</b>':''}</td><td class="barcol"><span class="bar" style="width:${x.r.vp/mx*100}%;background:${pcol(x.r.sg)}"></span></td></tr>`).join('')}</tbody></table></div>
@@ -858,20 +1072,153 @@ function renderResult(code){
     }
     rows.sort((a,b)=>(b.v||0)-(a.v||0)||b.s-a.s);
     const el=(DATA.corpE[y][ine]||[]).map(id=>({p:BYID[id],r:BYID[id].r.find(r=>r.t==='M'&&r.y===y&&r.ine===ine&&r.el)})).filter(x=>x.r).sort((a,b)=>b.s-a.s);
-    const otherY=['1999','2003','2007','2011','2015','2019','2023'].filter(x=>x!==y&&DATA.mr[x+'|'+ine]);
-    app.innerHTML=`<div class="crumbs"><a href="#inicio">← Volver á busca</a>${GALC.includes(ine.slice(0,2))||(DATA.corp[ine]||[]).length?` · <a href="#c-${ine}">Concello de ${esc(cn[0])}</a>`:''}</div>
-    <div class="ph"><h1>Municipais ${y} · ${esc(cn[0])}</h1>
+    const otherY=['1979','1983','1987','1991','1995','1999','2003','2007','2011','2015','2019','2023'].filter(x=>x!==y&&DATA.mr[x+'|'+ine]);
+    app.innerHTML=`<div class="crumbs"><a href="#inicio">← Volver á busca</a>${GALC.includes(ine.slice(0,2))||(DATA.corp[ine]||[]).length?` · <a href="#c-${ine}">Concello de ${esc(cn[0])}</a>`:''}${terrCrumb(cn[1])}</div>
+    <div class="ph">${shareUI(`Municipais ${y} · ${esc(cn[0])}`,location.hash.slice(1),'Ligazón directa a esta elección')}
     <div class="meta"><span>${fmtD(DTE[y])}</span><span>${esc(cn[1])} · ${R[5]} concelleiros/as</span>${otherY.length?`<span>Tamén: ${otherY.map(o=>`<a href="#e-M${o}-${ine}">${o}</a>`).join(' · ')}</span>`:''}</div></div>
     <div class="grid"><div>
       <section class="blk"><h2>Reparto de concelleiros/as</h2>${seatStrip(rows,R[5])}</section>
       <section class="blk"><h2>Resultados por candidatura</h2>${resultTable(rows,R[5],'Concelleiros')}
-      <p class="sub" style="color:var(--muted);font-size:.8rem">${rows.every(x=>x.v==null)?'Concello de ata 250 habitantes: listas abertas, vótase a persoas; son electos os máis votados (3 ata 100 habitantes, 5 de 101 a 250).'+(GALC.includes(ine.slice(0,2))?'':' A marca de electo/a calcúlase cos votos persoais publicados.'):"Reparto D'Hondt entre as listas con polo menos o 5 % dos votos válidos."}${y==='1999'?' En 1999 o Ministerio só publica as listas de candidatos dalgúns concellos; o reparto é o oficial.':''} Fonte: Infoelectoral (Ministerio do Interior).</p></section>
-    </div><aside><div class="card">${statsDl([['Poboación',nf(R[6])],['Censo',nf(R[0])],['Votantes',nf(R[1])+' ('+pf(100*R[1]/R[0])+')'],['Votos válidos',nf(R[2])],['En branco',nf(R[3])],['Nulos',nf(R[4])]])}
-      ${el.length?`<div><b>Electos/as</b><ul class="corp">${el.sort((a,b)=>pkey(a.r.sg).localeCompare(pkey(b.r.sg))||a.r.o-b.r.o).map(x=>`<li><a href="#p-${x.p.id}">${esc(x.p.n)}</a><span>${esc(x.r.sg)} · nº${x.r.o}</span></li>`).join('')}</ul></div>`:''}</div></aside></div>`;
+      <p class="sub" style="color:var(--muted);font-size:.8rem">${rows.every(x=>x.v==null)?'Concello de ata 250 habitantes: listas abertas, vótase a persoas; son electos os máis votados (3 ata 100 habitantes, 5 de 101 a 250).'+(GALC.includes(ine.slice(0,2))?'':' A marca de electo/a calcúlase cos votos persoais publicados.'):"Reparto D'Hondt entre as listas con polo menos o 5 % dos votos válidos."}${y==='1999'?(['15','27','32','36'].includes(ine.slice(0,2))?' En 1999 o Ministerio non publica as listas de candidatos: as listas (titulares e suplentes) son as candidaturas proclamadas no Boletín Oficial da Provincia do 18/05/1999 e os electos, os primeiros postos de cada lista segundo o número de concelleiros obtidos.'+(ine==='15040'?' Laxe: votos e concelleiros do PP e do PSdeG-PSOE segundo o BOE núm. 178 (27/07/1999); Infoelectoral rexistra un empate a 1.316 votos.':'')+(ine==='27028'?' Lugo: o posto 5 do BNG é Xose Anxo Cuba Rodriguez segundo o BOP; Infoelectoral rexistra «Xose Ignacio Cuba Rodriguez».':''):' En 1999 o Ministerio só publica as listas de candidatos dalgúns concellos; o reparto é o oficial.'):''}${y==='1979'?' Primeiras eleccións municipais democráticas (en 1977 non houbo municipais). '+(ine.slice(0,2)==='27'?(LU79.includes(ine)?'As listas son as candidaturas proclamadas no Boletín Oficial da Provincia de Lugo (núm. 50, 02/03/1979); as siglas son as da cabeceira de cada lista no BOP.':'As listas son as candidaturas presentadas ante as xuntas electorais de zona de Lugo, Chantada e A Fonsagrada, publicadas no Boletín Oficial da Provincia de Lugo (núm. 43 e 44, 21–22/02/1979); o BOP dispoñible non trae a proclamación destas xuntas, polo que só se inclúen as listas que figuran nos resultados oficiais. Nas listas publicadas sen separar titulares e suplentes (xunta de Chantada), os nomes que pasan do número de concelleiros figuran como suplentes.'):ine.slice(0,2)==='32'?'As listas son as candidaturas proclamadas no Boletín Oficial da Provincia de Ourense (núm. 51, 52 e 53, 02–05/03/1979); as siglas son as da cabeceira de cada lista no BOP.':'As listas son as candidaturas proclamadas no Boletín Oficial da Provincia (A Coruña, 02–16/03/1979; Pontevedra, 03 e 05/03/1979); as siglas son as da cabeceira de cada lista no BOP.')+' Votos, nulos e concelleiros oficiais do Ministerio do Interior, que para 1979 non publica votantes nin votos en branco: a porcentaxe calcúlase sobre os votos ás candidaturas. Os electos son os primeiros postos de cada lista segundo o número de concelleiros obtidos; se o BOP imprime máis titulares ca postos, os sobrantes figuran como suplentes.'+({'27006':' Becerrea: o BOP publica tamén unha lista do PSOE que non figura nos resultados oficiais.','27016':' Chantada: o BOP publica tamén unha lista do PSOE que non figura nos resultados oficiais.','27045':' Pedrafita do Cebreiro: o Ministerio rexistra como alcalde a Jesús Luis López González; o BOP publica o número 1 do BN-PG como José Luis López González.','27053':' Ribeira de Piquín: Infoelectoral rexistra unha candidatura do PSOE (26 votos, sen concelleiros) cuxa lista non publica o BOP.','27055':' Samos: o BOP publica tamén unha lista do Partido do Traballo de Galicia que non figura nos resultados oficiais.','27058':' O Saviñao: Infoelectoral rexistra tamén candidaturas de AMDG e Coalición Unidade Galega sen votos; o BOP non publica as súas listas.','32007':' Baños de Molgas: o reparto oficial non coincide co D\'Hondt cos votos publicados (daría CD 6, UCD 4).','32014':' A Bola: o reparto oficial non coincide co D\'Hondt cos votos publicados (daría PSOE 2, UCD 8).','32038':' Larouco: a Agrupación Municipal Democrática Galega presentou 8 candidatos para 9 postos.','32046':' Melón: o reparto oficial non coincide co D\'Hondt cos votos publicados (daría CD 3, UCD 8).','32047':' A Merca: o reparto oficial non coincide co D\'Hondt cos votos publicados (daría BN-PG 0, UCD 10).','32052':' Nogueira de Ramuín: o reparto oficial non coincide co D\'Hondt cos votos publicados (daría BN-PG 2, UCD 7).','32065':' Punxín: Infoelectoral rotula como «Independiente» a candidatura que no BOP é do Partido do Traballo de Galicia (4 votos).','32076':' San Cristovo de Cea: o reparto oficial non coincide co D\'Hondt cos votos publicados (daría BN-PG 0, UCD 12).','32080':' A Teixeira: o reparto oficial non coincide co D\'Hondt cos votos publicados (daría CD 1, PSOE 2).','32087':' Vilamarín: o reparto oficial non coincide co D\'Hondt cos votos publicados (daría CD 1, UCD 10).','15048':' Miño: a lista de UCD presentou 11 candidatos para 13 postos.','15069':' Pontedeume: a lista do PSOE presentou 11 candidatos para 13 postos.','36032':' Moraña: a lista do PTG presentou 11 candidatos para 13 postos.','36056':' Valga: a lista do PSOE presentou 12 titulares para 13 postos.','36013':' Covelo: a lista independente presentou 12 titulares para 13 postos.','15044':' Mañón: Infoelectoral rotula a candidatura como UCD, pero no BOP é Coalición Democrática.','15030':' A Coruña: o BOP publica tamén unha lista da ORT que non figura nos resultados oficiais.','15036':' Ferrol: lista segundo a publicación corrixida do BOP núm. 63 (16/03/1979).','15023':' Cee: o reparto oficial non coincide co D\'Hondt cos votos publicados (daría UCD 4, UG 1).','36022':' O Grove: o reparto oficial non coincide co D\'Hondt cos votos publicados (daría PCG 4, PSOE 2).','36026':' Marín: o reparto oficial non coincide co D\'Hondt cos votos publicados (daría UCD 9, UG 3).','36027':' Meaño: PSOE e UG empatan a votos; o último concelleiro asignouse ao PSOE.','36033':' Mos: o reparto oficial non coincide co D\'Hondt cos votos publicados (daría SOMI 7, PSOE 1).','36048':' O Rosal: Infoelectoral publica para O Rosal e Salceda de Caselas os mesmos votos (209, 1.577, 471 e 290), polo que polo menos un dos dous concellos ten os votos mal gravados; o reparto de concelleiros é o oficial.','36049':' Salceda de Caselas: Infoelectoral publica para O Rosal e Salceda de Caselas os mesmos votos (209, 1.577, 471 e 290), polo que polo menos un dos dous concellos ten os votos mal gravados; o reparto de concelleiros é o oficial.'}[ine]||''):''}${y==='1983'?(['27','32'].includes(ine.slice(0,2))?' As listas son as candidaturas proclamadas no Boletín Oficial da Provincia (Lugo, 11/04/1983; Ourense, 15/04/1983, coa corrección de erros do 19/04/1983).':' As listas son as candidaturas proclamadas no Boletín Oficial da Provincia (A Coruña, 12/04/1983; Pontevedra, 13/04/1983); no da Coruña titulares e suplentes van nunha soa numeración e os postos que pasan do número de concelleiros figuran como suplentes.')+' Votos e concelleiros oficiais do Ministerio do Interior, que para 1983 non publica votantes, votos en branco nin nulos: a porcentaxe calcúlase sobre os votos ás candidaturas. Os electos son os primeiros postos de cada lista segundo o número de concelleiros obtidos.'+({'15053':' Muros: as dúas listas independentes presentaron 14 candidatos para 17 postos.','15011':' Boiro: a Agrupación Municipal Democrática Galega presentou 14 candidatos para 17 postos.','36061':' Vilanova de Arousa: o BOP numera a lista de AP sen o posto 5 (16 titulares) e imprime o primeiro suplente antes da cabeceira «Suplentes».','36051':' Sanxenxo: a lista do PSG-PSOE ten 16 titulares; o primeiro suplente figura antes da cabeceira «Suplentes».','36060':' Vilagarcía de Arousa: o BOP numera a lista de AP sen o posto 18 (20 titulares).','15038':' Frades: o reparto oficial (CG 6, AP 4, BNG 1) non coincide co D\'Hondt cos votos publicados, que daría 5, 5 e 1.','15004':' Ares: Infoelectoral rotula mal dúas candidaturas (ANG e PDL); corresponden ao BNG e a AP-PDP-UL.','27026':' Láncara: a lista do Partido Demócrata Liberal (2 concelleiros) non se publica no BOP; os seus electos non figuran no rexistro.','32045':' Maside: o BOP só publica a lista de Coalición Galega; as de AP-PDP-UL (5 concelleiros) e PSG-PSOE (1) non figuran nel.','32061':' Piñor: o BOP só publica as listas de Coalición Galega e AP-PDP-UL; as do PSG-PSOE (1 concelleiro) e do PSG (3) non figuran nel.','32074':' San Amaro: o BOP imprimiu as súas listas baixo a cabeceira de Punxín (corrixido no BOP núm. 88, 19/04/1983); só publica as de Coalición Galega e PSG-PSOE: as de AP-PDP-UL (1 concelleiro) e BNG (0) non figuran nel.','32008':' Barbadás: a lista do PSG-PSOE publícase con 8 candidatos para 11 postos.','32062':' Porqueira: a lista do PSG-PSOE publícase con 11 titulares para 9 postos.','32072':' A Rúa: a lista do PSG-PSOE publícase con 10 candidatos para 13 postos.','32001':' Allariz: Infoelectoral indica 11 concelleiros, pero reparte 13 e o BOP publica listas de 13; tómanse 13.','27045':' Pedrafita do Cebreiro: o Ministerio rexistra como alcalde a Jesús Luis López González; o BOP publica o número 1 do PSG-PSOE como José Luis López González.','32056':' Padrenda: o alcalde que rexistra o Ministerio (Paulino Viéitez Lorenzo, AP) non figura na lista de AP-PDP-UL publicada no BOP.','32002':' O reparto de Infoelectoral non coincide co D\'Hondt calculado cos votos publicados.','32014':' O reparto de Infoelectoral non coincide co D\'Hondt calculado cos votos publicados.','32021':' O reparto de Infoelectoral non coincide co D\'Hondt calculado cos votos publicados.','32029':' O reparto de Infoelectoral non coincide co D\'Hondt calculado cos votos publicados.','32054':' O reparto de Infoelectoral non coincide co D\'Hondt calculado cos votos publicados.'}[ine]||'')+(['15030','15031','15032','15053','15056','15070','15082','15083','15084','36002','36006','36021','36035','36037','36041','36043','36051','36061'].includes(ine)?' Cando Infoelectoral numera as candidaturas independentes (INDEPENDIENTES 1, 2…), atribúense na orde en que as publica o BOP.':''):''}${y==='1987'?(DATA.corpE['1987']&&DATA.corpE['1987'][ine]?' As listas (titulares e suplentes) son as candidaturas proclamadas no Boletín Oficial da Provincia do 12/05/1987; os votos e concelleiros, os oficiais do Ministerio do Interior; os electos, os primeiros postos de cada lista segundo o número de concelleiros obtidos.':' Votos e concelleiros oficiais do Ministerio do Interior. A copia dispoñible do BOP da Coruña do 12/05/1987 non inclúe as candidaturas deste concello (Xuntas Electorais de Zona de Betanzos, Carballo, Corcubión, Ferrol e Ortigueira), polo que non se coñecen os electos; o alcalde ou alcaldesa figura na páxina do concello.')+({'27020':' Friol: o BOP non publica a lista do PSdeG-PSOE, que obtivo tres concelleiros.','27043':' O Páramo: o BOP non publica a lista do BNG (sen concelleiros).','27045':' Pedrafita do Cebreiro: o BOP non publica a lista do PSdeG-PSOE, que obtivo seis concelleiros (entre eles o alcalde, José Luis Raposo Magdalena).','27057':' Sarria: o BOP non publica a lista do PSdeG-PSOE, que obtivo un concelleiro.','32055':' Paderne de Allariz: o BOP non publica a lista da Agrupación de Independientes de Orense (sen concelleiros).','27002':' Alfoz: o BOP publica a lista do PSdeG-PSOE con 10 titulares.','27008':' Bóveda: o BOP publica a lista do PSdeG-PSOE con 9 titulares.','32020':' Cartelle: o BOP publica a lista de Municipal Independiente con 12 titulares (salta do nº 11 ao 13) e os suplentes numerados do 14 ao 16.','32038':' Larouco: o BOP publica a lista de AP-CdeG con 6 titulares.','32054':' Ourense: o BOP publica a lista de Falange Española de las JONS con 25 titulares.','32065':' Punxín: a lista de Independientes de Punxín ten 11 nomes numerados seguidos, sen rótulo de suplentes; os dous últimos considéranse suplentes.','27901':' Baralla: aplícase a corrección de erros publicada no mesmo BOP (Antonio Prados Belón).','27056':' Rábade: aplícase a corrección de erros publicada no mesmo BOP (suplente do CDS: Julio Carreira Rodríguez).','27055':' Samos: segundo a corrección de erros do mesmo BOP, o primeiro candidato da FAP é Julio Gallego Losada.','27059':' Sober: aplícase a corrección de erros publicada no mesmo BOP (Agustín Fernández Puga).','27028':' Lugo: aplícase a corrección de erros publicada no mesmo BOP (Marta Sopeña Font-Gras, PSG-EG; terceiro suplente do PGN: David Alonso Pérez).','15005':' Arteixo: o BOP non publica a lista do Partido Socialista Federal, que obtivo un concelleiro.','15071':' Porto do Son: o BOP non publica a lista de Alianza Popular, que obtivo un concelleiro.','15067':' A Pobra do Caramiñal: o BOP non publica a lista do BNG.','15073':' Ribeira: só se conservan cinco das nove listas (a última, a do CDS, incompleta); as demais estaban nas páxinas do BOP que faltan.','15078':' Santiago: o BOP non publica a lista de Unidad Popular Republicana.','15027':' Coirós: AP e PSdeG-PSOE empatan a 284 votos no último resto; o Ministerio e o BOE dan o concelleiro a AP.','36026':' Marín: empates a 2.270 votos (AP e PSdeG-PSOE) e a 455 (PSG-EG e CPG) nos restos; o reparto é o oficial (BOE núm. 288).','36051':' Sanxenxo: o BOP repite o posto 4 da lista de Coalición Progresista Galega (Manuel Agraso / Agreso Salgueiro).'}[ine]||''):''}${y==='1991'?' As listas (titulares e suplentes) son as candidaturas proclamadas no Boletín Oficial da Provincia do 30/04/1991; os votos e concelleiros, os oficiais do Ministerio do Interior; os electos, os primeiros postos de cada lista segundo o número de concelleiros obtidos.'+({'32046':' Melón: o BOP publica a lista de Converxencia Centristas e CDS con 10 titulares.','32066':' Quintela de Leirado: o BOP publica a lista do PP con 8 titulares e 2 suplentes.','15058':' Oleiros: o BOP publica a lista de Independientes y Emigrantes de Galicia con 16 titulares e os suplentes numerados do 17 ao 19.','36004':' Bueu: o Ministerio rexistra 2.495 votos para o PP e un reparto PP 9 / BNG 4; tómanse os 2.945 votos e o reparto PP 10 / BNG 3 do BOE núm. 173, coherentes cos seus totais e coa lei d\'Hondt.','36023':' A Guarda: o BOE núm. 173 atribúe PP 9 / PSdeG-PSOE 5, reparto que non cadra cos votos que publica; mantense o reparto do Ministerio (PP 10 / PSdeG-PSOE 4).'}[ine]||''):''}${y==='1995'?' As listas (titulares e suplentes) son as candidaturas proclamadas no Boletín Oficial da Provincia do 02/05/1995 e os electos, os primeiros postos de cada lista segundo o número de concelleiros obtidos.'+({'15093':' Zas: o ficheiro do Ministerio agrupa as dúas candidaturas independentes; votos de cada unha segundo o BOE núm. 173.','36022':' O Grove: o ficheiro do Ministerio agrupa as tres candidaturas independentes; votos de cada unha segundo o BOE núm. 173.','36061':' Vilanova de Arousa: o ficheiro do Ministerio agrupa as dúas candidaturas independentes; votos de cada unha segundo o BOE núm. 173.','36057':' Vigo: o ficheiro do Ministerio agrupa as dúas candidaturas independentes; votos de cada unha segundo o BOE núm. 173. A candidatura do PPGA non figura na relación de candidaturas proclamadas do BOP; os seus candidatos son os 18 que rexistra Infoelectoral.','36051':' Sanxenxo: a candidatura do PPGA figura nos resultados pero non na relación de candidaturas proclamadas do BOP.','36041':' Poio: o BOP proclama unha candidatura do PPGA que non figura nos resultados.','27016':' Chantada: o ficheiro do Ministerio agrupa as dúas candidaturas independentes; votos de cada unha segundo o BOE núm. 173.','32069':' Ribadavia: o ficheiro do Ministerio agrupa as dúas candidaturas independentes; votos de cada unha segundo o BOE núm. 173.','32006':' Bande: a candidatura da PIE figura con 0 votos no BOE núm. 173.','32081':' Toén: a candidatura de Coalición Galega figura con 0 votos no BOE núm. 173.'}[ine]||''):''} Fonte: Infoelectoral (Ministerio do Interior)${y==='1999'&&['15','27','32','36'].includes(ine.slice(0,2))?'; '+({'15':'BOP da Coruña núm. 110','27':'BOP de Lugo núm. 110','32':'BOP de Ourense núm. 110','36':'BOP de Pontevedra núm. 92'})[ine.slice(0,2)]+' (18/05/1999); Suplemento do BOE núm. 178 (27/07/1999)':''}${y==='1995'?'; '+({'15':'BOP da Coruña núm. 99','27':'BOP de Lugo núm. 99','32':'BOP de Ourense núm. 99','36':'BOP de Pontevedra núm. 83'})[ine.slice(0,2)]+' (02/05/1995); Suplemento do BOE núm. 173 (21/07/1995)':''}${y==='1991'?'; '+({'15':'BOP da Coruña núm. 98','27':'BOP de Lugo núm. 98','32':'BOP de Ourense núm. 99','36':'BOP de Pontevedra núm. 99'})[ine.slice(0,2)]+' (30/04/1991); Suplemento do BOE núm. 173 (20/07/1991)':''}${y==='1987'?'; '+({'15':'BOP da Coruña núm. 106 (12/05/1987); resumo da Xunta Electoral Central (BOE núm. 249, 1987)','27':'BOP de Lugo núm. 106 (12/05/1987)','32':'BOP de Ourense núm. 106 (12/05/1987)','36':'BOP de Pontevedra núm. 107 (12/05/1987); resumo da Xunta Electoral Central (BOE núm. 288, 1987)'})[ine.slice(0,2)]:''}${y==='1983'?'; '+({'15':'anexo do BOP da Coruña núm. 81 (12/04/1983)','27':'BOP de Lugo núm. 80 (11/04/1983)','32':'BOP de Ourense núm. 85 (15/04/1983) e corrección no núm. 88 (19/04/1983)','36':'BOP de Pontevedra núm. 83 (13/04/1983)'})[ine.slice(0,2)]:''}${y==='1979'?'; '+({'15':'BOP da Coruña núm. 51, 53, 55, 56, 57 e 63 (02–16/03/1979)','27':(LU79.includes(ine)?'BOP de Lugo núm. 50 (02/03/1979)':'BOP de Lugo núm. 43 e 44 (21–22/02/1979)'),'32':'BOP de Ourense núm. 51, 52 e 53 (02–05/03/1979)','36':'BOP de Pontevedra do 03/03 e 05/03/1979'})[ine.slice(0,2)]:''}.</p></section>
+    </div><aside><div class="card">${statsDl([['Poboación',nf(R[6])],['Censo',nf(R[0])],['Votantes',R[1]!=null?nf(R[1])+' ('+pf(100*R[1]/R[0])+')':'—'],[R[1]!=null?'Votos válidos':'Votos ás candidaturas',nf(R[2])],['En branco',R[3]!=null?nf(R[3]):'—'],['Nulos',R[4]!=null?nf(R[4]):'—']])}
+      ${neTabs(el.length?`<ul class="corp">${el.sort((a,b)=>pkey(a.r.sg).localeCompare(pkey(b.r.sg))||a.r.o-b.r.o).map(x=>`<li><a href="#p-${x.p.id}">${esc(x.p.n)}</a><span>${esc(x.r.sg)} · nº${x.r.o}</span></li>`).join('')}</ul>`:'','Electos/as',el.length,mNE(y,ine,rows))}</div></aside></div>`;
     window.scrollTo(0,0); return;
   }
   app.innerHTML=`<p class="empty">Non atopamos este resultado. <a href="#inicio">Volver á busca</a>.</p>`;
 }
+// ---- v100: eleccións xerais pendentes (2026): candidaturas presentadas, sen resultados ----
+const GPENDTXT={'2026':'Eleccións convocadas polo Real Decreto 806/2026, do 5 de outubro, para o 29 de novembro de 2026. Aínda non hai resultados: amósanse as candidaturas presentadas, tal como as certificaron as Xuntas Electorais Provinciais no BOE núm. 267 (28/10/2026).'};
+function pendTab(kind){ return kind==='G'?(DATA.gc||{}):(DATA.nc||{}); }
+function pendHas(kind,y,c){ return c==='España'?kind==='G'||kind==='N':!!pendTab(kind)[y+'|'+c]; }
+function pendItems(kind,y,c){ return (candIx().get(kind+'|'+y+'|'+c)||[]); }
+function pendSex(items){ const m=items.filter(x=>x.p.s==='M').length; return items.length?pf(100*m/items.length):'—'; }
+function pendGroup(kind,y,c){
+  const T=pendTab(kind)[y+'|'+c], items=pendItems(kind,y,c), by={};
+  items.forEach(x=>{ (by[x.r.nc]||(by[x.r.nc]=[])).push(x); });
+  return {T,items,by};
+}
+function pendPerson(x){ return `<a href="#p-${x.p.id}">${esc(x.p.n)}</a>${x.r.ind?' <span class="pmeta">independente</span>':''}${x.r.pi?` <span class="pmeta">${esc(x.r.pi)}</span>`:''}${x.r.al?` <span class="pmeta">«${esc(x.r.al)}»</span>`:''}`; }
+function pendListG(L,T){
+  const byO=(a,b)=>a.r.o-b.r.o, Ti=L.filter(x=>x.r.tp==='Titular').sort(byO), Su=L.filter(x=>x.r.tp==='Suplente').sort(byO);
+  return `<ol class="plist">${Ti.map(x=>`<li>${pendPerson(x)}</li>`).join('')}</ol>${Su.length?`<div class="nesub">Suplentes</div><ol class="plist">${Su.map(x=>`<li>${pendPerson(x)}</li>`).join('')}</ol>`:''}`;
+}
+function pendListN(L){
+  const Ti=L.filter(x=>x.r.tp==='Titular').sort((a,b)=>a.r.o-b.r.o), S={};
+  L.filter(x=>x.r.tp==='Suplente').forEach(x=>(S[x.r.cs]||(S[x.r.cs]=[])).push(x));
+  return `<ol class="plist">${Ti.map(x=>{ const s=(S[x.r.cs]||[]).sort((a,b)=>(a.r.ns||0)-(b.r.ns||0)); return `<li>${pendPerson(x)}${s.length?`<div class="psup">${s.map(z=>`Suplente ${z.r.ns||''}: ${pendPerson(z)}`).join('<br>')}</div>`:''}</li>`; }).join('')}</ol>`;
+}
+function renderPend(kind,y,code){
+  const c=code==='es'?'España':CIRCR[code], ES=c==='España', cam=kind==='G'?'Congreso dos Deputados':'Senado';
+  const otherY=GLIST.map(x=>x[0]).filter(x=>x!==y).map(x=>`<a href="#e-${kind}${x}-${code}">${glab(x)}</a>`).join(' · ');
+  const head=(sub,extra)=>`<div class="crumbs"><a href="#inicio">← Volver á busca</a>${ES?'':terrCrumb(c)}</div>
+    <div class="ph">${shareUI(`${cam} ${glab(y)} · ${ES?(kind==='G'?'Total España':'España'):esc(c)}`,location.hash.slice(1),'Ligazón directa a esta elección')}
+    <div class="meta"><span>${GDT[y]||y}</span><span>${sub}</span><span>Tamén: ${circNav(kind,y,c)}${extra||''}</span><span>Outras eleccións: ${otherY}</span></div></div>
+    <p class="pendnote"><b>Eleccións pendentes.</b> ${GPENDTXT[y]||''}</p>`;
+  if(ES){
+    const K=pendTab(kind), keys=Object.keys(K).filter(k=>k.startsWith(y+'|')).map(k=>k.slice(y.length+1)).sort((a,b)=>circKey(a).localeCompare(circKey(b),undefined,{numeric:true}));
+    const ix=candIx(); let nP=0, nM=0; const sgC={};
+    const rows=keys.map(cc=>{ const L=ix.get(kind+'|'+y+'|'+cc)||[]; nP+=L.length; nM+=L.filter(x=>x.p.s==='M').length; const T=K[y+'|'+cc]; const nl=T.l.filter(l=>!l[3]).length;
+      T.l.forEach(l=>{ if(!l[3]) (sgC[l[2]]||(sgC[l[2]]={n:0,ca:l[1]})).n++; });
+      return `<tr><td><a href="#e-${kind}${y}-${CIRC[cc]}">${esc(cc)}</a>${provOf(cc)!==cc?` <span class="pmeta">${esc(provOf(cc))}</span>`:''}</td><td>${T.s}</td><td>${nl}</td><td>${nf(L.filter(x=>x.r.tp==='Titular').length)}</td><td>${nf(L.filter(x=>x.r.tp==='Suplente').length)}</td></tr>`; });
+    const nSeats=keys.reduce((a,cc)=>a+K[y+'|'+cc].s,0), nL=keys.reduce((a,cc)=>a+K[y+'|'+cc].l.filter(l=>!l[3]).length,0);
+    const top=Object.entries(sgC).sort((a,b)=>b[1].n-a[1].n||a[0].localeCompare(b[0],'gl')).slice(0,25);
+    app.innerHTML=head(`${keys.length} circunscricións · ${nSeats} ${kind==='G'?'escanos':'senadores/as electos/as'}`,` · <a href="#e-${kind==='G'?'N':'G'}${y}-es">${kind==='G'?'Senado':'Congreso'} ${glab(y)}</a>`)+`
+    <div class="grid"><div>
+      <section class="blk"><h2>Candidaturas por circunscrición</h2><div style="overflow-x:auto"><table class="cmp res"><thead><tr><th>Circunscrición</th><th>${kind==='G'?'Escanos':'Senadores/as'}</th><th>Candidaturas</th><th>Titulares</th><th>Suplentes</th></tr></thead><tbody>${rows.join('')}</tbody></table></div>
+      <p class="sub" style="color:var(--muted);font-size:.8rem">${kind==='G'?'Escanos de cada circunscrición segundo o número de titulares das listas presentadas. ':'Cada provincia elixe 4 senadores/as; as illas, 1 a 3; Ceuta e Melilla, 2. En 2026 o BOE publica por separado as candidaturas de Eivissa e de Formentera. '}Fonte: BOE núm. 267 (28/10/2026).</p></section>
+      <section class="blk"><h2>Formacións que máis circunscricións cobren</h2><div style="overflow-x:auto"><table class="cmp res"><thead><tr><th>Candidatura</th><th>Circunscricións</th></tr></thead><tbody>${top.map(([sg,v])=>`<tr><td><i style="width:8px;height:8px;border-radius:2px;background:${pcol(sg)};display:inline-block;margin-right:6px"></i>${esc(sg)}<div class="cand">${esc(v.ca)}</div></td><td>${v.n}</td></tr>`).join('')}</tbody></table></div>
+      <p class="sub" style="color:var(--muted);font-size:.8rem">Por siglas tal como figuran no BOE: as coalicións e as federacións con outra denominación cóntanse á parte.</p></section>
+    </div><aside><div class="card">${statsDl([['Circunscricións',nf(keys.length)],['Candidaturas',nf(nL)],['Candidatos/as',nf(nP)],['Mulleres',nP?pf(100*nM/nP):'—']])}<p class="sub" style="margin-top:8px">Mulleres: segundo o sexo inferido polo nome.</p></div></aside></div>`;
+    window.scrollTo(0,0); return;
+  }
+  const {T,items,by}=pendGroup(kind,y,c);
+  if(!T){app.innerHTML=`<p class="empty">Non atopamos esta circunscrición. <a href="#e-${kind}${y}-es">Ver todas</a>.</p>`;return;}
+  const big=items.length>160;
+  const blocks=T.l.map(([n,ca,sg,nota])=>{ const L=by[n]||[];
+    const h=`<i style="width:10px;height:10px;border-radius:2px;background:${pcol(sg)};display:inline-block;margin-right:8px"></i><b>${n}. ${esc(ca)}</b>${sg&&sg!==ca?` <span class="pmeta">(${esc(sg)})</span>`:''}`;
+    const body=nota&&!L.length?`<p class="nenote">${esc(nota)}</p>`:(kind==='G'?pendListG(L,T):pendListN(L));
+    return big?`<details class="pcand"><summary>${h} <span class="pmeta">· ${L.length}</span></summary>${body}</details>`:`<div class="pcand"><div class="pch">${h}</div>${body}</div>`; }).join('');
+  const isl=provOf(c)!==c, other=kind==='G'?'N':'G', oc=kind==='G'?c:provOf(c);
+  const nl=T.l.filter(l=>!l[3]).length, nT=items.filter(x=>x.r.tp==='Titular').length;
+  app.innerHTML=head(`${kind==='G'?'Circunscrición provincial':isl?'Circunscrición insular':'Circunscrición provincial'} · ${T.s} ${kind==='G'?'escanos':'senadores/as a elixir'}`,
+      ` · <a href="#e-${other}${y}-${CIRC[oc]}">${other==='G'?'Congreso':'Senado'} ${glab(y)}${isl?' ('+esc(oc)+')':''}</a>`)+`
+    <div class="grid"><div>
+      <section class="blk"><h2>Candidaturas presentadas (${nl})</h2>${big?'<p class="sub">Preme en cada candidatura para ver a lista.</p>':''}<div class="pcands">${blocks}</div>
+      <p class="sub" style="color:var(--muted);font-size:.8rem">Orde e denominacións segundo as certificacións da Xunta Electoral Provincial. ${kind==='G'?'Listas pechadas: titulares e suplentes por orde.':'Listas abertas: cada candidato/a ao Senado presenta ata dous suplentes.'} Fonte: BOE núm. 267 (28/10/2026), BOE-A-2026-22607.</p></section>
+    </div><aside><div class="card">${statsDl([['Candidaturas',nf(nl)],['Titulares',nf(nT)],['Suplentes',nf(items.length-nT)],['Mulleres',pendSex(items)]])}<p class="sub" style="margin-top:8px">Mulleres: segundo o sexo inferido polo nome.</p></div></aside></div>`;
+  window.scrollTo(0,0);
+}
+
+// ---- v97: candidatos/as non electos/as (titulares e suplentes) nas páxinas de resultados e territoriais ----
+let CIX=null;
+function candIx(){ // índice clave -> [{p,r}] de candidaturas M, C, G, N, U (unha soa pasada; refaise se cambia o número de fichas)
+  if(CIX&&CIX.n===DATA.p.length) return CIX.m;
+  const m=new Map(), add=(k,p,r)=>{ let a=m.get(k); if(!a) m.set(k,a=[]); a.push({p,r}); };
+  for(const p of DATA.p) for(const r of p.r){
+    if(r.t==='M') add('M|'+r.y+'|'+r.ine,p,r);
+    else if(r.t==='C') add('C|'+(AUTE[r.e]||'Galicia')+'|'+String(r.d).slice(0,4)+'|'+r.pr,p,r);
+    else if(r.t==='G') add('G|'+gk(r)+'|'+r.pr,p,r);
+    else if(r.t==='N') add('N|'+gk(r)+'|'+r.pr,p,r);
+    else if(r.t==='U') add('U|'+String(r.d).slice(0,4),p,r);
+  }
+  CIX={n:DATA.p.length,m}; return m;
+}
+const neOf=k=>(candIx().get(k)||[]).filter(x=>!x.r.el);
+const isSup=r=>r.tp==='S'||r.tp==='Suplente';
+const supNote=L=>L.some(x=>isSup(x.r))?'':'<p class="nenote">Non hai suplentes rexistrados nesta elección.</p>';
+function neList(items,o){
+  o=o||{}; const gkf=o.gk||(x=>x.r.sg), G=new Map();
+  items.forEach(x=>{ const k=gkf(x); if(!G.has(k)) G.set(k,[]); G.get(k).push(x); });
+  const ord=o.order||[], pos=k=>{ const i=ord.indexOf(k); return i<0?1e9:i; };
+  const ks=[...G.keys()].sort((a,b)=>pos(a)-pos(b)||String(a).localeCompare(String(b),'gl'));
+  const col=o.col||(k=>pcol(k)), lab=o.lab||(k=>esc(k));
+  const coll=o.collapse!=null?o.collapse:items.length>80;
+  const byO=(a,b)=>(a.r.o??999)-(b.r.o??999)||a.p.n.localeCompare(b.p.n,'gl');
+  const li=x=>`<li><a href="#p-${x.p.id}">${esc(x.p.n)}</a><span>${x.r.o!=null?'nº'+x.r.o:''}</span></li>`;
+  return ks.map(k=>{ const L=G.get(k), T=L.filter(x=>!isSup(x.r)).sort(byO), S=L.filter(x=>isSup(x.r)).sort(byO);
+    const head=`<i style="width:8px;height:8px;border-radius:2px;background:${col(k)};display:inline-block;margin-right:6px"></i>${lab(k)} · ${L.length}`;
+    const body=`${T.length?`<ul class="corp">${T.map(li).join('')}</ul>`:''}${S.length?`<div class="nesub">Suplentes</div><ul class="corp">${S.map(li).join('')}</ul>`:''}`;
+    return coll?`<details class="negrp"><summary>${head}</summary>${body}</details>`:`<div class="negrp"><div class="neh">${head}</div>${body}</div>`; }).join('');
+}
+function elTabs(elH,neH,nE,nN){
+  return `<div class="eltab"><div class="eltabs" role="tablist"><button type="button" role="tab" aria-selected="true" data-et="0">Electos/as${nE!=null?' ('+nf(nE)+')':''}</button><button type="button" role="tab" aria-selected="false" data-et="1">Candidatos/as non electos/as${nN!=null?' ('+nf(nN)+')':''}</button></div><div data-ep="0">${elH}</div><div data-ep="1" class="nelist" hidden>${neH}</div></div>`;
+}
+document.addEventListener('click',e=>{ const b=e.target.closest&&e.target.closest('.eltabs [data-et]'); if(!b) return; const w=b.closest('.eltab');
+  w.querySelectorAll(':scope>.eltabs [data-et]').forEach(x=>x.setAttribute('aria-selected',x===b?'true':'false'));
+  w.querySelectorAll(':scope>[data-ep]').forEach(x=>x.hidden=x.dataset.ep!==b.dataset.et); });
+// bloque lateral das páxinas de resultados: sen candidatos non electos, igual ca antes
+function neTabs(elUl,title,nE,spec){
+  const plain=elUl?`<div><b>${title}</b>${elUl}</div>`:'';
+  if(!spec) return plain;
+  if(spec.msg) return elTabs(elUl||'',`<p class="nenote">${spec.msg}</p>`,nE,null);
+  if(!spec.ne.length) return plain;
+  return elTabs(elUl||'<p class="nenote">Sen datos de electos/as.</p>',neList(spec.ne,spec.o)+supNote(spec.ne),nE,spec.ne.length);
+}
+function multiO(provs,l){ return provs.length>1?{gk:x=>x.r.pr+'|'+x.r.sg,order:provs.flatMap(pv=>l.map(s=>pv+'|'+s)),lab:k=>esc(k.replace('|',' · ')),col:k=>pcol(k.split('|').slice(1).join('|'))}:{order:l}; }
+function mNE(y,ine,rows){ return {ne:neOf('M|'+y+'|'+ine),o:{order:rows.map(x=>x.sg)}}; }
+function aNE(y,c,CA,K,TOT,R){ const provs=TOT?K.provs:[c]; return {ne:provs.flatMap(pv=>neOf('C|'+CA+'|'+y+'|'+pv)),o:multiO(provs,R.l.map(x=>x[1]))}; }
+function gNE(y,c,R){ if(c==='España') return {msg:'As listas completas (titulares e suplentes) están nas páxinas de cada circunscrición: velas en «Tamén».'}; const provs=CAP[c]||[c]; return {ne:provs.flatMap(pv=>neOf('G|'+y+'|'+pv)),o:multiO(provs,R.l.map(x=>x[1]))}; }
+function uNE(y,ES,R){ return ES?{ne:neOf('U|'+y),o:{order:R.l.map(x=>x[1])}}:null; }
+// páxina de concello: unha lapela por ano no selector de eleccións
+function cTabs(ine,y,elH){
+  const ne=neOf('M|'+y+'|'+ine); if(!ne.length) return elH;
+  const pre=y+'|'+ine+'|', order=Object.keys(DATA.ml).filter(k=>k.startsWith(pre)).sort((a,b)=>Number(DATA.ml[b][2]||0)-Number(DATA.ml[a][2]||0)).map(k=>k.slice(pre.length));
+  const nE=(((DATA.corpE||{})[y]||{})[ine]||[]).length;
+  return elTabs(elH,neList(ne,{order})+supNote(ne),nE,ne.length);
+}
+// páxina de provincia: últimas autonómicas, Congreso e Senado na circunscrición
+function prTabs(c,yA,kG,kN,elH,nE){
+  const ord=R=>R&&R.l?R.l.map(x=>x[1]):[];
+  const S=[[yA,'C|Galicia|'+yA+'|'+c,'Parlamento de Galicia ('+yA+')','#e-A'+yA+'-'+CIRC[c],ord(DATA.ar[yA+'|'+c])],
+           [kG,'G|'+kG+'|'+c,'Congreso ('+glab(kG)+')','#e-G'+kG+'-'+CIRC[c],ord((DATA.gr||{})[kG+'|'+c])],
+           [kN,'N|'+kN+'|'+c,'Senado ('+glab(kN)+')','#e-N'+kN+'-'+CIRC[c],[]]]
+    .filter(s=>s[0]).map(s=>({t:s[2],h:s[3],o:s[4],ne:neOf(s[1])})).filter(s=>s.ne.length);
+  if(!S.length) return elH;
+  const n=S.reduce((a,s)=>a+s.ne.length,0);
+  const neH=S.map(s=>`<details class="nesec"><summary><b>${esc(s.t)}</b> · ${nf(s.ne.length)}</summary><a class="nenote" href="${s.h}">Resultados e listas completas →</a>${neList(s.ne,{order:s.o})}${supNote(s.ne)}</details>`).join('');
+  return elTabs(elH,neH,nE,n);
+}
+
 function corpEBlock(ine,y){
   const ids=((DATA.corpE||{})[y]||{})[ine]||[]; if(!ids.length) return '';
   const rows=ids.map(id=>({p:BYID[id],r:BYID[id].r.find(r=>r.t==='M'&&r.y===y&&r.ine===ine&&r.el)})).filter(x=>x.r);
@@ -882,7 +1229,7 @@ function corpEBlock(ine,y){
    ${pe.map(([k,v],i)=>`<div><div style="font-size:.8rem;font-weight:600;margin-top:4px"><i style="width:8px;height:8px;border-radius:2px;background:${pcol(k)};display:inline-block"></i> ${esc(k)} · ${v.length}${v[0].r.vt?' · '+nf(v[0].r.vt)+' votos':''}</div><ul class="corp">${v.sort((a,b)=>a.r.o-b.r.o).map(x=>`<li><a href="#p-${x.p.id}">${esc(x.p.n)}</a><span>nº${x.r.o}</span></li>`).join('')}</ul></div>`).join('')}</div>`;
 }
 function compareBlock(ine){
-  const YS=['1999','2003','2007','2011','2015','2019','2023']; const cnt={}, lab={}; YS.forEach(y=>cnt[y]={});
+  const YS=[...(DATA.mr['1979|'+ine]?['1979']:[]),...(DATA.mr['1983|'+ine]?['1983']:[]),...(DATA.mr['1987|'+ine]?['1987']:[]),...(DATA.mr['1991|'+ine]?['1991']:[]),...(DATA.mr['1995|'+ine]?['1995']:[]),'1999','2003','2007','2011','2015','2019','2023']; const cnt={}, lab={}; YS.forEach(y=>cnt[y]={});
   YS.forEach(y=>{
     if(y==='1999'){ const pre=y+'|'+ine+'|'; Object.entries(DATA.ml).forEach(([kk,v])=>{ if(kk.startsWith(pre)&&Number(v[3])>0){const sg=v[1]||kk.slice(pre.length), k=pkey(sg); lab[k]=lab[k]||sg; cnt[y][k]=(cnt[y][k]||0)+Number(v[3]);} }); return; }
     (((DATA.corpE||{})[y]||{})[ine]||[]).forEach(id=>{const r=BYID[id].r.find(r=>r.t==='M'&&r.y===y&&r.ine===ine&&r.el); if(r){const k=pkey(r.sn||r.sg); lab[k]=(y==='2023'||!lab[k])?(r.sn||r.sg):lab[k]; cnt[y][k]=(cnt[y][k]||0)+1;}});
@@ -890,7 +1237,7 @@ function compareBlock(ine){
   const RY=[...YS].reverse();
   const ks=[...new Set(YS.flatMap(y=>Object.keys(cnt[y])))].sort((a,b)=>{for(const y of RY){const d=(cnt[y][b]||0)-(cnt[y][a]||0); if(d) return d;} return 0;});
   if(!ks.length) return '';
-  return `<div style="overflow-x:auto"><table class="cmp"><thead><tr><th>Partido (agrupado)</th>${YS.map(y=>`<th>${y}</th>`).join('')}<th>Cambio 19→23</th></tr></thead><tbody>${ks.map(k=>{const a=cnt['2019'][k]||0,b=cnt['2023'][k]||0,d=b-a;return `<tr><td><i style="width:8px;height:8px;border-radius:2px;background:${pcol(lab[k])};display:inline-block;margin-right:6px"></i>${esc(lab[k])}</td>${YS.map(y=>`<td>${cnt[y][k]||'—'}</td>`).join('')}<td class="${d>0?'up':d<0?'down':''}">${d>0?'+'+d:d<0?d:'='}</td></tr>`}).join('')}</tbody></table></div><p class="sub" style="color:var(--muted);font-size:.8rem">1999: reparto oficial por candidatura (o Ministerio non publica as listas de candidatos da maioría dos concellos).</p>`;
+  return `<div style="overflow-x:auto"><table class="cmp"><thead><tr><th>Partido (agrupado)</th>${RY.map(y=>`<th>${y}</th>`).join('')}</tr></thead><tbody>${ks.map(k=>{return `<tr><td><i style="width:8px;height:8px;border-radius:2px;background:${pcol(lab[k])};display:inline-block;margin-right:6px"></i>${esc(lab[k])}</td>${RY.map(y=>`<td>${cnt[y][k]||'—'}</td>`).join('')}</tr>`}).join('')}</tbody></table></div><p class="sub" style="color:var(--muted);font-size:.8rem">${DATA.mr['1979|'+ine]?'1979: reparto oficial; electos segundo as candidaturas proclamadas no BOP (marzo de 1979). ':''}${DATA.mr['1983|'+ine]?'1983: reparto oficial; electos segundo as candidaturas proclamadas no BOP (abril de 1983). ':''}${DATA.mr['1987|'+ine]?'1987: reparto oficial'+(DATA.corpE['1987'][ine]?'; electos segundo as candidaturas proclamadas no BOP (12/05/1987)':'')+'. ':''}${DATA.mr['1991|'+ine]?'1991: electos segundo as candidaturas proclamadas no BOP (30/04/1991) e o reparto oficial. ':''}${DATA.mr['1995|'+ine]?'1995: electos segundo as candidaturas proclamadas no BOP (02/05/1995) e o reparto oficial. ':''}1999: reparto oficial por candidatura${['15','27','32','36'].includes(String(ine).slice(0,2))?'; listas e electos segundo as candidaturas proclamadas no BOP (18/05/1999)':' (o Ministerio non publica as listas de candidatos da maioría dos concellos)'}.</p>`;
 }
 function renderDeputacion(code){
   CMAP={};
@@ -915,7 +1262,7 @@ function renderDeputacion(code){
   const pres=(D.presidentes||(D.presidente?[[D.presidente,D.constitucion]]:[])).filter(x=>BYID[x[0]]);
   const presH=pres.map(x=>`<a href="#p-${x[0]}">${esc(BYID[x[0]].n)}</a>${pres.length>1?' ('+fmtD(x[1])+(x[2]?' – '+fmtD(x[2]):'')+')':''}`).join(', ');
   const others=Object.keys(DATA.dp).filter(k=>k.split('|')[0]===key.split('|')[0]&&k!==key).sort().reverse().map(k=>`<a href="#d-${k.split('|')[0]}-${k.split('|')[1].slice(0,4)}">${esc(k.split('|')[1])}</a>`).join(' · ');
-  app.innerHTML=`<div class="crumbs"><a href="#inicio">← Volver á busca</a></div>
+  app.innerHTML=`<div class="crumbs"><a href="#inicio">← Volver á busca</a>${terrCrumb(D.pr)}</div>
   <div class="ph"><h1>${esc(D.nome)}</h1><div class="meta"><span>Mandato ${esc(D.mn)}</span><span>Constituída o ${fmtD(D.constitucion)}</span>${D.fin?`<span>Remata o ${fmtD(D.fin)}</span>`:''}<span>${D.n} deputados/as</span><span>Presidencia: ${presH}</span>${others?`<span>Outros mandatos: ${others}</span>`:''}</div></div>
   <div class="grid"><div>
     <section class="blk"><h2>Composición${D.ini?' inicial':''}</h2>${seatStrip(seats,D.n)}<div class="chips">${pe.map(([k,v])=>`<span class="chip"><i style="width:8px;height:8px;border-radius:2px;background:${pcol(k)};display:inline-block"></i>${esc(k)} ${v}</span>`).join('')}</div></section>
@@ -935,18 +1282,297 @@ function renderConcello(ine){
   const ids=DATA.corp[ine]||[]; const cn=(DATA.cn||{})[ine];
   if(!cn){app.innerHTML=`<p class="empty">Non atopamos este concello. <a href="#inicio">Volver á busca</a>.</p>`;return;}
   const subs=ids.map(id=>({p:BYID[id],r:BYID[id].r.find(r=>r.t==='L'&&r.ine===ine)})).filter(x=>x.r&&x.r.su);
-  app.innerHTML=`<div class="crumbs"><a href="#inicio">← Volver á busca</a></div>
-  <div class="ph"><h1>${esc(cn[0])}</h1><div class="meta"><span>Concello · ${esc(cn[1])}</span><span class="id">INE ${ine}</span></div></div>
+  const PX=GALC.includes(String(ine).slice(0,2))?pxOf(ine):null;
+  app.innerHTML=`<div class="crumbs"><a href="#inicio">← Volver á busca</a>${terrCrumb(cn[1])}${GALC.includes(String(ine).slice(0,2))?' · <a href="#ca-gal">Galicia</a>':''}</div>
+  <div class="ph">${shareUI(esc(cn[0]),'c-'+ine,'Ligazón directa á páxina do concello')}<div class="meta"><span>Concello · ${PRC[cn[1]]?`<a href="#pr-${PRC[cn[1]]}">${esc(cn[1])}</a>`:esc(cn[1])}</span>${PX?`<span>Partido xudicial (deputación): ${esc(PX)}</span>`:''}<span class="id">INE ${ine}</span></div></div>
   <div class="grid"><div>
     <section class="blk"><h2>Corporación actual · lexislatura 2023</h2>${ids.length?corpBlock(ine,null,0):'<p class="empty">Sen datos.</p>'}
     ${subs.length?`<p class="sub" style="color:var(--muted);font-size:.85rem">Entraron despois das eleccións, substituíndo a outros membros: ${subs.map(x=>`<a href="#p-${x.p.id}">${esc(x.p.n)}</a>`).join(', ')}.</p>`:''}</section>
-    <section class="blk"><h2>Alcaldes/as desde 2011</h2>${alcBlock(ine)||'<p class="empty">Sen datos.</p>'}
-    <p class="sub" style="color:var(--muted);font-size:.8rem">Mandatos 2011–2015 e 2019–2023: histórico de altas e baixas do Ministerio de Política Territorial. Mandato actual: alcalde/sa en exercicio segundo a ficha de concelleiros.</p></section>
-    ${GALC.includes(String(ine).slice(0,2))?`<section class="blk"><h2>Concelleiros/as por partido · 1999–2023</h2>${compareBlock(ine)||'<p class="empty">Sen datos.</p>'}<p style="font-size:.85rem">Resultados completos: <a href="#e-M2023-${ine}">municipais 2023</a> · <a href="#e-M2019-${ine}">municipais 2019</a> · <a href="#e-M2015-${ine}">municipais 2015</a> · <a href="#e-M2011-${ine}">municipais 2011</a> · <a href="#e-M2007-${ine}">municipais 2007</a> · <a href="#e-M2003-${ine}">municipais 2003</a> · <a href="#e-M1999-${ine}">municipais 1999</a></p></section>`:`<section class="blk"><h2>Eleccións municipais</h2><p style="font-size:.85rem">Resultados completos: <a href="#e-M2023-${ine}">municipais 2023</a>. Fóra de Galicia o rexistro só inclúe as municipais de 2023.</p></section>`}
+    <section class="blk"><h2>Alcaldes/as desde ${['15','27','32','36'].includes(String(ine).slice(0,2))?'1979':'2011'}</h2>${alcBlock(ine)||'<p class="empty">Sen datos.</p>'}
+    <p class="sub" style="color:var(--muted);font-size:.8rem">Mandatos ${['15','27','32','36'].includes(String(ine).slice(0,2))?'1979–1983':'2011–2015'} a 2019–2023: histórico de altas e baixas do Ministerio de Política Territorial. Mandato actual: alcalde/sa en exercicio segundo a ficha de concelleiros.</p></section>
+    ${GALC.includes(String(ine).slice(0,2))?`<section class="blk"><h2>Todas as eleccións locais</h2>${munElecTable(ine)}</section><section class="blk"><h2>Concelleiros/as por partido · ${DATA.mr['1979|'+ine]?'1979':DATA.mr['1983|'+ine]?'1983':DATA.mr['1987|'+ine]?'1987':DATA.mr['1991|'+ine]?'1991':DATA.mr['1995|'+ine]?'1995':'1999'}–2023</h2>${compareBlock(ine)||'<p class="empty">Sen datos.</p>'}</section>`:`<section class="blk"><h2>Eleccións municipais</h2><p style="font-size:.85rem">Resultados completos: <a href="#e-M2023-${ine}">municipais 2023</a>. Fóra de Galicia o rexistro só inclúe as municipais de 2023.</p></section>`}
   </div>
-  <aside style="display:grid;gap:16px;align-content:start"><div class="card">${corpEBlock(ine,'2023')||'Sen datos de 2023.'}</div><div class="card">${corpEBlock(ine,'2019')||'Sen datos de 2019.'}</div><div class="card">${corpEBlock(ine,'2015')||'Sen datos de 2015.'}</div><div class="card">${corpEBlock(ine,'2011')||'Sen datos de 2011.'}</div><div class="card">${corpEBlock(ine,'2007')||'Sen datos de 2007.'}</div><div class="card">${corpEBlock(ine,'2003')||'Sen datos de 2003.'}</div><div class="card">${corpEBlock(ine,'1999')||'1999: o Ministerio non publica a lista de electos deste concello. <a href="#e-M1999-'+ine+'">Ver resultados e reparto</a>.'}</div></aside></div>`;
+  <aside style="display:grid;gap:10px;align-content:start"><div class="card"><div data-map="mu:${ine}"></div><a href="#mapa-pr${ine.slice(0,2)}" style="font-size:.85rem">Ver no mapa grande</a></div>${(()=>{const r=DATA.mr['2023|'+ine]; if(!r) return ''; const pc=r[0]?(100*r[1]/r[0]).toFixed(2).replace('.',',')+' %':'—';return `<div class="card">${statsDl([['Poboación (municipais 2023)',r[6]!=null?nf(r[6]):'—'],['Censo electoral (municipais 2023)',nf(r[0])],['Votantes (municipais 2023)',nf(r[1])+' ('+pc+')'],['Concelleiros/as',nf(r[5])]])}</div>`;})()}${(()=>{const YY=['2023','2019','2015','2011','2007','2003','1999'].concat(DATA.mr['1995|'+ine]?['1995']:[],DATA.mr['1991|'+ine]?['1991']:[],DATA.mr['1987|'+ine]?['1987']:[],DATA.mr['1983|'+ine]?['1983']:[],DATA.mr['1979|'+ine]?['1979']:[]);
+    const body=y=>cTabs(ine,y,corpEBlock(ine,y)||(y==='1987'?'1987: a copia dispoñible do BOP non inclúe as candidaturas deste concello. <a href="#e-M1987-'+ine+'">Ver resultados e reparto</a>.':y==='1999'?'1999: o Ministerio non publica a lista de electos deste concello. <a href="#e-M1999-'+ine+'">Ver resultados e reparto</a>.':'Sen datos de '+y+'.'));
+    return `<div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap"><label class="sub" style="display:flex;align-items:center;gap:8px;color:var(--muted);font-size:.85rem;margin:0">Eleccións <select class="yrsel" data-ine="${ine}" style="font:inherit;color:var(--ink);background:var(--surface);border:1px solid var(--line);border-radius:6px;padding:4px 8px">${YY.map(y=>`<option value="${y}">${y}</option>`).join('')}</select></label><a class="yrlink" href="#e-M${YY[0]}-${ine}" style="font-size:.85rem">Ver as municipais ${YY[0]} →</a></div>${YY.map((y,i)=>`<div class="card" data-y="${y}"${i?' hidden':''}>${body(y)}</div>`).join('')}`})()}</aside></div>`;
   window.scrollTo(0,0);
 }
+
+// ---- v87: páxinas territoriais de Galicia (comunidade #ca-gal, provincia #pr-NN; concello #c-INE ampliado) ----
+const GPROV=[['15','A Coruña'],['27','Lugo'],['32','Ourense'],['36','Pontevedra']];
+const PRN=Object.fromEntries(GPROV), PRC=Object.fromEntries(GPROV.map(([a,b])=>[b,a]));
+const MUNY=['1979','1983','1987','1991','1995','1999','2003','2007','2011','2015','2019','2023'];
+// agrupación de siglas para as táboas de evolución (só nestas táboas; as páxinas de resultados levan as siglas da fonte)
+function fam(sg){ const k=pkey(sg||'');
+  if(/^PSGEG|SOCIALISTAGALEGOESQUERDA/.test(k)) return 'PSG-EG';
+  if(/PSOE|^PSDEG|^PSDG|^PSG$|SOCIALISTASDEGALICIA/.test(k)) return 'PSdeG-PSOE';
+  if(/^PP|PARTIDOPOPULAR|^AP($|PDP|PDL|UL|CP)|^CP$|^PDP$|ALIANZAPOPULAR|COALICIONPOPULAR/.test(k)) return 'PP';
+  if(/^BNG|BLOQUENACIONALISTA/.test(k)) return 'BNG';
+  if(/^PODEMOS|^UP$|UNIDASPODEMOS|UNIDOSPODEMOS/.test(k)) return 'Podemos e coalicións';
+  if(/^SUMAR/.test(k)) return 'SUMAR';
+  if(/^EU$|^EUIU|^IU$|^EUEG|ESQUERDAUNIDA|IZQUIERDAUNIDA/.test(k)) return 'EU-IU';
+  if(/^CS$|CIUDADANOS|CIDADANS/.test(k)) return 'Cs';
+  if(/^IND$|^INDEPENDENTES?$|^INDEPENDIENTES?$/.test(k)) return 'Independentes';
+  return sg||'—'; }
+const famCol=f=>pcol(f==='Podemos e coalicións'?'PODEMOS':f==='Independentes'?'IND':f);
+const dot=c=>`<i style="width:8px;height:8px;border-radius:2px;background:${c};display:inline-block;margin-right:6px"></i>`;
+// táboa partido × elección. cols: [{h,href,m:{familia:valor},t}] en orde cronolóxica
+function famMatrix(cols,o){
+  o=o||{}; cols=cols.filter(Boolean); if(!cols.length) return '<p class="empty">Sen datos.</p>';
+  const fmt=o.fmt||(v=>v?nf(v):'—');
+  const RC=[...cols].reverse();
+  let ks=[...new Set(cols.flatMap(c=>Object.keys(c.m)))].filter(k=>cols.some(c=>(c.m[k]||0)>=(o.min||1e-9)));
+  ks.sort((a,b)=>{for(const c of RC){const d=(c.m[b]||0)-(c.m[a]||0); if(d) return d;} return 0;});
+  let rest=[]; if(o.max&&ks.length>o.max){ rest=ks.slice(o.max); ks=ks.slice(0,o.max); }
+  if(o.other){ const shown=new Set(ks); rest=[...new Set(cols.flatMap(c=>Object.keys(c.m)))].filter(k=>!shown.has(k)); }
+  const DC=RC; // v90: columnas da máis recente á máis antiga
+  const th=DC.map(c=>`<th>${c.href?`<a href="${c.href}">${esc(c.h)}</a>`:esc(c.h)}</th>`).join('');
+  const body=ks.map(k=>`<tr><td>${dot(famCol(k))}${esc(k)}</td>${DC.map(c=>`<td>${fmt(c.m[k]||0)}</td>`).join('')}</tr>`).join('');
+  const oth=o.other&&rest.length?`<tr><td style="color:var(--muted)">${esc(o.other)}</td>${DC.map(c=>{const v=rest.reduce((s,k)=>s+(c.m[k]||0),0);return `<td style="color:var(--muted)">${fmt(v)}</td>`;}).join('')}</tr>`:'';
+  const ex=(o.extra||[]).map(([l,f])=>`<tr class="mxe"><td>${l}</td>${DC.map(c=>`<td>${f(c)}</td>`).join('')}</tr>`).join('');
+  return `<div style="overflow-x:auto"><table class="cmp mx"><thead><tr><th>${esc(o.lab||'Partido (agrupado)')}</th>${th}</tr></thead><tbody>${body}${oth}${ex}</tbody></table></div>`;
+}
+const partic=R=>R&&R[0]&&R[1]?df(100*R[1]/R[0],1)+' %':'—';
+function famSum(l,i){ const m={}; (l||[]).forEach(x=>{ const v=Number(x[i]||0); if(v){ const f=fam(x[1]); m[f]=(m[f]||0)+v; } }); return m; }
+function autCols(c){ const K=AUTCFG.Galicia; return K.ys.map(y=>{ const R=DATA.ar[y+'|'+c]; return R&&{h:y,href:`#e-A${y}-${CIRC[c]}`,m:famSum(R.l,4),t:R.t[5],R:R.t}; }); }
+function genCols(c){ return [...GLIST].reverse().map(([k])=>{ const R=DATA.gr[k+'|'+c]||(c==='Galicia'?grCA(k,'Galicia'):null); return R&&{h:glab(k).replace(' (abril)',' abr.').replace(' (novembro)',' nov.'),href:`#e-G${k}-${CIRC[c]}`,m:famSum(R.l,4),t:R.t[5],R:R.t}; }); }
+function eurCols(c){ return [...ULIST].reverse().map(([y])=>{ const R=DATA.ur[y+'|'+c]; return R&&{h:y,href:`#e-U${y}-${CIRC[c]}`,m:famSum(R.l,3),R:R.t}; }); }
+// rexistros persoais de Galicia que usan as páxinas territoriais (unha soa pasada; refaise se cambia o número de fichas)
+let TSC=null;
+function terrScan(){
+  if(TSC&&TSC.n===DATA.p.length) return TSC;
+  const S={n:DATA.p.length,N:[],C:[],G:[],Q:[],X:[],D:{}};
+  const GP=new Set(GPROV.map(x=>x[1]));
+  for(const p of DATA.p) for(const r of p.r){
+    if(r.t==='N'&&r.el&&GP.has(r.pr)) S.N.push({p,r});
+    else if(r.t==='C'&&r.el&&(AUTE[r.e]||'Galicia')==='Galicia') S.C.push({p,r});
+    else if(r.t==='G'&&r.el&&GP.has(r.pr)) S.G.push({p,r});
+    else if((r.t==='Q'&&r.pt==='D'&&/Galicia/.test(r.lu||''))||(r.t==='S'&&r.ca==='Galicia')) S.Q.push({p,r});
+    else if(r.t==='X') S.X.push({p,r});
+  }
+  return TSC=S;
+}
+function senCols(provs){ const S=terrScan(); return [...GLIST].reverse().map(([k])=>{ const m={}; let n=0; S.N.forEach(({r})=>{ if(gk(r)===k&&provs.includes(r.pr)){ const f=fam(r.sg); m[f]=(m[f]||0)+1; n++; } }); return n?{h:glab(k).replace(' (abril)',' abr.').replace(' (novembro)',' nov.'),href:provs.length===1?`#e-N${k}-${CIRC[provs[0]]}`:null,m,t:n}:null; }); }
+// municipais: concelleiros por familia de partido, sumando os concellos dos prefixos de provincia
+function munCols(prefs){
+  const acc={}, tot={}, nC={}, R0={};
+  for(const k in DATA.ml){ const a=k.indexOf('|'), b=k.indexOf('|',a+1); const ine=k.slice(a+1,b); if(!prefs.includes(ine.slice(0,2))) continue;
+    const y=k.slice(0,a), v=DATA.ml[k], s=Number(v[3]||0); if(!s) continue; const f=fam(v[1]||k.slice(b+1));
+    (acc[y]=acc[y]||{})[f]=(acc[y][f]||0)+s; tot[y]=(tot[y]||0)+s; }
+  for(const k in DATA.mr){ const [y,ine]=k.split('|'); if(!prefs.includes(ine.slice(0,2))) continue; nC[y]=nC[y]||{}; nC[y][ine.slice(0,2)]=1; const R=DATA.mr[k]; const z=R0[y]=R0[y]||[0,0,0]; z[0]+=R[0]||0; if(R[1]!=null){z[1]+=R[1];z[2]+=R[0]||0;} }
+  return MUNY.filter(y=>acc[y]).map(y=>{ const full=prefs.every(p=>nC[y]&&nC[y][p]); return {h:y+(full?'':'*'),m:acc[y],t:tot[y],R:R0[y][2]?[R0[y][2],R0[y][1]]:null,full}; });
+}
+const FAMNOTE='Partidos agrupados: o PP inclúe Alianza Popular e as súas coalicións (AP-PDP, CP…) anteriores a 1989; o PSdeG-PSOE, as súas denominacións (PSG-PSOE, PS de G-PSOE…); o BNG, as súas coalicións (BNG-NÓS, BNG-Agora Repúblicas…).';
+const exPart=['Participación',c=>partic(c.R)], exTot=(l)=>[l||'Total',c=>`<b>${c.t!=null?nf(c.t):'—'}</b>`];
+function presRuns(){ // presidentes da Xunta: períodos consecutivos da mesma persoa unidos
+  const L=terrScan().X.filter(x=>x.r.nv==='Presidencia').sort((a,b)=>String(a.r.i).localeCompare(String(b.r.i))), out=[];
+  L.forEach(x=>{ const z=out[out.length-1]; if(z&&z.p.id===x.p.id&&(!z.f||z.f>=x.r.i)) z.f=x.r.f||null; else out.push({p:x.p,i:x.r.i,f:x.r.f||null}); });
+  return out.reverse();
+}
+function depLast(cp){ return Object.keys(DATA.dp||{}).filter(k=>k.split('|')[0]===cp).sort().reverse(); }
+function depSummary(key){
+  const D=DATA.dp[key]; const recOf=id=>BYID[id]?{p:BYID[id],r:BYID[id].r.find(r=>r.t==='D'&&dpKey(r)===key)}:null;
+  const ini=(D.ini||D.membros).map(recOf).filter(x=>x&&x.r); const byP={}; ini.forEach(x=>{const f=fam(x.r.pa); byP[f]=(byP[f]||0)+1;});
+  const seats=Object.entries(byP).sort((a,b)=>b[1]-a[1]).map(([k,v])=>({sg:k,s:v}));
+  const pres=(D.presidentes||(D.presidente?[[D.presidente,D.constitucion]]:[])).filter(x=>BYID[x[0]]);
+  return {D,seats,pres};
+}
+const seatChips=seats=>`<div class="chips">${seats.filter(x=>x.s>0).map(x=>`<span class="chip">${dot(pcol(x.sg)).replace('margin-right:6px','')}${esc(x.sg)} ${x.s}</span>`).join('')}</div>`;
+function depBlock(cp){
+  const ks=depLast(cp); if(!ks.length) return '<p class="empty">Sen datos.</p>';
+  const first=DATA.dp[ks[ks.length-1]].mn;
+  return ks.map(k=>{ const {D,seats,pres}=depSummary(k);
+    return `<div class="ev"><div class="when"><a href="#d-${cp}-${D.mn.slice(0,4)}">${esc(D.mn)}</a></div><div><div class="what">${pres.map(x=>`<a href="#p-${x[0]}">${esc(BYID[x[0]].n)}</a>`).join(', ')||'—'} <span class="sub" style="font-weight:400">· presidencia</span></div>${seatStrip(seats,D.n)}${seatChips(seats)}<div class="sub">${D.n} deputados/as · constituída o ${fmtD(D.constitucion)}</div></div></div>`; }).join('')
+    +`<p class="sub" style="color:var(--muted);font-size:.8rem">Composición inicial de cada mandato. O rexistro inclúe os mandatos desde ${esc(first)}; os anteriores aínda non están incorporados.</p>`;
+}
+function concTable(cp){
+  const rows=Object.entries(DATA.cn).filter(([ine])=>ine.slice(0,2)===cp&&(DATA.corp[ine]||[]).length).map(([ine,v])=>{
+    let al=null; (DATA.corp[ine]||[]).forEach(id=>{const p=BYID[id]; const r=p&&p.r.find(r=>r.t==='L'&&r.ine===ine&&(r.c==='Alcalde'||r.c==='Alcalde en Funciones')); if(r&&!al) al={p,r};});
+    const R=DATA.mr['2023|'+ine]; return {ine,n:v[0],al,pob:R?R[6]:null};
+  }).sort((a,b)=>COLL.compare(a.n,b.n));
+  const gone=Object.entries(DATA.cn).filter(([ine])=>ine.slice(0,2)===cp&&!(DATA.corp[ine]||[]).length&&MUNY.some(y=>DATA.mr[y+'|'+ine])).map(([ine,v])=>`<a href="#c-${ine}">${esc(v[0])}</a>`);
+  return `<p class="sub" style="font-size:.85rem;margin:0"><input class="circsearch ctf" placeholder="Filtrar concellos…" aria-label="Filtrar concellos" data-tb="ct-${cp}"></p>
+  <div style="overflow-x:auto"><table class="cmp ctab" id="ct-${cp}"><thead><tr><th>Concello</th><th>Alcalde/sa actual</th><th>Partido</th><th>Poboación</th></tr></thead><tbody>${rows.map(x=>`<tr data-n="${esc(normS(x.n))}"><td><a href="#c-${x.ine}">${esc(x.n)}</a></td><td>${x.al?`<a href="#p-${x.al.p.id}">${esc(x.al.p.n)}</a>`:'—'}</td><td>${x.al?dot(pcol(x.al.r.pa))+esc(x.al.r.pa):''}</td><td>${x.pob!=null?nf(x.pob):'—'}</td></tr>`).join('')}</tbody></table></div>
+  <p class="sub" style="color:var(--muted);font-size:.8rem">${rows.length} concellos. Alcaldía actual segundo a ficha de concelleiros do Ministerio de Política Territorial; poboación de referencia das municipais de 2023.${gone.length?' Concellos extinguidos por fusión: '+gone.join(', ')+'.':''}</p>`;
+}
+document.addEventListener('input',e=>{ const t=e.target; if(!t.classList||!t.classList.contains('ctf')) return; const v=normS(t.value.trim()); document.querySelectorAll('#'+t.dataset.tb+' tbody tr').forEach(tr=>tr.hidden=!!v&&!tr.dataset.n.includes(v)); });
+document.addEventListener('click',e=>{ const b=e.target.closest&&e.target.closest('[data-goxunta]'); if(!b) return; Object.assign(state,{q:'',amb:'aut',cargo:'cargoAut',ccaa:'Galicia',prov:'',mun:'',per:'',part:'',limit:60}); const q=document.getElementById('q'); if(q) q.value=''; location.hash='#inicio'; renderSearch(); });
+const plist=(L,lab)=>L.length?`<div><b>${lab}</b><ul class="corp">${L.map(x=>`<li><a href="#p-${x.p.id}">${esc(x.p.n)}</a><span>${esc(x.s)}</span></li>`).join('')}</ul></div>`:'';
+function lastKey(K,c){ for(const [k] of GLIST) if(K[k+'|'+c]) return k; return null; }
+const MUNNOTE=pre=>'';
+const LU79=["27001", "27002", "27005", "27007", "27008", "27013", "27015", "27017", "27019", "27021", "27022", "27025", "27027", "27030", "27031", "27033", "27038", "27041", "27044", "27047", "27048", "27050", "27051", "27052", "27054", "27058", "27059", "27061", "27063", "27064", "27065", "27066"];
+function renderProvincia(cp){
+  CMAP={};
+  const c=PRN[cp];
+  if(!c){app.innerHTML=`<p class="empty">Polo de agora só hai páxinas das provincias galegas. <a href="#ca-gal">Ir á páxina de Galicia</a>.</p>`;return;}
+  const S=terrScan(), K=AUTCFG.Galicia, yA=K.ys[K.ys.length-1], RA=DATA.ar[yA+'|'+c];
+  const kG=lastKey(DATA.gr,c), kN=lastKey(DATA.nr,c);
+  const nConc=Object.keys(DATA.cn).filter(i=>i.slice(0,2)===cp&&(DATA.corp[i]||[]).length).length;
+  let pob=0,cen=0; Object.keys(DATA.cn).forEach(i=>{ if(i.slice(0,2)===cp){ const R=DATA.mr['2023|'+i]; if(R){pob+=R[6]||0;cen+=R[0]||0;} } });
+  const dk=depLast(cp)[0], dsum=dk?depSummary(dk):null;
+  const elA=S.C.filter(x=>x.r.pr===c&&x.r.d.startsWith(yA)).sort((a,b)=>pkey(a.r.sg).localeCompare(pkey(b.r.sg))||(a.r.o??99)-(b.r.o??99)).map(x=>({p:x.p,s:x.r.sg+(x.r.o!=null?' · nº'+x.r.o:'')}));
+  const elG=S.G.filter(x=>x.r.pr===c&&gk(x.r)===kG).sort((a,b)=>pkey(a.r.sg).localeCompare(pkey(b.r.sg))||a.r.o-b.r.o).map(x=>({p:x.p,s:x.r.sg+' · nº'+x.r.o}));
+  const elN=S.N.filter(x=>x.r.pr===c&&gk(x.r)===kN).sort((a,b)=>(b.r.vp||0)-(a.r.vp||0)).map(x=>({p:x.p,s:x.r.sg}));
+  const others=GPROV.filter(x=>x[0]!==cp).map(([k,n])=>`<a href="#pr-${k}">${esc(n)}</a>`).join(' · ');
+  const mc=munCols([cp]);
+  app.innerHTML=`<div class="crumbs"><a href="#inicio">← Volver á busca</a> · <a href="#ca-gal">Galicia</a></div>
+  <div class="ph">${shareUI('Provincia de '+esc(c),'pr-'+cp,'Ligazón directa á páxina da provincia')}<div class="meta"><span>Galicia · código INE ${cp}</span><span>${nConc} concellos</span><span>Outras provincias: ${others}</span><span><a href="#mapa-pr${cp}">Mapa</a></span></div>
+  <nav class="tnav" aria-label="Seccións"><a href="#pr-${cp}" data-to="t-dep">Deputación</a><a href="#pr-${cp}" data-to="t-aut">Autonómicas</a><a href="#pr-${cp}" data-to="t-gen">Congreso</a><a href="#pr-${cp}" data-to="t-sen">Senado</a><a href="#pr-${cp}" data-to="t-eur">Europeas</a><a href="#pr-${cp}" data-to="t-mun">Municipais</a><a href="#pr-${cp}" data-to="t-conc">Concellos</a></nav></div>
+  <div class="grid"><div>
+    <section class="blk" id="t-dep"><h2>Deputación Provincial de ${esc(c)}</h2>${depBlock(cp)}</section>
+    <section class="blk" id="t-aut"><h2>Parlamento de Galicia · circunscrición de ${esc(c)}</h2>${RA?seatStrip(Object.entries(famSum(RA.l,4)).map(([k,v])=>({sg:k,s:v})).sort((a,b)=>b.s-a.s),RA.t[5]):''}
+      ${famMatrix(autCols(c),{extra:[exTot('Escanos'),exPart]})}<p class="sub tnote">Escanos por partido en cada elección autonómica (preme no ano para ver os resultados completos e as listas). ${FAMNOTE}</p></section>
+    <section class="blk" id="t-gen"><h2>Congreso dos Deputados · circunscrición de ${esc(c)}</h2>${famMatrix(genCols(c),{extra:[exTot('Escanos'),exPart]})}<p class="sub tnote">Escanos por partido. ${FAMNOTE}</p></section>
+    <section class="blk" id="t-sen"><h2>Senado · circunscrición de ${esc(c)}</h2>${famMatrix(senCols([c]),{extra:[exTot('Electos/as')]})}<p class="sub tnote">Senadores/as electos/as por partido (catro por provincia).</p></section>
+    <section class="blk" id="t-eur"><h2>Parlamento Europeo · votos en ${esc(c)}</h2>${famMatrix(eurCols(c),{min:3,fmt:v=>v?df(v,1):'—',lab:'Partido (agrupado) · % votos',extra:[exPart]})}<p class="sub tnote">Porcentaxe de voto na provincia das candidaturas con polo menos o 3 % nalgunha elección. O reparto de escanos faise en circunscrición única para toda España.</p></section>
+    <section class="blk" id="t-mun"><h2>Eleccións municipais · concelleiros/as na provincia</h2>${famMatrix(mc,{max:10,other:'Outras candidaturas',extra:[exTot('Concelleiros/as'),exPart]})}<p class="sub tnote">Suma dos concelleiros/as electos/as en todos os concellos da provincia.${mc.some(x=>!x.full)?' * Ano incompleto.':''}</p></section>
+    <section class="blk" id="t-conc"><h2>Concellos</h2>${concTable(cp)}</section>
+  </div><aside style="display:grid;gap:12px;align-content:start"><div class="card"><div data-map="pr:${cp}"></div><a href="#mapa-pr${cp}" style="font-size:.85rem">Ver no mapa grande</a></div><div class="card">${statsDl([['Concellos',nf(nConc)],['Poboación (municipais 2023)',nf(pob)],['Censo electoral (municipais 2023)',nf(cen)],['Deputación',dsum?dsum.D.n+' deputados/as':'—'],['Parlamento de Galicia',RA?RA.t[5]+' escanos':'—'],['Congreso',kG?DATA.gr[kG+'|'+c].t[5]+' escanos':'—'],['Senado',kN?DATA.nr[kN+'|'+c][5]+' electos/as':'—']])}</div>
+    <div class="card">${dsum?`<div><b>Presidencia da Deputación</b><ul class="corp">${dsum.pres.map(x=>`<li><a href="#p-${x[0]}">${esc(BYID[x[0]].n)}</a><span>desde ${fmtD(x[1])}</span></li>`).join('')}</ul></div>`:''}
+      ${prTabs(c,yA,kG,kN,plist(elA,'Electos/as ao Parlamento ('+yA+')')+plist(elG,'Electos/as ao Congreso ('+glab(kG)+')')+plist(elN,'Electos/as ao Senado ('+glab(kN)+')'),elA.length+elG.length+elN.length)}
+      <p class="sub" style="color:var(--muted);font-size:.78rem;margin:0">Persoas proclamadas electas; non reflicte as substitucións posteriores.</p></div></aside></div>`;
+  window.scrollTo(0,0);
+}
+function renderCA(code){
+  CMAP={};
+  if(code!=='gal'){app.innerHTML=`<p class="empty">Polo de agora só hai páxina de Galicia. <a href="#ca-gal">Ir á páxina de Galicia</a>.</p>`;return;}
+  const S=terrScan(), K=AUTCFG.Galicia, yA=K.ys[K.ys.length-1], RA=DATA.ar[yA+'|Galicia'];
+  const PR=GPROV.map(x=>x[1]), PRE=GPROV.map(x=>x[0]);
+  const runs=presRuns();
+  const cur=S.X.filter(x=>!x.r.f&&['Presidencia','Vicepresidencia','Conselleiro/a'].includes(x.r.nv)).sort((a,b)=>(a.r.nv==='Presidencia'?0:a.r.nv==='Vicepresidencia'?1:2)-(b.r.nv==='Presidencia'?0:b.r.nv==='Vicepresidencia'?1:2)||COLL.compare(a.r.c,b.r.c));
+  const des=S.Q.slice().sort((a,b)=>String(b.r.i).localeCompare(String(a.r.i)));
+  const nConc=Object.keys(DATA.corp).filter(i=>PRE.includes(i.slice(0,2))).length;
+  let pob=0; Object.keys(DATA.cn).forEach(i=>{ if(PRE.includes(i.slice(0,2))){ const R=DATA.mr['2023|'+i]; if(R) pob+=R[6]||0; } });
+  const mc=munCols(PRE);
+  const provCards=GPROV.map(([cp,n])=>{ const dk=depLast(cp)[0], s=dk?depSummary(dk):null; const nc=Object.keys(DATA.corp).filter(i=>i.slice(0,2)===cp).length;
+    return `<div class="ev"><div class="when"><a href="#pr-${cp}"><b>${esc(n)}</b></a></div><div><div class="sub">${nc} concellos${s&&s.pres.length?' · Deputación: <a href="#p-'+s.pres[s.pres.length-1][0]+'">'+esc(BYID[s.pres[s.pres.length-1][0]].n)+'</a>':''}</div>${s?seatChips(s.seats):''}<div class="links"><a href="#pr-${cp}">Páxina da provincia</a>${s?`<a href="#d-${cp}-${s.D.mn.slice(0,4)}">Deputación ${esc(s.D.mn)}</a>`:''}<a href="#e-A${yA}-${cp}">Autonómicas ${yA}</a></div></div></div>`; }).join('');
+  app.innerHTML=`<div class="crumbs"><a href="#inicio">← Volver á busca</a></div>
+  <div class="ph">${shareUI('Galicia','ca-gal','Ligazón directa á páxina de Galicia')}<div class="meta"><span>Comunidade autónoma · código INE 12</span><span>4 provincias · ${nConc} concellos</span><span>Provincias: ${GPROV.map(([k,n])=>`<a href="#pr-${k}">${esc(n)}</a>`).join(' · ')}</span><span><a href="#mapa">Mapa de España</a></span></div>
+  <nav class="tnav" aria-label="Seccións"><a href="#ca-gal" data-to="t-xun">Xunta</a><a href="#ca-gal" data-to="t-aut">Parlamento</a><a href="#ca-gal" data-to="t-gen">Congreso</a><a href="#ca-gal" data-to="t-sen">Senado</a><a href="#ca-gal" data-to="t-eur">Europeas</a><a href="#ca-gal" data-to="t-mun">Municipais</a><a href="#ca-gal" data-to="t-prov">Provincias</a></nav></div>
+  <div class="grid"><div>
+    <section class="blk" id="t-xun"><h2>Xunta de Galicia · presidencia</h2>${runs.map(x=>`<div class="ev"><div class="when">${fmtD(x.i)}<br>→ ${x.f?fmtD(x.f):'actualidade'}</div><div><div class="what"><a href="#p-${x.p.id}">${esc(x.p.n)}</a>${x.f?'':' <span class="badge on">en exercicio</span>'}</div>${tenure({i:x.i,f:x.f})}</div></div>`).join('')}</section>
+    <section class="blk"><h2>Goberno actual</h2><ul class="corp">${cur.map(x=>`<li><a href="#p-${x.p.id}">${esc(x.p.n)}</a><span>${esc(x.r.c)}</span></li>`).join('')}</ul>
+      <p style="font-size:.85rem;margin:0"><button type="button" class="btn" data-goxunta="1">Ver todos os cargos da Xunta no buscador</button></p>
+      <p class="sub tnote">Fonte: nomeamentos e ceses no DOG (presidencia desde 1982; resto de cargos segundo as lexislaturas incorporadas ao rexistro).</p></section>
+    <section class="blk" id="t-aut"><h2>Parlamento de Galicia · escanos por partido</h2>${RA?seatStrip(Object.entries(famSum(RA.l,4)).map(([k,v])=>({sg:k,s:v})).sort((a,b)=>b.s-a.s),RA.t[5]):''}
+      ${famMatrix(autCols('Galicia'),{extra:[exTot('Escanos'),exPart]})}<p class="sub tnote">Total das catro circunscricións. Preme no ano para ver os resultados, as listas e os cambios na lexislatura. ${FAMNOTE}</p></section>
+    <section class="blk" id="t-gen"><h2>Congreso dos Deputados · escanos en Galicia</h2>${famMatrix(genCols('Galicia'),{extra:[exTot('Escanos'),exPart]})}<p class="sub tnote">Suma das catro circunscricións galegas. ${FAMNOTE}</p></section>
+    <section class="blk" id="t-sen"><h2>Senado · senadores/as electos/as en Galicia</h2>${famMatrix(senCols(PR),{extra:[exTot('Electos/as')]})}
+      ${des.length?`<details class="fontes"><summary><b>Senadores/as designados/as pola Comunidade Autónoma</b> (${des.length})</summary><ul class="corp" style="margin-top:6px">${des.map(x=>`<li><a href="#p-${x.p.id}">${esc(x.p.n)}</a><span>${esc(x.r.lx||'')} lex. · ${esc(x.r.sg||x.r.gr||'')}${x.r.i?' · '+fmtD(x.r.i)+(x.r.f?'–'+fmtD(x.r.f):''):''}</span></li>`).join('')}</ul></details>`:''}</section>
+    <section class="blk" id="t-eur"><h2>Parlamento Europeo · votos en Galicia</h2>${famMatrix(eurCols('Galicia'),{min:3,fmt:v=>v?df(v,1):'—',lab:'Partido (agrupado) · % votos',extra:[exPart]})}<p class="sub tnote">Porcentaxe de voto en Galicia das candidaturas con polo menos o 3 % nalgunha elección.</p></section>
+    <section class="blk" id="t-mun"><h2>Eleccións municipais · concelleiros/as en Galicia</h2>${famMatrix(mc,{max:10,other:'Outras candidaturas',extra:[exTot('Concelleiros/as'),exPart]})}<p class="sub tnote">Suma dos concelleiros/as electos/as en todos os concellos galegos.${MUNNOTE(PRE)}</p></section>
+  </div><aside style="display:grid;gap:12px;align-content:start"><div class="card"><div data-map="ca:12"></div><a href="#mapa-ca12" style="font-size:.85rem">Ver no mapa grande</a></div><div class="card">${statsDl([['Provincias','4'],['Concellos',nf(nConc)],['Poboación (municipais 2023)',nf(pob)],['Parlamento de Galicia',RA?RA.t[5]+' escanos':'—'],['Congreso',DATA.gr['2023|Galicia']?DATA.gr['2023|Galicia'].t[5]+' escanos':'—'],['Senado','16 electos/as + designados/as']])}</div>
+    <div class="card" id="t-prov"><b>Provincias</b>${provCards}</div></aside></div>`;
+  window.scrollTo(0,0);
+}
+document.addEventListener('click',e=>{ const a=e.target.closest&&e.target.closest('.tnav a[data-to]'); if(!a) return; e.preventDefault(); const t=document.getElementById(a.dataset.to); if(t) t.scrollIntoView({behavior:'smooth',block:'start'}); });
+// concello: táboa de todas as eleccións locais
+function munElecTable(ine){
+  const ys=[...MUNY].reverse().filter(y=>DATA.mr[y+'|'+ine]); if(!ys.length) return '';
+  return `<div style="overflow-x:auto"><table class="cmp res ctab ctabm"><thead><tr><th>Elección</th><th>Participación</th><th>Concelleiros</th><th style="text-align:left">Reparto</th></tr></thead><tbody>${ys.map(y=>{
+    const R=DATA.mr[y+'|'+ine], pre=y+'|'+ine+'|';
+    const seats=Object.entries(DATA.ml).filter(([k,v])=>k.startsWith(pre)&&Number(v[3])>0).map(([k,v])=>({sg:k.slice(pre.length),sn:v[1],s:Number(v[3])})).sort((a,b)=>b.s-a.s);
+    return `<tr><td><a href="#e-M${y}-${ine}"><b>${y}</b></a><div class="cand">${fmtD(DTE[y])}</div></td><td>${partic(R)}</td><td>${R[5]}</td><td style="text-align:left;white-space:normal"><div class="chips">${seats.map(x=>`<span class="chip">${dot(pcol(x.sn||x.sg)).replace('margin-right:6px','')}${esc(x.sg)} ${x.s}</span>`).join('')}</div></td></tr>`; }).join('')}</tbody></table></div>`;
+}
+function pxOf(ine){ const cp=ine.slice(0,2), k=depLast(cp)[0], n=(DATA.cn[ine]||[])[0]; if(!k||!n) return null; const x=(DATA.dp[k].px||[]).find(x=>(x.concellos||[]).includes(n)); return x?x.px:null; }
+function terrCrumb(c){ const cp=PRC[c]; return cp?` · <a href="#pr-${cp}">Provincia de ${esc(c)}</a>`:c==='Galicia'?' · <a href="#ca-gal">Galicia</a>':''; }
+
+const GEOF='data/geo-e99f4ce4e5.wasm';
+// ---- v89: mapa administrativo (IGN, vía es-atlas 0.6.0): España → comunidade → provincia → concello ----
+// GEOF: TopoJSON xa proxectado (cónica conforme de España, Canarias en recadro), gzip; cárgase só ao abrir un mapa.
+const PR_CA={'01':'16','02':'08','03':'10','04':'01','05':'07','06':'11','07':'04','08':'09','09':'07','10':'11','11':'01','12':'10','13':'08','14':'01','15':'12','16':'08','17':'09','18':'01','19':'08','20':'16','21':'01','22':'02','23':'01','24':'07','25':'09','26':'17','27':'12','28':'13','29':'01','30':'14','31':'15','32':'12','33':'03','34':'07','35':'05','36':'12','37':'07','38':'05','39':'06','40':'07','41':'01','42':'07','43':'09','44':'02','45':'08','46':'10','47':'07','48':'16','49':'07','50':'02','51':'18','52':'19'};
+let CANOME_=null; function canome(c){ if(!CANOME_) CANOME_=Object.fromEntries(Object.entries(CAINE).map(([n,k])=>[k,n])); return CANOME_[c]; }
+let GEO=null, GEOP=null;
+function geoLoad(){
+  if(GEO) return Promise.resolve(GEO);
+  return GEOP||(GEOP=getBuf(GEOF).then(readJSON).then(T=>{
+    const [sx,sy]=T.transform.scale, [tx,ty]=T.transform.translate;
+    const arcs=T.arcs.map(a=>{let x=0,y=0; return a.map(([dx,dy])=>{x+=dx;y+=dy;return [x*sx+tx,y*sy+ty];});});
+    const ring=ix=>{ const out=[]; ix.forEach((i,k)=>{ const a=i<0?arcs[~i].slice().reverse():arcs[i]; (k?a.slice(1):a).forEach(p=>out.push(p)); }); return out; };
+    const mk=g=>{ const polys=g.type==='Polygon'?[g.arcs]:g.type==='MultiPolygon'?g.arcs:[]; const rings=polys.flatMap(p=>p.map(ring));
+      let b=[1e9,1e9,-1e9,-1e9]; rings.forEach(r=>r.forEach(([x,y])=>{ if(x<b[0])b[0]=x; if(y<b[1])b[1]=y; if(x>b[2])b[2]=x; if(y>b[3])b[3]=y; }));
+      return {id:g.id,n:g.n,b,d:rings.map(r=>'M'+r.map(([x,y])=>x.toFixed(1)+','+y.toFixed(1)).join('L')+'Z').join('')}; };
+    GEO={m:T.objects.m.geometries.map(mk),p:T.objects.p.geometries.map(mk),c:T.objects.c.geometries.map(mk),cb:T.cb};
+    GEO.M=Object.fromEntries(GEO.m.map(f=>[f.id,f])); GEO.P=Object.fromEntries(GEO.p.map(f=>[f.id,f])); GEO.C=Object.fromEntries(GEO.c.map(f=>[f.id,f]));
+    return GEO; }));
+}
+const unionB=fs=>fs.reduce((b,f)=>[Math.min(b[0],f.b[0]),Math.min(b[1],f.b[1]),Math.max(b[2],f.b[2]),Math.max(b[3],f.b[3])],[1e9,1e9,-1e9,-1e9]);
+const munName=f=>((DATA.cn||{})[f.id]||[])[0]||f.n;
+const provName=id=>(GEO.P[id]||{}).n||id;
+const caName=id=>canome(id)||(GEO.C[id]||{}).n||id;
+const GALP_HAS=id=>['15','27','32','36'].includes(id);
+// SVG: fs = elementos activos (con ligazón), ctx = contexto gris; o encadre axústase a fs
+function mapSVG(fs,o){
+  o=o||{}; const b=o.b||unionB(fs), w=b[2]-b[0], h=b[3]-b[1], pad=Math.max(w,h)*0.04;
+  const vb=[b[0]-pad,b[1]-pad,w+2*pad,h+2*pad].map(v=>v.toFixed(1)).join(' ');
+  const ctx=(o.ctx||[]).map(f=>`<path class="mctx" d="${f.d}"/>`).join('');
+  const act=fs.map(f=>{ const h=o.href(f); const t=esc(o.name(f)); const cls='mf'+(o.has&&o.has(f)?' mhas':'')+(o.hl===f.id?' mhl':'');
+    return h?`<a href="${h}" class="${cls}" data-n="${t}" aria-label="${t}"><path d="${f.d}"/><title>${t}</title></a>`:`<g class="${cls} mnolink" data-n="${t}"><path d="${f.d}"/><title>${t}</title></g>`; }).join('');
+  return `<svg class="tmapsvg" viewBox="${vb}" role="group" aria-label="${esc(o.label||'Mapa')}" preserveAspectRatio="xMidYMid meet" style="max-height:${o.mh||'70vh'}">${ctx}${act}${(o.thin||[]).map(f=>`<path class="mprov" d="${f.d}"/>`).join('')}${(o.over||[]).map(f=>`<path class="mover" d="${f.d}"/>`).join('')}${o.cb?`<path class="mcb" d="${GEO.cb}"/>`:''}</svg>`;
+}
+document.addEventListener('mouseover',e=>{ const a=e.target.closest&&e.target.closest('.tmap .mf'); if(!a) return; const l=a.closest('.tmap').querySelector('.mlab'); if(l) l.textContent=a.dataset.n; });
+document.addEventListener('focusin',e=>{ const a=e.target.closest&&e.target.closest('.tmap .mf'); if(!a) return; const l=a.closest('.tmap').querySelector('.mlab'); if(l) l.textContent=a.dataset.n; });
+document.addEventListener('mouseout',e=>{ const t=e.target.closest&&e.target.closest('.tmap'); if(t&&!t.contains(e.relatedTarget)){ const l=t.querySelector('.mlab'); if(l) l.textContent=l.dataset.def||''; } });
+const mapBox=(svg,def)=>`<div class="tmap">${svg}<div class="mlab" data-def="${esc(def||'')}">${esc(def||'')}</div></div>`;
+// mapas incrustados nas páxinas territoriais (data-map="ca:12" | "pr:32" | "mu:32054")
+function fillMaps(){
+  const els=[...document.querySelectorAll('[data-map]')]; if(!els.length) return;
+  geoLoad().then(()=>els.forEach(el=>{ if(!el.isConnected) return; const [lv,code]=el.dataset.map.split(':');
+    if(lv==='ca'){ const fs=GEO.p.filter(f=>PR_CA[f.id]===code);
+      el.innerHTML=mapBox(mapSVG(fs,{href:f=>GALP_HAS(f.id)?'#pr-'+f.id:'#mapa-pr'+f.id,name:f=>f.n,ctx:GEO.p.filter(f=>PR_CA[f.id]!==code),label:'Provincias',mh:'420px'}),'Preme nunha provincia');
+    } else if(lv==='pr'){ const fs=GEO.m.filter(f=>f.id.slice(0,2)===code);
+      el.innerHTML=mapBox(mapSVG(fs,{href:f=>'#c-'+f.id,name:munName,ctx:GEO.p.filter(f=>f.id!==code),over:[GEO.P[code]].filter(Boolean),label:'Concellos',mh:'520px'}),'Preme nun concello');
+    } else if(lv==='mu'){ const cp=code.slice(0,2), fs=GEO.m.filter(f=>f.id.slice(0,2)===cp);
+      if(!GEO.M[code]){ el.remove(); return; }
+      el.innerHTML=mapBox(mapSVG(fs,{href:f=>f.id===code?null:'#c-'+f.id,name:munName,hl:code,ctx:GEO.p.filter(f=>f.id!==cp),over:[GEO.P[cp]].filter(Boolean),label:'Situación na provincia',mh:'300px'}),munName(GEO.M[code]));
+    }
+  })).catch(()=>els.forEach(el=>el.innerHTML='<p class="empty">Non se puido cargar o mapa.</p>'));
+}
+// páxina #mapa, #mapa-caNN, #mapa-prNN
+function renderMapa(arg){
+  CMAP={};
+  app.innerHTML='<p class="empty">Cargando o mapa…</p>';
+  geoLoad().then(()=>{
+    const m=String(arg||'').match(/^(ca|pr)(\d\d)$/); const lv=m?m[1]:'es', code=m?m[2]:null;
+    let crumbs=`<a href="#mapa">España</a>`, title='Mapa', svg='', side='', def='';
+    if(lv==='es'){
+      const cas=GEO.c.slice().sort((a,b)=>a.id.localeCompare(b.id));
+      const one=id=>GEO.p.filter(f=>PR_CA[f.id]===id);
+      title='España';
+      svg=mapSVG(cas,{href:f=>{const ps=one(f.id);return ps.length===1?'#mapa-pr'+ps[0].id:'#mapa-ca'+f.id;},name:f=>caName(f.id),has:f=>f.id==='12',thin:GEO.p,over:GEO.c,cb:1,label:'Comunidades autónomas'});
+      def='Preme nunha comunidade autónoma';
+      side=`<p class="sub">Comunidades e cidades autónomas (orde INE). As que teñen páxina propia van en gris.</p><ul class="corp">${cas.map(f=>`<li><a href="${one(f.id).length===1?'#mapa-pr'+one(f.id)[0].id:'#mapa-ca'+f.id}">${esc(caName(f.id))}</a><span>${f.id==='12'?'<a href="#ca-gal">páxina</a>':''}</span></li>`).join('')}</ul>`;
+    } else if(lv==='ca'){
+      const fs=GEO.p.filter(f=>PR_CA[f.id]===code); if(!fs.length){ app.innerHTML='<p class="empty">Non atopamos esta comunidade. <a href="#mapa">Volver ao mapa</a>.</p>'; return; }
+      title=caName(code); crumbs+=` › <span>${esc(title)}</span>`;
+      svg=mapSVG(fs,{href:f=>'#mapa-pr'+f.id,name:f=>f.n,has:f=>GALP_HAS(f.id),ctx:GEO.p.filter(f=>PR_CA[f.id]!==code),label:'Provincias de '+title});
+      def='Preme nunha provincia';
+      const ca=canome(code);
+      side=`${code==='12'?`<p><a class="btn" href="#ca-gal">Páxina de Galicia</a></p>`:`<p class="sub">Polo de agora só Galicia ten páxina de comunidade.${CAP[ca]&&CIRC[ca]?` Resultados: <a href="#e-G2023-${CIRC[ca]}">Congreso 2023 · total ${esc(ca)}</a>.`:''}</p>`}
+        <ul class="corp">${fs.sort((a,b)=>a.id.localeCompare(b.id)).map(f=>`<li><a href="#mapa-pr${f.id}">${esc(f.n)}</a><span>${GALP_HAS(f.id)?`<a href="#pr-${f.id}">páxina</a>`:''}</span></li>`).join('')}</ul>`;
+    } else {
+      const fs=GEO.m.filter(f=>f.id.slice(0,2)===code); if(!fs.length){ app.innerHTML='<p class="empty">Non atopamos esta provincia. <a href="#mapa">Volver ao mapa</a>.</p>'; return; }
+      const cc=PR_CA[code], multi=GEO.p.filter(f=>PR_CA[f.id]===cc).length>1;
+      title=provName(code); crumbs+=` › ${multi?`<a href="#mapa-ca${cc}">${esc(caName(cc))}</a>`:`<span>${esc(caName(cc))}</span>`}`+(multi?` › <span>${esc(title)}</span>`:'');
+      svg=mapSVG(fs,{href:f=>'#c-'+f.id,name:munName,ctx:GEO.p.filter(f=>f.id!==code),over:[GEO.P[code]],label:'Concellos de '+title});
+      def='Preme nun concello';
+      const pn=(DATA.circ||[]).find(x=>x[1]===code); const cn=pn?pn[0]:title;
+      const ls=fs.map(f=>({id:f.id,n:munName(f)})).sort((a,b)=>COLL.compare(a.n,b.n));
+      side=`${GALP_HAS(code)?`<p><a class="btn" href="#pr-${code}">Páxina da provincia de ${esc(title)}</a></p>`:''}
+        <p class="sub">Xerais do 29/11/2026: <a href="#e-G2026-${code}">candidaturas ao Congreso</a>${DATA.nc&&DATA.nc['2026|'+cn]?` · <a href="#e-N2026-${code}">ao Senado</a>`:''}.</p>
+        <p class="sub">Resultados na circunscrición: <a href="#e-G2023-${code}">Congreso 2023</a>${DATA.nr&&DATA.nr['2023|'+cn]?` · <a href="#e-N2023-${code}">Senado 2023</a>`:''}${GALP_HAS(code)?` · <a href="#e-A2024-${code}">Autonómicas 2024</a>`:''}.</p>
+        <p class="sub" style="margin:0"><input class="circsearch ctf" placeholder="Filtrar concellos…" aria-label="Filtrar concellos" data-tb="ml-${code}"></p>
+        <ul class="corp mlist" id="ml-${code}">${ls.map(x=>`<li data-n="${esc(normS(x.n))}"><a href="#c-${x.id}">${esc(x.n)}</a></li>`).join('')}</ul>
+        <p class="sub tnote">${ls.length} concellos.${GALP_HAS(code)?'':' Fóra de Galicia o rexistro só ten as municipais e a corporación de 2023.'}</p>`;
+    }
+    app.innerHTML=`<div class="crumbs"><a href="#inicio">← Volver á busca</a></div>
+    <div class="ph">${shareUI(esc(title),'mapa'+(lv==='es'?'':'-'+lv+code),'Ligazón directa a este mapa')}<div class="meta"><span class="mcrumbs">${crumbs}</span></div></div>
+    <div class="grid"><div>${mapBox(svg,def)}<p class="sub tnote">Límites administrativos: Instituto Geográfico Nacional (Equipamento Xeográfico de Referencia Nacional), vía es-atlas. Canarias desprazada nun recadro.</p></div>
+    <aside><div class="card" style="max-height:80vh;overflow:auto">${side}</div></aside></div>`;
+    window.scrollTo(0,0);
+  }).catch(()=>{ app.innerHTML='<p class="empty">Non se puido cargar o mapa. Recarga a páxina.</p>'; });
+}
+document.addEventListener('input',e=>{ const t=e.target; if(!t.classList||!t.classList.contains('ctf')) return; const v=normS(t.value.trim()); document.querySelectorAll('#'+t.dataset.tb+'>li').forEach(li=>li.hidden=!!v&&!li.dataset.n.includes(v)); });
 
 // ---- Unións manuais de fichas (db do artefacto: unions/<id_unida>, descartes/<a_b>) ----
 let UNI={}, DESC={}, DBH=null, OWNER=false, REV=null, UNI_ok=0, UNI_ko=0;
@@ -984,7 +1610,7 @@ function recLabel(r){
   const y=(r.d||'').slice(0,4);
   return r.t==='M'?`Municipais ${r.y} · ${r.m||''} · ${r.sn||r.sg||''}${r.el?' · electo/a':''}`:r.t==='L'?`Corporación 2023 · ${r.m||''} · ${r.pa||''}`:
     r.t==='A'?`Alcaldía ${r.mn||''} · ${r.m||''}`:r.t==='C'?`Autonómicas ${y} · ${r.sg||''}${r.el?' · electo/a':''}`:r.t==='G'?`Congreso ${y} · ${r.sg||''}`:
-    r.t==='N'?`Senado ${y} · ${r.sg||''}`:r.t==='U'?`Europeas ${y} · ${r.sg||''}`:r.t==='X'?`Xunta · ${r.c||''}`:r.t==='E'?`Goberno de España · ${r.c||''}`:r.t==='D'?`Deputación ${r.pr} ${r.mn} · ${r.pa||''}`:r.t;
+    r.t==='N'?`Senado ${y} · ${r.sg||''}`:r.t==='U'?`Europeas ${y} · ${r.sg||''}`:r.t==='X'?`Xunta · ${r.c||''}`:r.t==='K'?`${r.ins} · ${r.c||''}`:r.t==='E'?`Goberno de España · ${r.c||''}`:r.t==='D'?`Deputación ${r.pr} ${r.mn} · ${r.pa||''}`:r.t;
 }
 function miniCard(p){
   const recs=[...p.r].sort((a,b)=>String(b.y||b.d||b.mn||'').localeCompare(String(a.y||a.d||a.mn||'')));
@@ -1069,7 +1695,7 @@ function renderRevisar(){
   app.querySelectorAll('[data-k]').forEach(b=>b.onclick=()=>doUnion(b.dataset.k,b.dataset.m,b));
   app.querySelectorAll('[data-d]').forEach(b=>b.onclick=()=>{const [a,c]=b.dataset.d.split('_'); doDiscard(a,c,b);});
 }
-const STATIC_UNI={"06699":{"keep":"418604","merge":"06699","nk":"Antonio Martínez Puñal","nm":"Antonio Martinez Puñal","ts":"2026-10-11T14:30:06.515Z"},"85309":{"keep":"95674","merge":"85309","nk":"Gabriel Rufián Romero","nm":"Gabriel Rufián i Romero","ts":"2026-10-09T22:09:49.290Z"},"77215":{"keep":"68432","merge":"77215","nk":"Xavier Vence Deza","nm":"Xabier Vence Deza","ts":"2026-10-09T22:11:51.624Z"}};
+const STATIC_UNI={"06699":{"keep":"418604","merge":"06699","nk":"Antonio Martínez Puñal","nm":"Antonio Martinez Puñal","ts":"2026-10-11T14:30:06.515Z"},"121948":{"keep":"95447","merge":"121948","nk":"Anastasio Rodríguez Martín","nm":"Anastasio Rodríguez Martín","ts":"2026-10-27T15:50:49.331Z"},"482020":{"keep":"27031","merge":"482020","nk":"José Antonio Sánchez Bugallo","nm":"Xosé Sánchez Bugallo","ts":"2026-10-27T14:34:34.514Z"},"496512":{"keep":"27031","merge":"496512","nk":"José Antonio Sánchez Bugallo","nm":"José A. Sánchez Bugallo","ts":"2026-10-27T14:35:14.588Z"},"517602":{"keep":"07236","merge":"517602","nk":"Anxo Manuel Quintana González","nm":"Anxo Manuel Quintana González","ts":"2026-10-27T16:02:31.992Z"},"524980":{"keep":"517602","merge":"524980","nk":"Anxo Manuel Quintana González","nm":"Angel Manuel Quintana","ts":"2026-10-27T16:00:48.377Z"},"77215":{"keep":"68432","merge":"77215","nk":"Xavier Vence Deza","nm":"Xabier Vence Deza","ts":"2026-10-09T22:11:51.624Z"},"85309":{"keep":"95674","merge":"85309","nk":"Gabriel Rufián Romero","nm":"Gabriel Rufián i Romero","ts":"2026-10-09T22:09:49.290Z"}};
 async function initUnions(){
   if(!window.claude||typeof claude.use!=='function'){ UNI=Object.assign({},STATIC_UNI); if(applyUnions()) route(); return; }
   const db=await claude.use('db'); if(!db) return; DBH=db;
@@ -1105,11 +1731,11 @@ function circKey(c){ // orde INE: código de provincia (+ orde das illas)
 }
 function normS(t){return String(t).normalize('NFD').replace(/[̀-ͯ]/g,'').toLowerCase();}
 function circNav(kind,y,c){
-  const K=kind==='G'?DATA.gr:DATA.nr, has=x=>!!K[y+'|'+x]||(kind==='G'&&!!grCA(y,x));
+  const K=GPEND[y]?pendTab(kind):kind==='G'?DATA.gr:DATA.nr, has=x=>!!K[y+'|'+x]||(GPEND[y]?x==='España':kind==='G'&&!!grCA(y,x));
   const ca=CAP[c]?c:PR2CA[c]||PR2CA[provOf(c)]||null;
   // ligazóns rápidas: Total España, total da comunidade e as súas circunscricións
   const quick=[];
-  if(kind==='G'&&c!=='España') quick.push(['España','Total España']);
+  if((kind==='G'||GPEND[y])&&c!=='España') quick.push(['España',kind==='G'?'Total España':'Toda España']);
   if(ca){
     if(kind==='G'&&CAP[ca]&&c!==ca) quick.push([ca,'Total '+ca]);
     const pl=[]; INE_CA.forEach(([cc,list])=>{ if(cc===ca) list.forEach(([v,l,isl])=>{ if(kind==='N'&&isl&&isl.some(i=>has(i))) isl.forEach(i=>pl.push(i)); else pl.push(v); }); });
@@ -1118,7 +1744,7 @@ function circNav(kind,y,c){
   const ql=quick.filter(x=>has(x[0])).map(([x,l])=>`<a href="#e-${kind}${y}-${CIRC[x]}">${esc(l)}</a>`).join(' · ');
   // selector con busca: España, totais por comunidade (código INE de CA) e circunscricións (código INE de provincia)
   const opts=[];
-  if(kind==='G'&&has('España')) opts.push(['España','Total España','es']);
+  if((kind==='G'||GPEND[y])&&has('España')) opts.push(['España',kind==='G'?'Total España':'Toda España','es']);
   if(kind==='G') Object.keys(CAP).sort((a,b)=>CAINE[a].localeCompare(CAINE[b])).forEach(x=>{ if(has(x)) opts.push([x,'Total '+x+' (CA '+CAINE[x]+')',CIRC[x]]); });
   (DATA.circ||[]).filter(x=>K[y+'|'+x[0]]).sort((a,b)=>circKey(a[0]).localeCompare(circKey(b[0]),undefined,{numeric:true}))
     .forEach(x=>opts.push([x[0], x[4]?(circKey(x[0]).slice(0,2)+' '+x[0]+' ('+x[4]+')'):(x[1]+' '+x[0]), x[1]]));
@@ -1143,11 +1769,14 @@ function needsRest(h){
 }
 const GAL_PR=new Set(['15','27','32','36']);
 const SHARE_BASE=location.origin+location.pathname;
-function shareURL(id){return SHARE_BASE+'#p-'+id;}
-function shareP(id){
+function shareURL(id,h){return SHARE_BASE+'#'+(h||'p-'+id);}
+const SHARE_ICO='<svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><path d="M10 14a5 5 0 0 0 7.07 0l3-3a5 5 0 0 0-7.07-7.07l-1.5 1.5M14 10a5 5 0 0 0-7.07 0l-3 3a5 5 0 0 0 7.07 7.07l1.5-1.5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>';
+// cabeceira cun botón Compartir para calquera páxina (h = hash sen #)
+function shareUI(title,h,lab){ return `<div class="phrow"><h1>${title}</h1><button type="button" class="sharebtn" data-h="${esc(h)}" aria-haspopup="dialog">${SHARE_ICO}Compartir</button></div><div class="sharebox" id="sharebox" hidden><label for="shareurl">${esc(lab||'Ligazón directa a esta páxina')}</label><div class="sharerow"><input id="shareurl" readonly><button type="button" class="sharecopy">Copiar</button></div><span class="sharemsg" id="sharemsg" role="status"></span></div>`; }
+function shareP(id,h){
   const box=document.getElementById('sharebox'), inp=document.getElementById('shareurl');
   if(!box) return;
-  const url=shareURL(id);
+  const url=shareURL(id,h);
   if(!box.hidden&&inp.value===url){box.hidden=true;return;}
   inp.value=url; box.hidden=false; inp.focus(); inp.select();
   copyShare();
@@ -1162,13 +1791,14 @@ function copyShare(){
   }catch(e){ko();}
 }
 document.addEventListener('click',e=>{
-  const b=e.target.closest&&e.target.closest('.sharebtn'); if(b){shareP(b.dataset.id);return;}
+  const b=e.target.closest&&e.target.closest('.sharebtn'); if(b){shareP(b.dataset.id,b.dataset.h);return;}
   if(e.target.closest&&e.target.closest('.sharecopy')){copyShare();return;}
   if(e.target.id==='shareurl') e.target.select();
 });
 
 // ---- v70: informar dun erro (correo xa redactado; non se garda nada na páxina) ----
-const PORTAL_VER='v71';
+const PORTAL_VER='v102';
+document.addEventListener('change',e=>{const t=e.target; if(!t.classList||!t.classList.contains('yrsel')) return; t.closest('aside').querySelectorAll('.card[data-y]').forEach(c=>c.hidden=c.dataset.y!==t.value); const l=t.closest('aside').querySelector('.yrlink'); if(l&&t.dataset.ine){ l.href='#e-M'+t.value+'-'+t.dataset.ine; l.textContent='Ver as municipais '+t.value+' →'; }});
 const REPORT_EMAIL='jose.blanco2@usc.es';
 function errContext(){
   const h=location.hash.slice(1); let t='Páxina de busca';
@@ -1177,6 +1807,8 @@ function errContext(){
   else if(h.startsWith('d-')){const m=h.match(/^d-(\d\d)-(\d{4})$/), k=m&&Object.keys(DATA.dp||{}).find(k=>k.startsWith(m[1]+'|'+m[2])); t=k?DATA.dp[k].nome+' · mandato '+DATA.dp[k].mn:(h1||'Deputación');}
   else if(h.startsWith('c-')){const c=DATA.cn[h.slice(2,7)]; t='Concello: '+(c?c[0]+' ('+c[1]+')':h1)+' · INE '+h.slice(2,7);}
   else if(h.startsWith('e-')) t='Resultados: '+(h1||h.slice(2));
+  else if(h.startsWith('pr-')||h.startsWith('ca-')) t='Territorio: '+(h1||h);
+  else if(h==='mapa'||h.startsWith('mapa-')) t='Mapa: '+(h1||h);
   else if(h==='revisar') t='Revisión de fichas duplicadas';
   return {t, url:SHARE_BASE+(h?'#'+h:'')};
 }
@@ -1233,7 +1865,8 @@ function renderAviso(){
   </article>`;
   window.scrollTo(0,0);
 }
-function route(){
+function route(){ routeX(); fillMaps(); }
+function routeX(){
   const h=location.hash.slice(1);
   if(h!=='aviso-legal') document.title='Rexistro Político Galego';
   if(needsRest(h)){ app.innerHTML=`<p class="empty loadbar">${loadMsg()}<br>Esta páxina amosarase en canto cheguen eses datos.</p>`; return; }
@@ -1241,6 +1874,9 @@ function route(){
   if(h==='revisar'&&!DBH){ location.hash='#inicio'; return; }
   if(h==='revisar') return renderRevisar();
   if(h.startsWith('p-')){ renderPerson(h.slice(2)); const pp=BYID[h.slice(2)]; if(pp&&OWNER&&DBH){ const g=app.querySelector('.grid>div'); if(g){ g.insertAdjacentHTML('beforeend',unionPanel(pp)); wireUnionPanel(pp);} } return; }
+  if(h==='mapa'||h.startsWith('mapa-')) return renderMapa(h.slice(5));
+  if(h.startsWith('pr-')) return renderProvincia(h.slice(3));
+  if(h.startsWith('ca-')) return renderCA(h.slice(3));
   if(h.startsWith('c-')) return renderConcello(h.slice(2));
   if(h.startsWith('e-')) return renderResult(h.slice(2));
   if(h.startsWith('d-')) return renderDeputacion(h.slice(2));
@@ -1321,5 +1957,7 @@ async function load(){
 load().catch(e=>{ console.error(e); app.innerHTML='<p class="empty">Non se puideron cargar os datos. Recarga a páxina.</p>'; });
 })();
 </script>
+
+</body></html>
 </body>
 </html>
