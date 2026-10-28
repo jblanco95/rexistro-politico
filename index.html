@@ -259,7 +259,7 @@ img{max-width:100%}
 const $=s=>document.querySelector(s);
 const app=$('#app');
 // Ficheiros de datos (xerado por _scripts/build_portal_gz.py; non editar a man)
-const MANIFEST={"core":["data/core1-e7b729ca56.wasm","data/core2-c0e0b57a59.wasm","data/core3-f08ea094d5.wasm","data/core4-2ff1f8c64d.wasm"],"rest":["data/rest1-4ca3cca00a.wasm","data/rest2-b76f84d53c.wasm","data/rest3-93113f0b69.wasm","data/rest4-2f35b58a23.wasm"],"n":{"core":263726,"rest":282380},"d0":"data/d0-ed53566840.wasm","ix":["data/ix1-fd5b9abdd7.wasm","data/ix2-04aacdbcd2.wasm"],"v":"bf91528a92"};
+const MANIFEST={"u":[{"f":"data/S2023-es-f88d4e8e60.wasm","x":"data/xS2023-es-b6a2de4e7b.wasm","n":33120,"r":39470,"g":"S","y":2023,"rg":"es"},{"f":"data/L2023-12-3772ba69be.wasm","x":"data/xL2023-12-9a2b30daa3.wasm","n":20390,"r":24159,"g":"L","y":2023,"rg":"12"},{"f":"data/L2023-01-7d905f8fae.wasm","x":"data/xL2023-01-8a90f4862f.wasm","n":46956,"r":56004,"g":"L","y":2023,"rg":"01"},{"f":"data/L2023-02-0f5c026f50.wasm","x":"data/xL2023-02-a338f60d00.wasm","n":14525,"r":18652,"g":"L","y":2023,"rg":"02"},{"f":"data/L2023-03-62d38e22ff.wasm","x":"data/xL2023-03-f8ae269671.wasm","n":5500,"r":6416,"g":"L","y":2023,"rg":"03"},{"f":"data/L2023-04-2a26788f41.wasm","x":"data/xL2023-04-4119bf1451.wasm","n":6434,"r":7361,"g":"L","y":2023,"rg":"04"},{"f":"data/L2023-05-502cbdd962.wasm","x":"data/xL2023-05-e6516ef402.wasm","n":11278,"r":12673,"g":"L","y":2023,"rg":"05"},{"f":"data/L2023-06-6fee594a44.wasm","x":"data/xL2023-06-6600ac4691.wasm","n":5677,"r":6707,"g":"L","y":2023,"rg":"06"},{"f":"data/L2023-07-ccaa0070ac.wasm","x":"data/xL2023-07-1a3babff54.wasm","n":37247,"r":49597,"g":"L","y":2023,"rg":"07"},{"f":"data/L2023-08-304a43068e.wasm","x":"data/xL2023-08-e149614ead.wasm","n":21874,"r":28179,"g":"L","y":2023,"rg":"08"},{"f":"data/L2023-09-76b859e0fd.wasm","x":"data/xL2023-09-4a89eeded4.wasm","n":55821,"r":64848,"g":"L","y":2023,"rg":"09"},{"f":"data/L2023-10-e9a046c5ba.wasm","x":"data/xL2023-10-bad849305b.wasm","n":30051,"r":35734,"g":"L","y":2023,"rg":"10"},{"f":"data/L2023-11-4798f4e351.wasm","x":"data/xL2023-11-0aaf6b3faf.wasm","n":11921,"r":15173,"g":"L","y":2023,"rg":"11"},{"f":"data/L2023-13-7e787fb74a.wasm","x":"data/xL2023-13-4a957f093a.wasm","n":16809,"r":19139,"g":"L","y":2023,"rg":"13"},{"f":"data/L2023-14-6a6ac08f13.wasm","x":"data/xL2023-14-a0ba25a7e0.wasm","n":4929,"r":5695,"g":"L","y":2023,"rg":"14"},{"f":"data/L2023-15-c29c5c7052.wasm","x":"data/xL2023-15-b02d7b97af.wasm","n":5984,"r":7762,"g":"L","y":2023,"rg":"15"},{"f":"data/L2023-16-700abe36f1.wasm","x":"data/xL2023-16-35b7d9d0c4.wasm","n":13726,"r":16305,"g":"L","y":2023,"rg":"16"},{"f":"data/L2023-17-d3517e683b.wasm","x":"data/xL2023-17-fbc154edab.wasm","n":3494,"r":4517,"g":"L","y":2023,"rg":"17"},{"f":"data/L2023-18-9513404605.wasm","x":"data/xL2023-18-6ee43496f0.wasm","n":218,"r":243,"g":"L","y":2023,"rg":"18"},{"f":"data/L2023-19-c032dd9375.wasm","x":"data/xL2023-19-2c7d1bc8fc.wasm","n":226,"r":251,"g":"L","y":2023,"rg":"19"},{"f":"data/S2019-es-dad58c7e5e.wasm","x":"data/xS2019-es-a6f853e79e.wasm","n":12264,"r":16364,"g":"S","y":2019,"rg":"es"},{"f":"data/L2019-12-a31bdfedd2.wasm","x":"data/xL2019-12-70ea6795df.wasm","n":16800,"r":17233,"g":"L","y":2019,"rg":"12"},{"f":"data/S2015-es-61d21e2fab.wasm","x":"data/xS2015-es-0172588dbc.wasm","n":9332,"r":13087,"g":"S","y":2015,"rg":"es"},{"f":"data/L2015-12-9cabae76a5.wasm","x":"data/xL2015-12-7b5c0bd789.wasm","n":16020,"r":16495,"g":"L","y":2015,"rg":"12"},{"f":"data/S2011-es-316a4b8585.wasm","x":"data/xS2011-es-a850432183.wasm","n":8996,"r":9689,"g":"S","y":2011,"rg":"es"},{"f":"data/L2011-12-be933481e0.wasm","x":"data/xL2011-12-9a9c8c2a09.wasm","n":15279,"r":15718,"g":"L","y":2011,"rg":"12"},{"f":"data/S2007-es-11ae4224d9.wasm","x":"data/xS2007-es-9029eff62d.wasm","n":13006,"r":13888,"g":"S","y":2007,"rg":"es"},{"f":"data/L2007-12-0880e08494.wasm","x":"data/xL2007-12-d6c9f8020b.wasm","n":15603,"r":16013,"g":"L","y":2007,"rg":"12"},{"f":"data/S2003-es-3189348bc9.wasm","x":"data/xS2003-es-d654ab948c.wasm","n":10579,"r":11508,"g":"S","y":2003,"rg":"es"},{"f":"data/L2003-12-49afb0e1f6.wasm","x":"data/xL2003-12-dacb681f82.wasm","n":14722,"r":15132,"g":"L","y":2003,"rg":"12"},{"f":"data/S1999-es-c81aa05f54.wasm","x":"data/xS1999-es-ebaa6c4cf9.wasm","n":4991,"r":5354,"g":"S","y":1999,"rg":"es"},{"f":"data/L1999-12-7bbc116cc2.wasm","x":"data/xL1999-12-cf405afb86.wasm","n":18451,"r":18817,"g":"L","y":1999,"rg":"12"},{"f":"data/S1995-es-4ea8ebb17d.wasm","x":"data/xS1995-es-0dc648f0f2.wasm","n":6356,"r":6704,"g":"S","y":1995,"rg":"es"},{"f":"data/L1995-12-d27c9ff892.wasm","x":"data/xL1995-12-6e4fd25f51.wasm","n":17426,"r":17810,"g":"L","y":1995,"rg":"12"},{"f":"data/S1991-es-fdd771ff64.wasm","x":"data/xS1991-es-7678e0fd28.wasm","n":14150,"r":15147,"g":"S","y":1991,"rg":"es"},{"f":"data/L1991-12-94747cadac.wasm","x":"data/xL1991-12-c5a36de937.wasm","n":20616,"r":20993,"g":"L","y":1991,"rg":"12"},{"f":"data/S1987-es-3eff5aefd2.wasm","x":"data/xS1987-es-9a985796bc.wasm","n":16345,"r":18028,"g":"S","y":1987,"rg":"es"},{"f":"data/L1987-12-680429b4cf.wasm","x":"data/xL1987-12-a1deebfa00.wasm","n":20613,"r":20932,"g":"L","y":1987,"rg":"12"},{"f":"data/S1983-es-6de29a1260.wasm","x":"data/xS1983-es-160c2e1f83.wasm","n":10873,"r":11450,"g":"S","y":1983,"rg":"es"},{"f":"data/L1983-12-fa8ac085d5.wasm","x":"data/xL1983-12-8bd9816a40.wasm","n":18463,"r":18834,"g":"L","y":1983,"rg":"12"},{"f":"data/S1979-es-ad653a9786.wasm","x":"data/xS1979-es-8c4bcc1f2f.wasm","n":16564,"r":18192,"g":"S","y":1979,"rg":"es"},{"f":"data/L1979-12-c7e099ce9c.wasm","x":"data/xL1979-12-5c1f383d0e.wasm","n":18346,"r":18697,"g":"L","y":1979,"rg":"12"},{"f":"data/S1975-es-dbf0469248.wasm","x":"data/xS1975-es-3dee2f46fc.wasm","n":5978,"r":6185,"g":"S","y":1975,"rg":"es"}],"dir":["data/dir0-223ad22af0.wasm","data/dir1-a39ed5c26d.wasm","data/dir2-0e7adc6e3e.wasm","data/dir3-432e439c90.wasm","data/dir4-93aa97dcde.wasm","data/dir5-709d79c29b.wasm","data/dir6-7bb5dfb352.wasm","data/dir7-d7a50c131c.wasm","data/dir8-bee9daa7b3.wasm","data/dir9-7bcfebe6fa.wasm","data/dir10-6b57d79eb2.wasm","data/dir11-2953f87fab.wasm","data/dir12-67708fddf2.wasm","data/dir13-4812f20106.wasm","data/dir14-d3ffd9dd47.wasm","data/dir15-b79aae96cb.wasm","data/dir16-a3e2f3cbaf.wasm","data/dir17-47f295dc88.wasm","data/dir18-eee4fc968e.wasm","data/dir19-0581320768.wasm","data/dir20-55ef4cff1b.wasm","data/dir21-ed332593a8.wasm","data/dir22-b25edbd321.wasm","data/dir23-b86e7933e7.wasm","data/dir24-b4f454bc64.wasm","data/dir25-15310f16de.wasm","data/dir26-5248b47364.wasm","data/dir27-830ed6d5ec.wasm","data/dir28-cb2f13d9d2.wasm","data/dir29-6063404a57.wasm","data/dir30-7b2971ff25.wasm","data/dir31-ff48a9d57c.wasm"],"d0":"data/d0-f94d8f452c.wasm","v":"f5ccd2dbce"};
 let DATA=null, P=[], BYID={}, FULL=false;
 const COLL=new Intl.Collator('gl');
 const state={q:'',amb:'',ccaa:'',prov:'',mun:'',cargo:'',per:'',part:'',limit:60};
@@ -419,45 +419,26 @@ function roleChips(p,max){
   return out.slice(0,max||99).join('');
 }
 
-function score(p){
-  let s=0;
-  for(const r of p.r){
-    if(r.t==='X') s=Math.max(s, r.f?40:({'Presidencia':100,'Conselleiro/a':90}[r.nv]||70));
-    if(r.t==='K') s=Math.max(s, r.f?38:({'Presidencia':100,'Vicepresidencia':90,'Consejero/a':88}[r.nv]||66));
-    if(r.t==='E') s=Math.max(s, r.f?45:({'Presidencia':110,'Ministro/a':95,'Secretaría de Estado':85}[r.nv]||72));
-    if(r.t==='G') s=Math.max(s, r.el?65:10);
-    if(r.t==='N') s=Math.max(s, r.el?62:10);
-    if(r.t==='Q'||r.t==='S') s=Math.max(s, 62);
-    if(r.t==='U') s=Math.max(s, r.el?64:3);
-    if(r.t==='C') s=Math.max(s, r.el?(r.d>'2024'?60:55):10);
-    if(r.t==='L') s=Math.max(s, ({0:50,1:20,2:5})[rankLocal[r.c]]);
-    if(r.t==='M') s=Math.max(s, r.el?(r.y==='2023'?6:4):1);
-    if(r.t==='A') s=Math.max(s, 45);
-    if(r.t==='D') s=Math.max(s, (r.cg||[]).some(x=>/^Presidente/.test(x[0]))?75:(r.cg||[]).some(x=>/^Vicepresident/.test(x[0]))?58:48);
-  }
-  return s;
-}
 
 // ---- v104: índice de busca precalculado (_scripts/build_portal_gz.py, build_index) ----
-// Un ficheiro por parte (IX[0] núcleo, IX[1] resto), coas persoas na mesma orde ca nos .gz: textos de busca
+// Un ficheiro por bloque (IX[k], ver Carga por bloques), coas persoas na mesma orde ca no bloque: textos de busca
 // dos rexistros (agrupados), puntuación, orde do nome normalizado, tipos de rexistro e o reconto de partidos
 // sen filtros. Cada persoa leva p._x = parte<<20 | posición (p._xm se ten fichas unidas).
 // A busca por palabras (nomes normalizados e textos) faise nun Web Worker co código de ixCore; se non se pode
 // crear, o mesmo código corre neste fío. Unha palabra coincide se está no nome, nun alias ou nalgún texto dos
 // rexistros (como p._k.includes ata v102).
 const AMB_T='UGNXCLMDKAQSE', AB=t=>1<<AMB_T.indexOf(t);
-const ambBits=p=>p.r.reduce((a,r)=>a|AB(r.t),0);
 const IX=[];
 function ixHead(buf){
   const u=new Uint8Array(buf), dv=new DataView(buf);
-  if(String.fromCharCode(...u.subarray(0,4))!=='RPX3') throw new Error('índice de busca: formato descoñecido');
+  if(String.fromCharCode(...u.subarray(0,4))!=='RPX4') throw new Error('índice de busca: formato descoñecido');
   return [4,8,12,16,20,24,28].map(o=>dv.getUint32(o,true));
 }
 // no fío principal só fai falta o necesario para ordenar e contar; o resto do ficheiro vai para ixCore
 function readIx(buf){
   const [n,nG,,nPG,nGT,nD,nJ]=ixHead(buf);
-  const at=(T,o,len)=>new T(buf,o,len).slice(), o1=32+4*n+4*nPG+2*nGT, o2=o1+2*n, oJ=o2+2*n+nG+nD;
-  return {n,rank:at(Uint32Array,32,n),amb:at(Uint16Array,o1,n),score:at(Uint8Array,o2,n),
+  const at=(T,o,len)=>new T(buf,o,len).slice(), o1=32+8*n+4*nPG+2*nGT, o2=o1+2*n, oJ=o2+2*n+nG+nD;
+  return {n,rank:at(Uint32Array,32,n),seq:at(Uint32Array,32+4*n,n),amb:at(Uint16Array,o1,n),score:at(Uint8Array,o2,n),
     pc:JSON.parse(new TextDecoder().decode(new Uint8Array(buf,oJ,nJ))).pc,loaded:0,sent:0};
 }
 // Busca por palabras. Autónomo (sen variables de fóra): é o corpo do Web Worker.
@@ -467,7 +448,7 @@ function ixCore(send){
   const W=[];
   function part(buf){
     const dv=new DataView(buf), [n,nG,nT,nPG,nGT,nD]=[4,8,12,16,20,24].map(o=>dv.getUint32(o,true));
-    let o=32+4*n; const take=(T,len)=>{ const a=new T(buf,o,len); o+=len*T.BYTES_PER_ELEMENT; return a; };
+    let o=32+8*n; const take=(T,len)=>{ const a=new T(buf,o,len); o+=len*T.BYTES_PER_ELEMENT; return a; };
     const pg=take(Uint32Array,nPG), gt=take(Uint16Array,nGT); o+=3*n; const pc=take(Uint8Array,n), gc=take(Uint8Array,nG);
     const off=(c,len)=>{ const a=new Uint32Array(len+1); for(let i=0;i<len;i++) a[i+1]=a[i]+c[i]; return a; };
     const dic=nT?new TextDecoder().decode(new Uint8Array(buf,o,nD)).split('\n'):[];
@@ -529,18 +510,20 @@ function ixReply(d){
 }
 function hitP(m,p){ if(!p._xm) return m[p._x>>>20][p._x&0xFFFFF]===1; for(const x of p._xm) if(m[x>>>20][x&0xFFFFF]===1) return true; return false; }
 function linkRedirects(){ for(const o in (DATA.rd||{})){ if(!BYID[o]&&BYID[DATA.rd[o]]) BYID[o]=BYID[DATA.rd[o]]; } }
-// orde: puntuación e despois nome normalizado (p._o: a súa posición alfabética); o colador galego só desempata
+// orde: puntuación, nome normalizado (p._o: a súa posición alfabética) e desempate (p._q, só nos nomes repetidos:
+// a orde de carga de v104); o colador galego desempata os nomes normalizados iguais. Faise cando fai falta (SORTED).
+let SORTED=false;
 function sortP(){
-  const n=P.length, k=new Float64Array(n), M=1048576;
-  for(let i=0;i<n;i++){ const p=P[i]; k[i]=((255-p._s)*M+p._o)*M+i; }
-  k.sort();
-  const Q=new Array(n); for(let i=0;i<n;i++) Q[i]=P[k[i]%M];
-  for(let i=0;i<n;){ let j=i+1; while(j<n&&Q[j]._o===Q[i]._o&&Q[j]._s===Q[i]._s) j++;
-    if(j-i>1){ const run=Q.slice(i,j).sort((a,b)=>COLL.compare(a.n,b.n)); for(let t=i;t<j;t++) Q[t]=run[t-i]; } i=j; }
-  for(let i=0;i<n;i++) P[i]=Q[i];
-  OPT_CACHE.k=null;
+  const n=P.length, M=8388608, k=new Float64Array(n), by=new Map();
+  for(let i=0;i<n;i++){ const p=P[i], v=((127-p._s)*M+p._o)*M+p._q; k[i]=v; by.set(v,p); }
+  if(by.size===n){ k.sort(); for(let i=0;i<n;i++) P[i]=by.get(k[i]); }
+  else P.sort((a,b)=>b._s-a._s||a._o-b._o||a._q-b._q);  // non debería pasar: claves repetidas
+  for(let i=0;i<n;){ let j=i+1; while(j<n&&P[j]._o===P[i]._o&&P[j]._s===P[i]._s) j++;
+    if(j-i>1){ const run=P.slice(i,j).sort((a,b)=>COLL.compare(a.n,b.n)); for(let t=i;t<j;t++) P[t]=run[t-i]; } i=j; }
+  SORTED=true; OPT_CACHE.k=null;
 }
-function buildIndex(){ P=DATA.p; linkRedirects(); sortP(); }
+function ensureSorted(){ if(!SORTED||P!==DATA.p){ P=DATA.p; sortP(); } }
+function buildIndex(){ P=DATA.p; linkRedirects(); SORTED=false; OPT_CACHE.k=null; }
 
 // null mentres o Web Worker calcula as palabras (renderSearch volve chamarse ao chegar a resposta)
 function filtered(){
@@ -556,18 +539,28 @@ function filtered(){
 
 const OPT_CACHE={k:null,v:null};
 function optionList(){
-  const key=[state.amb,state.cargo,state.per,state.ccaa,state.prov,state.mun,state.part,P.length].join('|');
+  const key=[state.amb,state.cargo,state.per,state.ccaa,state.prov,state.mun,state.part,P.length,DV].join('|');
   if(OPT_CACHE.k===key) return OPT_CACHE.v;
   OPT_CACHE.k=key; return OPT_CACHE.v=optBase()||optionList0();
 }
-// sen filtros, o reconto vén no índice (party_counts) para o núcleo e para núcleo+resto; as fichas unidas descóntanse
-let NMERGE=0; const OPT_ADJ={};
+// sen filtros, o reconto vén no índice (PartyCounts de build_portal_gz.py) para cada etapa (bloques 0..k cargados en
+// orde); as fichas unidas (MERGED) descóntanse: cada ID contaba como unha persoa
+const MERGED=new Set();
 function optBase(){
-  if(state.amb||state.cargo||state.per||state.ccaa||state.prov||state.mun||state.part) return null;
-  const k=IX[1]&&P.length===IX[0].n+IX[1].n-NMERGE?1:(!IX[1]||!IX[1].loaded)&&P.length===IX[0].n?0:-1;
-  if(k<0) return null;
-  if(!NMERGE) return IX[k].pc;
-  return IX[k].pc.map(([x,v])=>[x,v+(OPT_ADJ[x]||0)]).filter(x=>x[1]>=15).sort((a,b)=>b[1]-a[1]);
+  if(state.amb||state.cargo||state.per||state.ccaa||state.prov||state.mun||state.part||ADDING) return null;
+  const K=LOADED.size-1; for(let k=0;k<=K;k++) if(!LOADED.has(k)) return null;
+  if(K<0) return null;
+  const L=IX[K].pc; if(!MERGED.size) return L;
+  const adj={};
+  MERGED.forEach(p=>{ const sets=[...p._parts.values()].map(rs=>new Set(rs.flatMap(rparts))), all=new Set(sets.flatMap(x=>[...x]));
+    all.forEach(x=>{ const n=sets.filter(z=>z.has(x)).length; if(n>1) adj[x]=(adj[x]||0)-(n-1); }); });
+  const o=L.map(([x,v])=>[x,v+(adj[x]||0)]).filter(x=>x[1]>=15), n={};
+  // empates: na orde de aparición en P, que as unións cambian (= Object.entries de optionList0; as claves numéricas primeiro)
+  o.forEach(x=>n[x[1]]=(n[x[1]]||0)+1);
+  const tied=new Set(o.filter(x=>n[x[1]]>1).map(x=>x[0])), pos={}; let left=tied.size;
+  for(let i=0;i<P.length&&left;i++) for(const r of P[i].r) for(const x of rparts(r)) if(tied.has(x)&&!(x in pos)){ pos[x]=i; left--; }
+  const ix=k=>/^(0|[1-9]\d*)$/.test(k)&&+k<4294967295;
+  return o.sort((a,b)=>b[1]-a[1]||(ix(a[0])||ix(b[0])?(ix(a[0])&&ix(b[0])?a[0]-b[0]:ix(a[0])?-1:1):(pos[a[0]]??1e9)-(pos[b[0]]??1e9)));
 }
 function optionList0(){
   const cnt={}, min=state.mun?1:(state.prov?5:15);
@@ -580,6 +573,9 @@ function optionList0(){
 function renderSearch(){
   const EUR=state.amb==='eur'||state.cargo==='candEur'||state.cargo==='elEur'; // europeas: circunscrición única, sen CCAA nin provincia
   if(EUR){state.ccaa='';state.prov='';state.mun='';}
+  ensureSorted();
+  const fu=filterUnits().filter(k=>!LOADED.has(k));  // un ano concreto que aínda non está cargado: pídese
+  if(fu.length) Promise.all(fu.map(loadUnit)).then(()=>{ if(!location.hash||location.hash==='#inicio') renderSearch(); }).catch(()=>{});
   const res=filtered(); if(!res) return;  // o Web Worker aínda está a buscar
   const parts=optionList();
   const sel=(id,label,opts)=>`<select id="${id}" aria-label="${label}"><option value="">${label}</option>${opts.map(([v,t])=>`<option value="${esc(v)}" ${state[id]===v?'selected':''}>${esc(t)}</option>`).join('')}</select>`;
@@ -597,7 +593,7 @@ function renderSearch(){
     ${sel('part','Calquera partido',parts.map(([k,v])=>[k,`${k} (${nf(v)})`]))}
     <button class="btn" id="reset" type="button">Limpar filtros</button>
   </div>
-  ${FULL?'':`<p class="loadbar note">${loadMsg()}</p>`}
+  ${fu.length?`<p class="loadbar note"><b>Cargando os datos desa elección…</b> Os resultados completaranse en canto cheguen.</p>`:loadNote()}
   <p class="terr"><span class="k">Territorios</span><a href="#mapa">Mapa</a><a href="#ca-gal">Galicia</a>${GPROV.map(([k,n])=>`<a href="#pr-${k}">${esc(n)}</a>`).join('')}${state.prov&&PRC[state.prov]?` · <a href="#pr-${PRC[state.prov]}">Páxina da provincia de ${esc(state.prov)}</a>`:''}${state.mun&&DATA.cn[state.mun]?` · <a href="#c-${state.mun}">Páxina do concello de ${esc(DATA.cn[state.mun][0])}</a>`:''}</p>
   <p class="terr"><span class="k">Xerais 2026</span><a href="#e-G2026-es">Candidaturas ao Congreso en toda España</a><a href="#e-N2026-es">Candidaturas ao Senado</a></p>
   <div class="summary"><span><strong>${nf(res.length)}</strong> persoas</span><span>${nf(nU)} nas europeas</span><span>${nf(nG)} en candidaturas ao Congreso</span><span>${nf(nN)} ao Senado</span><span>${nf(nX)} en gobernos autonómicos</span><span>${nf(nC)} en candidaturas autonómicas</span><span>${nf(nD)} en deputacións</span><span>${nf(nL)} en corporacións locais</span><span>${nf(nM)} en eleccións municipais</span></div>
@@ -663,7 +659,7 @@ function dpKey(r){return dpCp(r)+'|'+r.mn;}
 function dpHref(r){return '#d-'+dpCp(r)+'-'+r.mn.slice(0,4);}
 // --- Parlamento de Galicia: mandatos (pg) por lexislatura -----------------------------------
 let PGIDX=null;
-function pgIdx(){ if(PGIDX) return PGIDX; PGIDX={}; DATA.p.forEach(p=>(p.pg||[]).forEach(m=>{PGIDX[m.lx+'|'+normN(p.n)]=p.id; (p.alt||[]).forEach(a=>PGIDX[m.lx+'|'+normN(a)]=p.id);})); return PGIDX; }
+function pgIdx(){ if(PGIDX&&PGIDX._dv===DV+'|'+DATA.p.length) return PGIDX; PGIDX={}; Object.defineProperty(PGIDX,'_dv',{value:DV+'|'+DATA.p.length}); DATA.p.forEach(p=>(p.pg||[]).forEach(m=>{PGIDX[m.lx+'|'+normN(p.n)]=p.id; (p.alt||[]).forEach(a=>PGIDX[m.lx+'|'+normN(a)]=p.id);})); return PGIDX; }
 function normN(n){ return String(n||'').normalize('NFD').replace(/[̀-ͯ]/g,'').toLowerCase().replace(/[^a-zñ ]/g,' ').replace(/\b(de|del|da|do|la|las|los|dos|das)\b/g,' ').replace(/\s+/g,' ').trim(); }
 function pgLink(lx,n){ const id=pgIdx()[lx+'|'+normN(n)]; return id?`<a href="#p-${id}">${esc(n)}</a>`:esc(n); }
 const PGM=s=>s==='M'?'a':'o';
@@ -1171,7 +1167,7 @@ function renderResult(code){
     }
     rows.sort((a,b)=>(b.v||0)-(a.v||0)||b.s-a.s);
     const el=(DATA.corpE[y][ine]||[]).map(id=>({p:BYID[id],r:BYID[id].r.find(r=>r.t==='M'&&r.y===y&&r.ine===ine&&r.el)})).filter(x=>x.r).sort((a,b)=>b.s-a.s);
-    const otherY=['1979','1983','1987','1991','1995','1999','2003','2007','2011','2015','2019','2023'].filter(x=>x!==y&&DATA.mr[x+'|'+ine]);
+    const otherY=['1979','1983','1987','1991','1995','1999','2003','2007','2011','2015','2019','2023'].filter(x=>x!==y&&(DATA._my?(DATA._my[ine]||[]).includes(x):DATA.mr[x+'|'+ine]));  // _my: anos do concello aínda sen cargar
     app.innerHTML=`<div class="crumbs"><a href="#inicio">← Volver á busca</a>${GALC.includes(ine.slice(0,2))||(DATA.corp[ine]||[]).length?` · <a href="#c-${ine}">Concello de ${esc(cn[0])}</a>`:''}${terrCrumb(cn[1])}</div>
     <div class="ph">${shareUI(`Municipais ${y} · ${esc(cn[0])}`,location.hash.slice(1),'Ligazón directa a esta elección')}
     <div class="meta"><span>${fmtD(DTE[y])}</span><span>${esc(cn[1])} · ${R[5]} concelleiros/as</span>${otherY.length?`<span>Tamén: ${otherY.map(o=>`<a href="#e-M${o}-${ine}">${o}</a>`).join(' · ')}</span>`:''}</div></div>
@@ -1251,7 +1247,7 @@ function renderPend(kind,y,code){
 // ---- v97: candidatos/as non electos/as (titulares e suplentes) nas páxinas de resultados e territoriais ----
 let CIX=null;
 function candIx(){ // índice clave -> [{p,r}] de candidaturas M, C, G, N, U (unha soa pasada; refaise se cambia o número de fichas)
-  if(CIX&&CIX.n===DATA.p.length) return CIX.m;
+  if(CIX&&CIX.n===DV+'|'+DATA.p.length) return CIX.m;
   const m=new Map(), add=(k,p,r)=>{ let a=m.get(k); if(!a) m.set(k,a=[]); a.push({p,r}); };
   for(const p of DATA.p) for(const r of p.r){
     if(r.t==='M') add('M|'+r.y+'|'+r.ine,p,r);
@@ -1260,7 +1256,7 @@ function candIx(){ // índice clave -> [{p,r}] de candidaturas M, C, G, N, U (un
     else if(r.t==='N') add('N|'+gk(r)+'|'+r.pr,p,r);
     else if(r.t==='U') add('U|'+String(r.d).slice(0,4),p,r);
   }
-  CIX={n:DATA.p.length,m}; return m;
+  CIX={n:DV+'|'+DATA.p.length,m}; return m;
 }
 const neOf=k=>(candIx().get(k)||[]).filter(x=>!x.r.el);
 const isSup=r=>r.tp==='S'||r.tp==='Suplente';
@@ -1439,8 +1435,8 @@ function eurCols(c){ return [...ULIST].reverse().map(([y])=>{ const R=DATA.ur[y+
 // rexistros persoais de Galicia que usan as páxinas territoriais (unha soa pasada; refaise se cambia o número de fichas)
 let TSC=null;
 function terrScan(){
-  if(TSC&&TSC.n===DATA.p.length) return TSC;
-  const S={n:DATA.p.length,N:[],C:[],G:[],Q:[],X:[],D:{}};
+  if(TSC&&TSC.n===DV+'|'+DATA.p.length) return TSC;
+  const S={n:DV+'|'+DATA.p.length,N:[],C:[],G:[],Q:[],X:[],D:{}};
   const GP=new Set(GPROV.map(x=>x[1]));
   for(const p of DATA.p) for(const r of p.r){
     if(r.t==='N'&&r.el&&GP.has(r.pr)) S.N.push({p,r});
@@ -1686,15 +1682,19 @@ function remapAll(){
   DATA.p.forEach(p=>p.r.forEach(r=>{if(r.su) r.su=rid(r.su);}));
 }
 function mergeInto(K,M){
-  const KS=new Set(K.r.flatMap(rparts)); new Set(M.r.flatMap(rparts)).forEach(x=>{ if(KS.has(x)) OPT_ADJ[x]=(OPT_ADJ[x]||0)-1; });  // reconto sen filtros (optBase)
-  K.r=K.r.concat(M.r);
+  // rexistros por ficha orixinal (ID): os que cheguen despois noutros bloques van ao seu sitio (addRecs)
+  if(!K._parts) K._parts=new Map([[K.id,K.r]]);
+  (M._parts||new Map([[M.id,M.r]])).forEach((v,id)=>{ const L=K._parts.get(id); if(L) L.push(...v); else K._parts.set(id,v); });
+  K.r=[].concat(...K._parts.values());
   const alt=[...new Set([...(K.alt||[]),M.n,...(M.alt||[])])].filter(x=>x!==K.n); if(alt.length) K.alt=alt; else delete K.alt;
   delete K.hom;
   K.mu=(K.mu||[]).concat([[M.id,M.n]],M.mu||[]);
   ['s','y','nl'].forEach(f=>{if(!K[f]&&M[f]) K[f]=M[f];});
   for(const k in BYID) if(BYID[k]===M) BYID[k]=K;
   BYID[M.id]=K; DATA.p=DATA.p.filter(p=>p!==M);
-  NMERGE++; K._s=score(K); K._a=ambBits(K); K._xm=[...(K._xm||[K._x]),...(M._xm||[M._x])];  // a busca de K inclúe a de M
+  MERGED.delete(M); MERGED.add(K);
+  K._s=Math.max(K._s,M._s); K._a|=M._a;  // puntuación e tipos con todos os rexistros (veñen no índice)
+  K._xm=[...(K._xm||[K._x]),...(M._xm||[M._x])];  // a busca de K inclúe a de M
 }
 function applyUnions(){
   let ch=false; UNI_ok=0; UNI_ko=0;
@@ -1861,14 +1861,47 @@ function circGo(inp){
 document.addEventListener('change',e=>{ if(e.target.classList&&e.target.classList.contains('circsearch')) circGo(e.target); });
 document.addEventListener('keydown',e=>{ if(e.key==='Enter'&&e.target.classList&&e.target.classList.contains('circsearch')){ e.preventDefault(); circGo(e.target);} });
 function provOf(c){const x=(DATA.circ||[]).find(x=>x[0]===c); return x&&x[4]?x[4]:c;}
-// Mentres non chega o resto de España: as fichas e páxinas municipais que dependen del agardan
-function needsRest(h){
-  if(FULL) return false;
-  if(h.startsWith('p-')) return !BYID[h.slice(2)];
-  const m=h.match(/^c-(\d{5})/)||h.match(/^e-M\d{4}-(\d{5})/);
-  return !!(m&&!GAL_PR.has(m[1].slice(0,2)));
+// ---- v105: que bloques necesita cada páxina e cada filtro (os que falten cárganse ao abrila) ----
+const unitsWhere=f=>UN.map((u,k)=>f(u)?k:-1).filter(k=>k>=0);
+const rgOf=ine=>PR_CA[String(ine).slice(0,2)];
+function needUnits(h){
+  if(fullDone()) return [];
+  let m;
+  const L=f=>unitsWhere(u=>u.g==='L'&&f(u)), S=f=>unitsWhere(u=>u.g==='S'&&f(u));
+  if(h==='revisar') return UN.map((u,k)=>k);
+  if(h.startsWith('p-')) return personUnits(h.slice(2));
+  if((m=h.match(/^c-(\d{5})/))) return GALC.includes(m[1].slice(0,2))?L(u=>u.rg===rgOf(m[1])):L(u=>u.y===LATEST&&u.rg===rgOf(m[1]));
+  if((m=h.match(/^e-M(\d{4})-(\d{5})/))) return L(u=>u.y===periodOf(m[1])&&u.rg===rgOf(m[2]));
+  if((m=h.match(/^e-[AGNU](\d{4})/))){ const p=periodOf(m[1]); return S(u=>u.y===p||u.y===p+4); }  // mandatos que pasan ao período seguinte
+  if((m=h.match(/^d-(\d\d)-(\d{4})/))) return L(u=>u.y===periodOf(m[2])&&u.rg===PR_CA[m[1]]);
+  if(h.startsWith('pr-')||h.startsWith('ca-')) return [...S(()=>true),...L(u=>u.rg==='12')];
+  return [];
 }
-const GAL_PR=new Set(['15','27','32','36']);
+// filtro por unha elección, mandato ou lexislatura concreta: os bloques dese período (e da comunidade, se se escolleu)
+function filterUnits(){
+  const c=state.cargo, v=state.per; if(!c||!v||fullDone()) return [];
+  const grp=(CARGOS.find(x=>x[0]===c)||[])[2];
+  let y;
+  if(/^\d{4}/.test(v)) y=v.slice(0,4);
+  else if(v.includes('|')){ const b=v.split('|')[1]; y=/^\d{4}$/.test(b)?b:b==='act'?String(LATEST):((LEGS.find(x=>x[0]===b)||[])[1]||'').slice(0,4); }
+  else y=String(LATEST);
+  if(!y) return [];
+  const p=periodOf(y), rg=state.ccaa?CAINE[state.ccaa]:null;
+  return grp==='loc'||grp==='prov'?unitsWhere(u=>u.g==='L'&&u.y===p&&(!rg||u.rg===rg)):unitsWhere(u=>u.g==='S'&&(u.y===p||u.y===p+4));
+}
+// ficha dunha persoa: o directorio (MANIFEST.dir, partido por ID) di en que bloques ten rexistros; tamén os das fichas unidas a ela
+const DIRC=new Map();
+function idBucket(id){ let h=0; for(const c of String(id)) h=(Math.imul(h,31)+c.charCodeAt(0))>>>0; return h%MANIFEST.dir.length; }  // = id_bucket
+function personUnits(id){
+  const p=BYID[id], ids=new Set([id]);
+  if(DATA.rd&&DATA.rd[id]) ids.add(DATA.rd[id]);
+  if(p) for(const [mid,u] of Object.entries(UNI)) if(BYID[u.keep]===p||u.keep===id) ids.add(mid).add(u.keep);
+  const out=new Set(); let wait=false;
+  for(const x of ids){ const b=idBucket(x), D=DIRC.get(b);
+    if(!D){ wait=true; if(!DIRC.has('w'+b)){ DIRC.set('w'+b,1); getBuf(MANIFEST.dir[b]).then(readJSON).then(o=>{ DIRC.set(b,o); if(location.hash==='#p-'+id) route(); }).catch(()=>DIRC.delete('w'+b)); } continue; }
+    (D[x]||[]).forEach(k=>out.add(k)); }
+  return wait?null:[...out];
+}
 const SHARE_BASE=location.origin+location.pathname;
 function shareURL(id,h){return SHARE_BASE+'#'+(h||'p-'+id);}
 const SHARE_ICO='<svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><path d="M10 14a5 5 0 0 0 7.07 0l3-3a5 5 0 0 0-7.07-7.07l-1.5 1.5M14 10a5 5 0 0 0-7.07 0l-3 3a5 5 0 0 0 7.07 7.07l1.5-1.5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>';
@@ -1898,7 +1931,7 @@ document.addEventListener('click',e=>{
 });
 
 // ---- v70: informar dun erro (correo xa redactado; non se garda nada na páxina) ----
-const PORTAL_VER='v104';
+const PORTAL_VER='v105';
 document.addEventListener('change',e=>{const t=e.target; if(!t.classList||!t.classList.contains('yrsel')) return; t.closest('aside').querySelectorAll('.card[data-y]').forEach(c=>c.hidden=c.dataset.y!==t.value); const l=t.closest('aside').querySelector('.yrlink'); if(l&&t.dataset.ine){ l.href='#e-M'+t.value+'-'+t.dataset.ine; l.textContent='Ver as municipais '+t.value+' →'; }});
 const REPORT_EMAIL='jose.blanco2@usc.es';
 function errContext(){
@@ -1970,7 +2003,11 @@ function route(){ routeX(); fillMaps(); }
 function routeX(){
   const h=location.hash.slice(1);
   if(h!=='aviso-legal') document.title='Rexistro Político Galego';
-  if(needsRest(h)){ app.innerHTML=`<p class="empty loadbar">${loadMsg()}<br>Esta páxina amosarase en canto cheguen eses datos.</p>`; return; }
+  const need=needUnits(h), miss=need?need.filter(k=>!LOADED.has(k)):null;
+  if(!miss||miss.length){ app.innerHTML=`<p class="empty loadbar"><b>Cargando os datos desta páxina…</b>${miss&&miss.length>1?' ('+miss.length+' bloques)':''}</p>`;
+    if(miss) Promise.all(miss.map(loadUnit)).then(()=>{ if(location.hash.slice(1)===h) route(); }).catch(()=>{ app.innerHTML='<p class="empty">Non se puideron cargar os datos desta páxina. Recarga para tentalo de novo.</p>'; });
+    return; }
+  ensureSorted();
   if(h==='aviso-legal') return renderAviso();
   if(h==='revisar'&&!DBH){ location.hash='#inicio'; return; }
   if(h==='revisar') return renderRevisar();
@@ -1988,15 +2025,34 @@ let tmr;
 $('#q').addEventListener('input',e=>{clearTimeout(tmr);tmr=setTimeout(()=>{state.q=e.target.value;state.limit=60;if(location.hash&&location.hash!=='#inicio'){history.pushState(null,'','#inicio')} renderSearch();},120)});
 window.addEventListener('hashchange',route);
 
-// ---- Carga por etapas (v52) ----
-// 1) d0 (táboas) + núcleo (Galicia e todo o supramunicipal) → primeiro pintado
-// 2) en segundo plano: persoas só con cargos/candidaturas locais fóra de Galicia
+// ---- Carga por bloques (v105) ----
+// Os datos van en bloques (grupo S supramunicipal / L local, período de catro anos, rexión; ver build_portal_gz.py),
+// cada un co seu índice de busca e as súas táboas de resultados. Orde de carga (MANIFEST.u xa vén nela):
+//  1) supramunicipais do último período → primeiro pintado; 2) locais do último período, en toda España;
+//  3) en segundo plano, cara atrás, mentres non se pase do presuposto de rexistros (BUDGET, segundo a memoria);
+//  o resto cárgase cando o pide unha páxina (needUnits), un filtro (filterUnits) ou o botón da busca (loadAll).
+// Unha persoa vai en cada bloque onde ten rexistros: aquí xúntanse polo ID (addEntries).
 // Ficheiros .gz descomprimidos no navegador (DecompressionStream) e gardados en IndexedDB:
 // cada nome leva un hash do contido, así que nas visitas seguintes non se volven descargar.
-const LOAD={done:0,total:0};
-function loadMsg(){ const pc=LOAD.total?Math.round(100*LOAD.done/LOAD.total):0;
-  return `<b>Cargando o resto do rexistro</b> (candidaturas e cargos locais de 2023 fóra de Galicia, ${nf(MANIFEST.n?MANIFEST.n.rest:0)} persoas)… ${pc} %. Ata entón, as buscas só inclúen Galicia e os cargos supramunicipais.`; }
-function showProgress(){ document.querySelectorAll('.loadbar').forEach(e=>{ e.innerHTML=e.tagName==='P'&&e.classList.contains('empty')?loadMsg()+'<br>Esta páxina amosarase en canto cheguen eses datos.':loadMsg(); }); }
+const UN=MANIFEST.u, LATEST=UN[0].y, LOADED=new Set(), LD=new Map(), FETCH=new Map();
+const BUDGET=window.RPG_BUDGET||(()=>{ const m=navigator.deviceMemory; return m>=8?3e6:m>=4?1.8e6:m?1e6:1.5e6; })();  // rexistros (RPG_BUDGET: para probas)
+const periodOf=y=>{ y=parseInt(y,10); return y<1979?1975:1979+4*Math.floor((y-1979)/4); };      // = period()
+const fullDone=()=>LOADED.size===UN.length;
+let DV=0, ADDING=0, BG={done:false,stopped:false};
+const recLoaded=()=>[...LOADED].reduce((a,k)=>a+UN[k].r,0), recAll=UN.reduce((a,u)=>a+u.r,0);
+function covered(){ // período máis antigo desde o que está todo cargado
+  let y=null; for(const p of [...new Set(UN.map(u=>u.y))].sort((a,b)=>b-a)){ if(UN.every((u,k)=>u.y!==p||LOADED.has(k))) y=p; else break; } return y; }
+function loadMsg(){
+  const pc=Math.round(100*recLoaded()/(BG.stopped?recLoaded()||1:recAll)), cy=covered();
+  return cy?`<b>Cargando eleccións anteriores</b>… ${pc} %. Ata entón, as buscas inclúen as eleccións desde ${cy}.`
+    :`<b>Cargando as eleccións municipais e os cargos locais de ${LATEST}</b>… ${pc} %. Ata entón, as buscas só inclúen as eleccións e cargos supramunicipais desde ${LATEST}.`;
+}
+function loadNote(){
+  if(fullDone()) return '';
+  if(!BG.done||LOADALL) return `<p class="loadbar note">${loadMsg()}</p>`;
+  return `<p class="loadbar note">A busca inclúe as eleccións desde ${covered()}. <button type="button" class="btn" id="loadall">Buscar tamén nas anteriores</button></p>`;
+}
+function showProgress(){ document.querySelectorAll('.loadbar').forEach(e=>{ if(!(e.tagName==='P'&&e.classList.contains('empty'))) e.innerHTML=loadMsg(); }); }
 const CACHE=(()=>{ let dbp=null;
   const open=()=>dbp||(dbp=new Promise((ok,ko)=>{ try{ const q=indexedDB.open('rexistro-politico',1); q.onupgradeneeded=()=>q.result.createObjectStore('f'); q.onsuccess=()=>ok(q.result); q.onerror=()=>ko(q.error);}catch(e){ko(e);} }));
   const tx=(mode,fn)=>open().then(db=>new Promise((ok,ko)=>{ const t=db.transaction('f',mode); const r=fn(t.objectStore('f')); t.oncomplete=()=>ok(r&&r.result); t.onerror=()=>ko(t.error); }));
@@ -2021,56 +2077,106 @@ const pause=()=>new Promise(r=>setTimeout(r,0));
 function prepRec(p){ const d=DATA, DT=DTE;
   p.r.forEach(r=>{ if(r.ine&&(r.t==='L'||r.t==='M'||r.t==='A')){const c=d.cn[r.ine]||[]; r.m=c[0]; r.pr=c[1];}
     if(r.t==='M'){ r.d=DT[r.y]; const l=d.ml[r.y+'|'+r.ine+'|'+r.sg]||[]; r.ca=l[0]; r.sn=l[1]; r.vt=l[2]; r.cl=l[3]; r.nn=l[4]; } }); }
-async function addPersons(arr,k){
+function mergeTables(t){ for(const [n,v] of Object.entries(t||{})){ const D=DATA[n]||(DATA[n]={}); if(n==='corpE') for(const [y,o] of Object.entries(v)) Object.assign(D[y]||(D[y]={}),o); else Object.assign(D,v); } }
+// rexistros que chegan noutro bloque para unha persoa que xa estaba: xúntanse na orde orixinal (ri), separados por ficha unida
+function addRecs(p,e){
+  if(!p._parts) p._parts=new Map([[p.id,p.r]]);
+  const L=p._parts.get(e.id);
+  if(L){ L.push(...e.r); L.sort((a,b)=>(a.ri??0)-(b.ri??0)); } else p._parts.set(e.id,e.r);
+  p.r=[].concat(...p._parts.values());
+}
+async function addEntries(arr,k){
   const X=IX[k], alc=DATA.alc;
   ixNames(k,arr);  // os nomes van á busca (Web Worker) antes de que as persoas aparezan en P
-  for(let i=0;i<arr.length;i+=5000){
-    for(const p of arr.slice(i,i+5000)){
-      prepRec(p); const j=X.loaded++; if(j>=X.n) throw new Error('índice de busca: máis persoas ca no índice');
-      p._x=k<<20|j; p._s=X.score[j]; p._o=X.rank[j]; p._a=X.amb[j]; BYID[p.id]=p;
-      for(const r of p.r) if(r.t==='A') (alc[r.ine]=alc[r.ine]||[]).includes(p.id)||alc[r.ine].push(p.id);
-      DATA.p.push(p);
+  ADDING++;
+  try{
+    for(let i=0;i<arr.length;i+=5000){
+      for(const e of arr.slice(i,i+5000)){
+        prepRec(e); const j=X.loaded++; if(j>=X.n) throw new Error('índice de busca: máis persoas ca no índice');
+        const x=k<<20|j, p=BYID[e.id];
+        for(const r of e.r) if(r.t==='A') (alc[r.ine]=alc[r.ine]||[]).includes(e.id)||alc[r.ine].push(e.id);
+        if(!p){ e._x=x; e._s=X.score[j]; e._o=X.rank[j]; e._q=X.seq[j]; e._a=X.amb[j]; BYID[e.id]=e; DATA.p.push(e); }
+        else { addRecs(p,e); (p._xm||(p._xm=[p._x])).push(x); if(X.score[j]>p._s) p._s=X.score[j]; p._a|=X.amb[j]; }
+      }
+      SORTED=false; DV++;
+      await pause();
     }
-    await pause();
-  }
+  } finally { ADDING--; }
 }
 function partDone(k){ const X=IX[k]; if(X.loaded!==X.n) throw new Error('índice de busca: '+X.loaded+' persoas de '+X.n); }
+// fichas unidas: os IDs dos bloques novos (táboas, alcaldías, substitucións) pasan á ficha que queda
+function remapUnit(t,arr){
+  if(!MERGED.size) return; const m=a=>[...new Set((a||[]).map(rid))];
+  for(const y in ((t||{}).corpE||{})) for(const ine in t.corpE[y]) DATA.corpE[y][ine]=m(DATA.corpE[y][ine]);
+  for(const e of arr) for(const r of e.r){ if(r.su) r.su=rid(r.su); if(r.t==='A'&&DATA.alc[r.ine]) DATA.alc[r.ine]=m(DATA.alc[r.ine]); }
+}
+function prefetch(k){ if(k<UN.length&&!FETCH.has(k)&&!LD.has(k)){ const u=UN[k], f=Promise.all([getBuf(u.f),getBuf(u.x)]); f.catch(()=>FETCH.delete(k)); FETCH.set(k,f); } }
+function loadUnit(k){
+  if(LD.has(k)) return LD.get(k);
+  prefetch(k);
+  const pr=(async()=>{
+    const [jb,xb]=await FETCH.get(k); FETCH.delete(k);
+    const j=await readJSON(jb);
+    mergeTables(j.t); ixPart(k,await readBin(xb));
+    await addEntries(j.p,k); partDone(k);
+    LOADED.add(k); DV++; SORTED=false; linkRedirects();
+    if(!(Object.keys(UNI).length&&applyUnions())) remapUnit(j.t,j.p);
+    if(fullDone()){ FULL=true; window.__fullyLoaded=true; }
+  })();
+  LD.set(k,pr); pr.catch(()=>LD.delete(k));
+  return pr;
+}
+// botón «Buscar tamén nas anteriores»: o que quede, sen presuposto
+let LOADALL=false;
+async function loadAll(){
+  if(LOADALL) return; LOADALL=true; showProgress(); renderIfHome();
+  try{ for(let k=0;k<UN.length;k++) if(!LOADED.has(k)){ prefetch(k+1); await loadUnit(k); showProgress(); } }
+  finally{ LOADALL=false; renderIfHome(); }
+}
+document.addEventListener('click',e=>{ if(e.target.id==='loadall') loadAll(); });
+function renderIfHome(){ const h=location.hash.slice(1), a=document.activeElement; if((!h||h==='inicio')&&!(a&&a.tagName==='SELECT')) renderSearch(); }
 function footer(d){
   $('#foot').innerHTML=`<p class="errfoot">Atopaches un erro ou un dato incorrecto? <button type="button" class="errbtn" data-err="1">Informar dun erro</button> · <a href="#aviso-legal">Aviso legal e privacidade</a></p><details class="fontes"><summary><b>Fontes</b> (${d.meta.fontes.length}) · datos a ${fmtD(d.meta.actualizado)} · versión ${PORTAL_VER}</summary><ul>${d.meta.fontes.map(f=>`<li>${esc(f)}</li>`).join('')}</ul></details><p>As fichas unen diversos rexistros de forma semiautomática polo nome completo. Poden existir inexactitudes e homónimos mal tratados.</p>`;
 }
 async function load(){
   const T0=performance.now();
   app.innerHTML='<p class="empty">Cargando o rexistro…</p>';
-  ixStart();
   if(typeof DecompressionStream==='undefined'){ app.innerHTML='<p class="empty">Este navegador é demasiado antigo para abrir o rexistro. Actualízao (Chrome/Edge 80+, Firefox 113+, Safari 16.4+).</p>'; return; }
-  const first=[MANIFEST.d0,MANIFEST.ix[0],...MANIFEST.core].map(getBuf);          // descargas en paralelo
-  const restP=Promise.all(first).then(()=>[MANIFEST.ix[1],...MANIFEST.rest].map(getBuf)); // o resto, despois do núcleo
-  restP.catch(()=>{});
-  const d=await readJSON(await first[0]);
-  DATA=d; d.p=[]; d.alc={}; P=d.p;
+  ixStart();
+  const d0=getBuf(MANIFEST.d0); prefetch(0); prefetch(1);
+  const d=await readJSON(await d0);
+  DATA=d; d.p=[]; d.alc={}; P=d.p; ['ml','mr','corpE','ar','gr','nr','ur'].forEach(n=>{ d[n]=d[n]||{}; });
   (d.circ||[]).forEach(x=>{CIRC[x[0]]=x[1]; CIRCR[x[1]]=x[0];}); CIRC['España']='es'; CIRCR['es']='España'; CIRC['Cataluña']='cat'; CIRCR['cat']='Cataluña'; Object.entries(CACODE).forEach(([ca,k])=>{CIRC[ca]=k; CIRCR[k]=ca;});
-  ixPart(0,await readBin(await first[1]));
-  for(const b of first.slice(2)) await addPersons((await readJSON(await b)).p,0);
-  partDone(0); linkRedirects(); sortP(); footer(d);
-  LOAD.total=MANIFEST.rest.length;
-  route();
-  console.log('T primeiro pintado', Math.round(performance.now()-T0), 'ms;', P.length, 'persoas');
-  // segunda etapa
+  footer(d);
   try{
-    const bufs=await restP;
-    ixPart(1,await readBin(await bufs[0]));
-    for(const b of bufs.slice(1)){ await addPersons((await readJSON(await b)).p,1); LOAD.done++; showProgress(); }
-    partDone(1); linkRedirects(); sortP();
+    // 1) supramunicipais do último período
+    await loadUnit(0);
+    route();
+    console.log('T primeiro pintado', Math.round(performance.now()-T0), 'ms;', P.length, 'persoas');
+    // 2) locais do último período (todas as comunidades)
+    const lat=unitsWhere(u=>u.y===LATEST);
+    lat.forEach(prefetch);
+    for(const k of lat){ await loadUnit(k); showProgress(); }
+    renderIfHome();
+    console.log('T último período', Math.round(performance.now()-T0), 'ms;', P.length, 'persoas');
+    // 3) cara atrás, ata o presuposto
+    for(let k=0;k<UN.length;k++){
+      if(LOADED.has(k)) continue;
+      if(recLoaded()+UN[k].r>BUDGET){ BG.stopped=true; break; }
+      prefetch(k+1); prefetch(k+2);
+      await loadUnit(k); showProgress();
+    }
   }catch(e){
-    document.querySelectorAll('.loadbar').forEach(x=>x.innerHTML='<b>Non se puido cargar o resto do rexistro</b> (cargos locais fóra de Galicia). Recarga a páxina para tentalo de novo.');
+    console.error(e);
+    document.querySelectorAll('.loadbar').forEach(x=>x.innerHTML='<b>Non se puideron cargar todos os datos.</b> Recarga a páxina para tentalo de novo.');
+    if(!LOADED.size){ app.innerHTML='<p class="empty">Non se puideron cargar os datos. Recarga a páxina.</p>'; }
     return;
   }
-  FULL=true; window.__fullyLoaded=true;
-  console.log('T carga completa', Math.round(performance.now()-T0), 'ms;', P.length, 'persoas');
-  const h=location.hash.slice(1), a=document.activeElement;
-  if(!h||h==='inicio'){ if(!(a&&a.tagName==='SELECT')) renderSearch(); else document.querySelectorAll('.loadbar').forEach(x=>x.remove()); }
-  else route();
-  CACHE.prune([MANIFEST.d0,...MANIFEST.ix,...MANIFEST.core,...MANIFEST.rest]);
+  BG.done=true;
+  console.log('T carga completa', Math.round(performance.now()-T0), 'ms;', P.length, 'persoas;', LOADED.size, 'de', UN.length, 'bloques');
+  const h=location.hash.slice(1);
+  if(!h||h==='inicio') renderIfHome(); else route();
+  CACHE.prune([MANIFEST.d0,...UN.flatMap(u=>[u.f,u.x]),...MANIFEST.dir]);
   initUnions().catch(()=>{});
 }
 load().catch(e=>{ console.error(e); app.innerHTML='<p class="empty">Non se puideron cargar os datos. Recarga a páxina.</p>'; });
