@@ -259,7 +259,7 @@ img{max-width:100%}
 const $=s=>document.querySelector(s);
 const app=$('#app');
 // Ficheiros de datos (xerado por _scripts/build_portal_gz.py; non editar a man)
-const MANIFEST={"core":["data/core1-e7b729ca56.wasm","data/core2-c0e0b57a59.wasm","data/core3-f08ea094d5.wasm","data/core4-2ff1f8c64d.wasm"],"rest":["data/rest1-4ca3cca00a.wasm","data/rest2-b76f84d53c.wasm","data/rest3-93113f0b69.wasm","data/rest4-2f35b58a23.wasm"],"n":{"core":263726,"rest":282380},"d0":"data/d0-ed53566840.wasm","ix":["data/ix1-e7b141d8ba.wasm","data/ix2-aeebae87d2.wasm"],"v":"d045dc954a"};
+const MANIFEST={"core":["data/core1-e7b729ca56.wasm","data/core2-c0e0b57a59.wasm","data/core3-f08ea094d5.wasm","data/core4-2ff1f8c64d.wasm"],"rest":["data/rest1-4ca3cca00a.wasm","data/rest2-b76f84d53c.wasm","data/rest3-93113f0b69.wasm","data/rest4-2f35b58a23.wasm"],"n":{"core":263726,"rest":282380},"d0":"data/d0-ed53566840.wasm","ix":["data/ix1-fd5b9abdd7.wasm","data/ix2-04aacdbcd2.wasm"],"v":"bf91528a92"};
 let DATA=null, P=[], BYID={}, FULL=false;
 const COLL=new Intl.Collator('gl');
 const state={q:'',amb:'',ccaa:'',prov:'',mun:'',cargo:'',per:'',part:'',limit:60};
@@ -438,44 +438,96 @@ function score(p){
   return s;
 }
 
-// ---- v103: índice de busca precalculado (_scripts/build_portal_gz.py, build_index) ----
+// ---- v104: índice de busca precalculado (_scripts/build_portal_gz.py, build_index) ----
 // Un ficheiro por parte (IX[0] núcleo, IX[1] resto), coas persoas na mesma orde ca nos .gz: textos de busca
-// dos rexistros (agrupados), puntuación, orde do nome normalizado e tipos de rexistro. Cada persoa leva
-// p._x = parte<<20 | posición (p._xm se ten fichas unidas). Os nomes normalízanse en segundo plano (nameStep).
-// Unha palabra coincide se está no nome, nun alias ou nalgún texto dos rexistros (como p._k.includes ata v102).
+// dos rexistros (agrupados), puntuación, orde do nome normalizado, tipos de rexistro e o reconto de partidos
+// sen filtros. Cada persoa leva p._x = parte<<20 | posición (p._xm se ten fichas unidas).
+// A busca por palabras (nomes normalizados e textos) faise nun Web Worker co código de ixCore; se non se pode
+// crear, o mesmo código corre neste fío. Unha palabra coincide se está no nome, nun alias ou nalgún texto dos
+// rexistros (como p._k.includes ata v102).
 const AMB_T='UGNXCLMDKAQSE', AB=t=>1<<AMB_T.indexOf(t);
 const ambBits=p=>p.r.reduce((a,r)=>a|AB(r.t),0);
 const IX=[];
-function readIx(buf){
+function ixHead(buf){
   const u=new Uint8Array(buf), dv=new DataView(buf);
-  if(String.fromCharCode(...u.subarray(0,4))!=='RPX2') throw new Error('índice de busca: formato descoñecido');
-  const [n,nG,nT,nPG,nGT,nD]=[4,8,12,16,20,24].map(o=>dv.getUint32(o,true));
-  let o=28; const take=(T,len)=>{ const a=new T(buf,o,len); o+=len*T.BYTES_PER_ELEMENT; return a; };
-  const rank=take(Uint32Array,n), pg=take(Uint32Array,nPG), gt=take(Uint16Array,nGT), amb=take(Uint16Array,n), score=take(Uint8Array,n), pc=take(Uint8Array,n), gc=take(Uint8Array,nG);
-  const off=(c,len)=>{ const a=new Uint32Array(len+1); for(let i=0;i<len;i++) a[i+1]=a[i]+c[i]; return a; };
-  const dic=nT?new TextDecoder().decode(u.subarray(o,o+nD)).split('\n'):[];
-  return {n,rank,score,amb,pg,gt,pOff:off(pc,n),gOff:off(gc,nG),dic,P:new Array(n),loaded:0,NN:new Array(n),nnDone:0,alt:new Map()};
+  if(String.fromCharCode(...u.subarray(0,4))!=='RPX3') throw new Error('índice de busca: formato descoñecido');
+  return [4,8,12,16,20,24,28].map(o=>dv.getUint32(o,true));
 }
-// nomes e alias normalizados (norm é caro: ~1 µs por nome), en anacos para non bloquear a páxina
-function nameStep(X,lim){ const end=Math.min(X.loaded,lim); let i=X.nnDone; for(;i<end;i++){ const p=X.P[i]; X.NN[i]=norm(p.n); if(p.alt) X.alt.set(i,p.alt.map(norm)); } X.nnDone=i; }
-let NNT=null;
-function nnIdle(){ if(NNT) return; const step=()=>{ NNT=null; const X=IX.find(X=>X&&X.nnDone<X.loaded); if(!X) return; nameStep(X,X.nnDone+4000); NNT=setTimeout(step,0); }; NNT=setTimeout(step,0); }
-// máscara das persoas dunha parte que conteñen a palabra t (refaise se chegaron máis persoas da parte)
-function partMask(X,t){
-  nameStep(X,Infinity);
-  const tm=new Uint8Array(X.dic.length); let any=false;
-  for(let i=0;i<X.dic.length;i++) if(X.dic[i].includes(t)){ tm[i]=1; any=true; }
-  const nG=X.gOff.length-1, gm=new Uint8Array(nG), {gOff,gt,pOff,pg,NN}=X;
-  if(any) for(let g=0;g<nG;g++) for(let j=gOff[g];j<gOff[g+1];j++) if(tm[gt[j]]){ gm[g]=1; break; }
-  const n=X.loaded, pm=new Uint8Array(n);
-  for(let i=0;i<n;i++){ if(NN[i].includes(t)){ pm[i]=1; continue; } if(any) for(let j=pOff[i];j<pOff[i+1];j++) if(gm[pg[j]]){ pm[i]=1; break; } }
-  X.alt.forEach((a,i)=>{ if(!pm[i]&&a.some(x=>x.includes(t))) pm[i]=1; });
-  return {pm,at:n};
+// no fío principal só fai falta o necesario para ordenar e contar; o resto do ficheiro vai para ixCore
+function readIx(buf){
+  const [n,nG,,nPG,nGT,nD,nJ]=ixHead(buf);
+  const at=(T,o,len)=>new T(buf,o,len).slice(), o1=32+4*n+4*nPG+2*nGT, o2=o1+2*n, oJ=o2+2*n+nG+nD;
+  return {n,rank:at(Uint32Array,32,n),amb:at(Uint16Array,o1,n),score:at(Uint8Array,o2,n),
+    pc:JSON.parse(new TextDecoder().decode(new Uint8Array(buf,oJ,nJ))).pc,loaded:0,sent:0};
 }
-const TOKC=new Map();
-function tokMasks(t){ let m=TOKC.get(t); if(!m){ if(TOKC.size>40) TOKC.clear(); TOKC.set(t,m=[]); } return m; }
-function hitX(m,t,x){ const k=x>>>20, X=IX[k]; let c=m[k]; if(!c||c.at!==X.loaded) c=m[k]=partMask(X,t); return c.pm[x&0xFFFFF]===1; }
-function hitP(m,t,p){ if(!p._xm) return hitX(m,t,p._x); for(const x of p._xm) if(hitX(m,t,x)) return true; return false; }
+// Busca por palabras. Autónomo (sen variables de fóra): é o corpo do Web Worker.
+// norm debe ser igual ca a do resto da páxina.
+function ixCore(send){
+  const norm=s=>(s||'').normalize('NFD').replace(/[̀-ͯ]/g,'').toUpperCase().replace(/[^A-Z0-9 ]/g,' ').replace(/\s+/g,' ').trim();
+  const W=[];
+  function part(buf){
+    const dv=new DataView(buf), [n,nG,nT,nPG,nGT,nD]=[4,8,12,16,20,24].map(o=>dv.getUint32(o,true));
+    let o=32+4*n; const take=(T,len)=>{ const a=new T(buf,o,len); o+=len*T.BYTES_PER_ELEMENT; return a; };
+    const pg=take(Uint32Array,nPG), gt=take(Uint16Array,nGT); o+=3*n; const pc=take(Uint8Array,n), gc=take(Uint8Array,nG);
+    const off=(c,len)=>{ const a=new Uint32Array(len+1); for(let i=0;i<len;i++) a[i+1]=a[i]+c[i]; return a; };
+    const dic=nT?new TextDecoder().decode(new Uint8Array(buf,o,nD)).split('\n'):[];
+    return {pg,gt,pOff:off(pc,n),gOff:off(gc,nG),dic,names:[],NN:[],nnDone:0,alt:new Map()};
+  }
+  // nomes e alias normalizados (norm é caro: ~1 µs por nome), en anacos entre mensaxes
+  function nameStep(X,lim){ const end=Math.min(X.names.length,lim); let i=X.nnDone; for(;i<end;i++) X.NN[i]=norm(X.names[i]); X.nnDone=i; }
+  let T=null;
+  function idle(){ if(T) return; T=setTimeout(function step(){ T=null; const X=W.find(X=>X&&X.nnDone<X.names.length); if(!X) return; nameStep(X,X.nnDone+4000); T=setTimeout(step,0); },0); }
+  // máscara das persoas dunha parte que conteñen a palabra t
+  function mask(X,t){
+    nameStep(X,Infinity);
+    const tm=new Uint8Array(X.dic.length); let any=false;
+    for(let i=0;i<X.dic.length;i++) if(X.dic[i].includes(t)){ tm[i]=1; any=true; }
+    const nG=X.gOff.length-1, gm=new Uint8Array(nG), {gOff,gt,pOff,pg,NN}=X;
+    if(any) for(let g=0;g<nG;g++) for(let j=gOff[g];j<gOff[g+1];j++) if(tm[gt[j]]){ gm[g]=1; break; }
+    const n=X.names.length, pm=new Uint8Array(n);
+    for(let i=0;i<n;i++){ if(NN[i].includes(t)){ pm[i]=1; continue; } if(any) for(let j=pOff[i];j<pOff[i+1];j++) if(gm[pg[j]]){ pm[i]=1; break; } }
+    X.alt.forEach((a,i)=>{ if(!pm[i]&&a.some(x=>x.includes(t))) pm[i]=1; });
+    return pm;
+  }
+  return m=>{
+    if(m.op==='ping') send({op:'pong'});
+    else if(m.op==='part') W[m.k]=part(m.buf);
+    else if(m.op==='names'){ const X=W[m.k], b=X.names.length; m.names.forEach(s=>X.names.push(s)); m.alts.forEach(([i,a])=>X.alt.set(b+i,a.map(norm))); idle(); }
+    else if(m.op==='q'){ const r=m.toks.map(t=>W.map(X=>X&&mask(X,t))); send({op:'q',id:m.id,toks:m.toks,at:W.map(X=>X?X.names.length:0).join('|'),m:r},r.flat().filter(Boolean).map(a=>a.buffer)); }
+  };
+}
+// Web Worker (blob:) se o navegador o permite e responde; se non, ixCore neste mesmo fío.
+// Gárdanse as mensaxes enviadas para repetilas se hai que cambiar ao fío principal.
+const IXQ={log:[],h:null,w:null,ok:false};
+function ixInline(){ if(IXQ.h&&!IXQ.w) return; if(IXQ.w){ try{IXQ.w.terminate();}catch(e){} IXQ.w=null; }
+  IXQ.h=ixCore(d=>setTimeout(()=>ixReply(d),0)); IXQ.log.forEach(m=>IXQ.h(m)); QPEND.clear(); TOKC.clear(); if(DATA&&P.length&&(!location.hash||location.hash==='#inicio')) renderSearch(); }
+function ixStart(){
+  try{
+    const src='const h=('+ixCore.toString()+')((d,tr)=>postMessage(d,tr||[]));onmessage=e=>h(e.data);';
+    const w=new Worker(URL.createObjectURL(new Blob([src],{type:'text/javascript'})));
+    w.onmessage=e=>ixReply(e.data); w.onerror=()=>ixInline(); IXQ.w=w;
+    w.postMessage({op:'ping'}); setTimeout(()=>{ if(!IXQ.ok&&IXQ.w) ixInline(); },10000);
+  }catch(e){ ixInline(); }
+}
+function ixPost(m,log=true){ if(log) IXQ.log.push(m); if(IXQ.w) IXQ.w.postMessage(m); else if(IXQ.h) IXQ.h(m); }
+function ixPart(k,buf){ IX[k]=readIx(buf); ixPost({op:'part',k,buf}); }
+function ixNames(k,arr){ const alts=[]; arr.forEach((p,i)=>{ if(p.alt) alts.push([i,p.alt]); }); IX[k].sent+=arr.length; ixPost({op:'names',k,names:arr.map(p=>p.n),alts}); }
+// máscaras por palabra: TOKC[t] = {at (nomes enviados por parte), m:[máscara núcleo, máscara resto]}
+const TOKC=new Map(), QPEND=new Map(); let QID=0;
+const ixAt=()=>IX.map(X=>X?X.sent:0).join('|');
+function masksFor(toks){
+  const at=ixAt(), miss=toks.filter(t=>{ const c=TOKC.get(t); return !c||c.at!==at; });
+  if(!miss.length) return toks.map(t=>TOKC.get(t).m);
+  const key=miss.join(' ')+'#'+at; if(![...QPEND.values()].includes(key)){ const id=++QID; QPEND.set(id,key); ixPost({op:'q',id,toks:miss},false); }
+  return null;
+}
+function ixReply(d){
+  if(d.op==='pong'){ IXQ.ok=true; return; }
+  if(d.op!=='q'||!QPEND.delete(d.id)) return;
+  d.toks.forEach((t,i)=>{ if(TOKC.size>40) TOKC.clear(); TOKC.set(t,{at:d.at,m:d.m[i]}); });
+  if(!location.hash||location.hash==='#inicio') renderSearch();
+}
+function hitP(m,p){ if(!p._xm) return m[p._x>>>20][p._x&0xFFFFF]===1; for(const x of p._xm) if(m[x>>>20][x&0xFFFFF]===1) return true; return false; }
 function linkRedirects(){ for(const o in (DATA.rd||{})){ if(!BYID[o]&&BYID[DATA.rd[o]]) BYID[o]=BYID[DATA.rd[o]]; } }
 // orde: puntuación e despois nome normalizado (p._o: a súa posición alfabética); o colador galego só desempata
 function sortP(){
@@ -488,14 +540,16 @@ function sortP(){
   for(let i=0;i<n;i++) P[i]=Q[i];
   OPT_CACHE.k=null;
 }
-function buildIndex(){ P=DATA.p; linkRedirects(); sortP(); TOKC.clear(); }
+function buildIndex(){ P=DATA.p; linkRedirects(); sortP(); }
 
+// null mentres o Web Worker calcula as palabras (renderSearch volve chamarse ao chegar a resposta)
 function filtered(){
-  const toks=norm(state.q).split(' ').filter(Boolean), ms=toks.map(tokMasks);
+  const toks=norm(state.q).split(' ').filter(Boolean), ms=masksFor(toks);
+  if(!ms) return null;
   const F=state.amb||state.cargo||state.per||state.ccaa||state.prov||state.mun||state.part;
   return P.filter(p=>{
     if(F && !p.r.some(r=>recOK(r))) return false;
-    for(let i=0;i<toks.length;i++) if(!hitP(ms[i],toks[i],p)) return false;
+    for(const m of ms) if(!hitP(m,p)) return false;
     return true;
   });
 }
@@ -504,7 +558,16 @@ const OPT_CACHE={k:null,v:null};
 function optionList(){
   const key=[state.amb,state.cargo,state.per,state.ccaa,state.prov,state.mun,state.part,P.length].join('|');
   if(OPT_CACHE.k===key) return OPT_CACHE.v;
-  OPT_CACHE.k=key; return OPT_CACHE.v=optionList0();
+  OPT_CACHE.k=key; return OPT_CACHE.v=optBase()||optionList0();
+}
+// sen filtros, o reconto vén no índice (party_counts) para o núcleo e para núcleo+resto; as fichas unidas descóntanse
+let NMERGE=0; const OPT_ADJ={};
+function optBase(){
+  if(state.amb||state.cargo||state.per||state.ccaa||state.prov||state.mun||state.part) return null;
+  const k=IX[1]&&P.length===IX[0].n+IX[1].n-NMERGE?1:(!IX[1]||!IX[1].loaded)&&P.length===IX[0].n?0:-1;
+  if(k<0) return null;
+  if(!NMERGE) return IX[k].pc;
+  return IX[k].pc.map(([x,v])=>[x,v+(OPT_ADJ[x]||0)]).filter(x=>x[1]>=15).sort((a,b)=>b[1]-a[1]);
 }
 function optionList0(){
   const cnt={}, min=state.mun?1:(state.prov?5:15);
@@ -517,7 +580,7 @@ function optionList0(){
 function renderSearch(){
   const EUR=state.amb==='eur'||state.cargo==='candEur'||state.cargo==='elEur'; // europeas: circunscrición única, sen CCAA nin provincia
   if(EUR){state.ccaa='';state.prov='';state.mun='';}
-  const res=filtered();
+  const res=filtered(); if(!res) return;  // o Web Worker aínda está a buscar
   const parts=optionList();
   const sel=(id,label,opts)=>`<select id="${id}" aria-label="${label}"><option value="">${label}</option>${opts.map(([v,t])=>`<option value="${esc(v)}" ${state[id]===v?'selected':''}>${esc(t)}</option>`).join('')}</select>`;
   const NA={U:0,G:0,N:0,X:0,C:0,L:0,M:0,D:0}, NB=Object.keys(NA).filter(t=>t!=='X').map(t=>[t,AB(t)]), BXK=AB('X')|AB('K');
@@ -1623,6 +1686,7 @@ function remapAll(){
   DATA.p.forEach(p=>p.r.forEach(r=>{if(r.su) r.su=rid(r.su);}));
 }
 function mergeInto(K,M){
+  const KS=new Set(K.r.flatMap(rparts)); new Set(M.r.flatMap(rparts)).forEach(x=>{ if(KS.has(x)) OPT_ADJ[x]=(OPT_ADJ[x]||0)-1; });  // reconto sen filtros (optBase)
   K.r=K.r.concat(M.r);
   const alt=[...new Set([...(K.alt||[]),M.n,...(M.alt||[])])].filter(x=>x!==K.n); if(alt.length) K.alt=alt; else delete K.alt;
   delete K.hom;
@@ -1630,7 +1694,7 @@ function mergeInto(K,M){
   ['s','y','nl'].forEach(f=>{if(!K[f]&&M[f]) K[f]=M[f];});
   for(const k in BYID) if(BYID[k]===M) BYID[k]=K;
   BYID[M.id]=K; DATA.p=DATA.p.filter(p=>p!==M);
-  K._s=score(K); K._a=ambBits(K); K._xm=[...(K._xm||[K._x]),...(M._xm||[M._x])];  // a busca de K inclúe a de M
+  NMERGE++; K._s=score(K); K._a=ambBits(K); K._xm=[...(K._xm||[K._x]),...(M._xm||[M._x])];  // a busca de K inclúe a de M
 }
 function applyUnions(){
   let ch=false; UNI_ok=0; UNI_ko=0;
@@ -1834,7 +1898,7 @@ document.addEventListener('click',e=>{
 });
 
 // ---- v70: informar dun erro (correo xa redactado; non se garda nada na páxina) ----
-const PORTAL_VER='v103';
+const PORTAL_VER='v104';
 document.addEventListener('change',e=>{const t=e.target; if(!t.classList||!t.classList.contains('yrsel')) return; t.closest('aside').querySelectorAll('.card[data-y]').forEach(c=>c.hidden=c.dataset.y!==t.value); const l=t.closest('aside').querySelector('.yrlink'); if(l&&t.dataset.ine){ l.href='#e-M'+t.value+'-'+t.dataset.ine; l.textContent='Ver as municipais '+t.value+' →'; }});
 const REPORT_EMAIL='jose.blanco2@usc.es';
 function errContext(){
@@ -1959,10 +2023,11 @@ function prepRec(p){ const d=DATA, DT=DTE;
     if(r.t==='M'){ r.d=DT[r.y]; const l=d.ml[r.y+'|'+r.ine+'|'+r.sg]||[]; r.ca=l[0]; r.sn=l[1]; r.vt=l[2]; r.cl=l[3]; r.nn=l[4]; } }); }
 async function addPersons(arr,k){
   const X=IX[k], alc=DATA.alc;
+  ixNames(k,arr);  // os nomes van á busca (Web Worker) antes de que as persoas aparezan en P
   for(let i=0;i<arr.length;i+=5000){
     for(const p of arr.slice(i,i+5000)){
       prepRec(p); const j=X.loaded++; if(j>=X.n) throw new Error('índice de busca: máis persoas ca no índice');
-      X.P[j]=p; p._x=k<<20|j; p._s=X.score[j]; p._o=X.rank[j]; p._a=X.amb[j]; BYID[p.id]=p;
+      p._x=k<<20|j; p._s=X.score[j]; p._o=X.rank[j]; p._a=X.amb[j]; BYID[p.id]=p;
       for(const r of p.r) if(r.t==='A') (alc[r.ine]=alc[r.ine]||[]).includes(p.id)||alc[r.ine].push(p.id);
       DATA.p.push(p);
     }
@@ -1976,6 +2041,7 @@ function footer(d){
 async function load(){
   const T0=performance.now();
   app.innerHTML='<p class="empty">Cargando o rexistro…</p>';
+  ixStart();
   if(typeof DecompressionStream==='undefined'){ app.innerHTML='<p class="empty">Este navegador é demasiado antigo para abrir o rexistro. Actualízao (Chrome/Edge 80+, Firefox 113+, Safari 16.4+).</p>'; return; }
   const first=[MANIFEST.d0,MANIFEST.ix[0],...MANIFEST.core].map(getBuf);          // descargas en paralelo
   const restP=Promise.all(first).then(()=>[MANIFEST.ix[1],...MANIFEST.rest].map(getBuf)); // o resto, despois do núcleo
@@ -1983,18 +2049,18 @@ async function load(){
   const d=await readJSON(await first[0]);
   DATA=d; d.p=[]; d.alc={}; P=d.p;
   (d.circ||[]).forEach(x=>{CIRC[x[0]]=x[1]; CIRCR[x[1]]=x[0];}); CIRC['España']='es'; CIRCR['es']='España'; CIRC['Cataluña']='cat'; CIRCR['cat']='Cataluña'; Object.entries(CACODE).forEach(([ca,k])=>{CIRC[ca]=k; CIRCR[k]=ca;});
-  IX[0]=readIx(await readBin(await first[1]));
+  ixPart(0,await readBin(await first[1]));
   for(const b of first.slice(2)) await addPersons((await readJSON(await b)).p,0);
   partDone(0); linkRedirects(); sortP(); footer(d);
   LOAD.total=MANIFEST.rest.length;
-  route(); nnIdle();
+  route();
   console.log('T primeiro pintado', Math.round(performance.now()-T0), 'ms;', P.length, 'persoas');
   // segunda etapa
   try{
     const bufs=await restP;
-    IX[1]=readIx(await readBin(await bufs[0]));
+    ixPart(1,await readBin(await bufs[0]));
     for(const b of bufs.slice(1)){ await addPersons((await readJSON(await b)).p,1); LOAD.done++; showProgress(); }
-    partDone(1); linkRedirects(); sortP(); nnIdle();
+    partDone(1); linkRedirects(); sortP();
   }catch(e){
     document.querySelectorAll('.loadbar').forEach(x=>x.innerHTML='<b>Non se puido cargar o resto do rexistro</b> (cargos locais fóra de Galicia). Recarga a páxina para tentalo de novo.');
     return;
