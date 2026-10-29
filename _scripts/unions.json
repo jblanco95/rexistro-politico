@@ -1,0 +1,58 @@
+{
+ "06699": {
+  "keep": "418604",
+  "merge": "06699",
+  "nk": "Antonio Martínez Puñal",
+  "nm": "Antonio Martinez Puñal",
+  "ts": "2026-10-11T14:30:06.515Z"
+ },
+ "121948": {
+  "keep": "95447",
+  "merge": "121948",
+  "nk": "Anastasio Rodríguez Martín",
+  "nm": "Anastasio Rodríguez Martín",
+  "ts": "2026-10-27T15:50:49.331Z"
+ },
+ "482020": {
+  "keep": "27031",
+  "merge": "482020",
+  "nk": "José Antonio Sánchez Bugallo",
+  "nm": "Xosé Sánchez Bugallo",
+  "ts": "2026-10-27T14:34:34.514Z"
+ },
+ "496512": {
+  "keep": "27031",
+  "merge": "496512",
+  "nk": "José Antonio Sánchez Bugallo",
+  "nm": "José A. Sánchez Bugallo",
+  "ts": "2026-10-27T14:35:14.588Z"
+ },
+ "517602": {
+  "keep": "07236",
+  "merge": "517602",
+  "nk": "Anxo Manuel Quintana González",
+  "nm": "Anxo Manuel Quintana González",
+  "ts": "2026-10-27T16:02:31.992Z"
+ },
+ "524980": {
+  "keep": "517602",
+  "merge": "524980",
+  "nk": "Anxo Manuel Quintana González",
+  "nm": "Angel Manuel Quintana",
+  "ts": "2026-10-27T16:00:48.377Z"
+ },
+ "77215": {
+  "keep": "68432",
+  "merge": "77215",
+  "nk": "Xavier Vence Deza",
+  "nm": "Xabier Vence Deza",
+  "ts": "2026-10-09T22:11:51.624Z"
+ },
+ "85309": {
+  "keep": "95674",
+  "merge": "85309",
+  "nk": "Gabriel Rufián Romero",
+  "nm": "Gabriel Rufián i Romero",
+  "ts": "2026-10-09T22:09:49.290Z"
+ }
+}
