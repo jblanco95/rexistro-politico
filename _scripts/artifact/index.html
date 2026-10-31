@@ -132,7 +132,7 @@ footer{border-top:1px solid var(--line);color:var(--muted);font-size:.8rem;paddi
 footer ul{margin:6px 0 0;padding-left:18px}
 /* fontes despregables, unións e revisión (antes no <head>, que a publicación substitúe) */
 details.fontes>summary{cursor:pointer;list-style:none}details.fontes>summary::-webkit-details-marker{display:none}details.fontes>summary::before{content:'▸';display:inline-block;width:1em;transition:transform .15s}details.fontes[open]>summary::before{transform:rotate(90deg)}
-.bioform{display:grid;gap:8px}.bioform label{display:grid;gap:3px;font-size:.82rem;color:var(--muted)}.bioform textarea.uinput{max-width:none;resize:vertical}
+.bioform{display:grid;gap:10px}.bio2{display:grid;grid-template-columns:1fr 1fr;gap:8px}@media(max-width:560px){.bio2{grid-template-columns:1fr}}.biosrcrow{display:grid;grid-template-columns:1.4fr 1fr auto;gap:6px;margin-bottom:6px}.biosrcrow .uinput{max-width:none}@media(max-width:560px){.biosrcrow{grid-template-columns:1fr auto}.biosrcrow .bsf{grid-column:1}}.biofo{font-size:.85rem;margin:0}.bioform label{display:grid;gap:3px;font-size:.82rem;color:var(--muted)}.bioform textarea.uinput{max-width:none;resize:vertical}
 .unionp .uinput,.uinput{font:inherit;padding:8px 10px;border:1px solid var(--line);border-radius:var(--r);background:var(--surface);color:var(--ink);width:100%;max-width:420px}
 .tag{font-size:.7rem;font-weight:600;letter-spacing:.04em;text-transform:uppercase;color:var(--muted);border:1px solid var(--line);border-radius:999px;padding:1px 8px;margin-left:6px}
 .urow{display:flex;gap:10px;align-items:flex-start;justify-content:space-between;border-bottom:1px solid var(--line);padding:8px 0}
@@ -820,12 +820,12 @@ function renderPerson(id){
     <div class="sub">${esc(r.pa)}${r.sn&&r.sn.toUpperCase()!==String(r.pa).toUpperCase()?' (agrupado: '+esc(r.sn)+')':''} · ${esc(r.pr)} · toma de posesión</div>
     ${r.su?'<div class="sub">Non saíu electo/a en 2023: entrou despois para cubrir unha vacante.</div>':''}</div></div>`).join('')}</section>`:'';
   const bsrc=[], be=bioEff(p);
-  if(be.bx) bsrc.push({h:'Biografía'+(be.man?' · edición manual':''),t:be.bx,u:be.bxu,l:be.bxf||'Fonte'});
+  if(be.bx||be.fo.length) bsrc.push({h:'Biografía'+(be.man?' · edición manual':''),t:be.bx,fo:be.fo});
   if(p.bc) bsrc.push({h:'Parlament de Catalunya · XV legislatura',s:`${esc(p.bcg||'')}${p.bcc?' · circunscrición de '+esc(p.bcc):''}`,t:p.bc,cg:p.bcm,u:p.bcu,l:'Fitxa no Parlament de Catalunya'});
   if(p.bp) bsrc.push({h:'Parlamento de Galicia · XII lexislatura',s:`${esc(p.dg)} · circunscrición de ${esc(p.dc)}`,t:p.bp,u:p.bu,l:'Ficha no Parlamento de Galicia'});
   if(p.bm) bsrc.push({h:'Concello de Santiago de Compostela · corporación 2023–2027',s:esc(p.bmg),t:p.bm,c:p.bmc,u:p.bmu,l:'Ficha no Concello de Santiago'});
   if(p.b) bsrc.push({h:'Portal de Transparencia da Xunta',t:p.b,u:p.f,l:'Ficha no Portal de Transparencia'});
-  const bh=bsrc.length?`<section class="blk"><h2>Perfil biográfico</h2>${bsrc.map(x=>`<div class="biosrc">${bsrc.length>1||x.s?`<h3>${x.h}</h3>`:''}${x.s?`<div class="sub">${x.s}</div>`:''}<p class="bio">${esc(x.t)}</p>${x.c?`<p class="bio"><b>Competencias:</b> ${esc(x.c)}</p>`:''}${x.cg&&x.cg.length?`<p class="bio"><b>Cargos no Parlament:</b> ${x.cg.map(esc).join('; ')}</p>`:''}${x.u?`<a href="${esc(x.u)}" target="_blank" rel="noopener">${x.l}</a>`:''}</div>`).join('')}</section>`:'';
+  const bh=bsrc.length?`<section class="blk"><h2>Perfil biográfico</h2>${bsrc.map(x=>`<div class="biosrc">${bsrc.length>1||x.s?`<h3>${x.h}</h3>`:''}${x.s?`<div class="sub">${x.s}</div>`:''}${x.t?`<p class="bio">${esc(x.t)}</p>`:''}${(x.fo||[]).length?`<p class="biofo">${x.fo.length>1?'Fontes: ':'Fonte: '}${x.fo.map(f=>f[0]?`<a href="${esc(f[0])}" target="_blank" rel="noopener">${esc(f[1]||f[0].replace(/^https?:\/\/(www\.)?/,'').split('/')[0])}</a>`:esc(f[1])).join(' · ')}</p>`:''}${x.c?`<p class="bio"><b>Competencias:</b> ${esc(x.c)}</p>`:''}${x.cg&&x.cg.length?`<p class="bio"><b>Cargos no Parlament:</b> ${x.cg.map(esc).join('; ')}</p>`:''}${x.u?`<a href="${esc(x.u)}" target="_blank" rel="noopener">${x.l}</a>`:''}</div>`).join('')}</section>`:'';
   const notes=[];
   if(multi) notes.push(`Esta ficha une ${p.r.length} rexistros de distintas fontes ou eleccións polo nome completo. Revisa que se trate da mesma persoa.`);
   if(p.mn) notes.push(esc(p.mn));
@@ -842,7 +842,7 @@ function renderPerson(id){
   <div class="ph"><div class="phrow"><h1>${esc(p.n)}</h1><button type="button" class="sharebtn" data-id="${p.id}" aria-haspopup="dialog"><svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><path d="M10 14a5 5 0 0 0 7.07 0l3-3a5 5 0 0 0-7.07-7.07l-1.5 1.5M14 10a5 5 0 0 0-7.07 0l-3 3a5 5 0 0 0 7.07 7.07l1.5-1.5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>Compartir</button><button type="button" class="errbtn" data-err="1">Informar dun erro</button></div>
     <div class="sharebox" id="sharebox" hidden><label for="shareurl">Ligazón directa a esta ficha</label><div class="sharerow"><input id="shareurl" readonly><button type="button" class="sharecopy">Copiar</button></div><span class="sharemsg" id="sharemsg" role="status"></span></div>
     ${(()=>{const lp=lastParty(p); return `<div class="lastp"><span class="k">Último partido</span>${lp?(lp.ind?`<b>Independente</b><span class="src">na lista de ${esc(lp.sg)} · ${esc(lp.src)}</span>`:`<b title="${esc(lp.ca)}">${esc(lp.sg)}</b><span class="src">${esc(lp.src)}</span>`):'<b>Independente</b><span class="src">sen partido nas fontes</span>'}</div>`;})()}
-    <div class="meta">${sexL?`<span>${sexL}</span>`:''}${birthLine(p)?`<span title="Lugar e ano de nacemento${ageOf(bioEff(p).y)!=null?'; entre parénteses, idade aproximada calculada polo ano de nacemento':''}${bioEff(p).man?' (dato editado a man)':''}">${esc(birthLine(p))}</span>`:''}<span class="id">ID ${p.id}</span>${p.alt?`<span>Tamén como: ${p.alt.map(esc).join(', ')}</span>`:''}</div>
+    <div class="meta">${sexL?`<span>${sexL}</span>`:''}${birthLine(p)?`<span title="${esc(ageTip(p))}">${esc(birthLine(p))}</span>`:''}<span class="id">ID ${p.id}</span>${p.alt?`<span>Tamén como: ${p.alt.map(esc).join(', ')}</span>`:''}</div>
     ${actives.length?`<div class="chips">${actives.map(a=>`<span class="chip x">${esc(a)}</span>`).join('')}</div>`:''}
   </div>
   <div class="grid">
@@ -1902,7 +1902,7 @@ function mergeInto(K,M){
   const alt=[...new Set([...(K.alt||[]),M.n,...(M.alt||[])])].filter(x=>x!==K.n); if(alt.length) K.alt=alt; else delete K.alt;
   delete K.hom;
   K.mu=(K.mu||[]).concat([[M.id,M.n]],M.mu||[]);
-  ['s','y','nl'].forEach(f=>{if(!K[f]&&M[f]) K[f]=M[f];});
+  ['s','y','nl','nd','ml','md','bx','bxs','bxu','bxf'].forEach(f=>{if(!K[f]&&M[f]) K[f]=M[f];});
   for(const k in BYID) if(BYID[k]===M) BYID[k]=K;
   BYID[M.id]=K; DATA.p=DATA.p.filter(p=>p!==M);
   MERGED.delete(M); MERGED.add(K);
@@ -1958,25 +1958,44 @@ function unionPanel(p){
     <p class="sub">Busca outra ficha da mesma persoa (nome ou ID) e únea a esta. Os rexistros pasan a esta ficha; podes desfacelo con «Separar».</p>
     <input id="uq" class="uinput" placeholder="Nome ou ID…" autocomplete="off"><div id="ures"></div></section>`;
 }
-// ---- v118: biografías editadas a man (db do artefacto: bios/<id>), consolidables despois nos datos (consolidar_bios.py) ----
+// ---- v118/v119: biografías editadas a man (db do artefacto: bios/<id>), consolidables despois nos datos (consolidar_bios.py) ----
+// documento: {id, n, nl, nd (DD/MM/AAAA ou AAAA), dl, dd, b, fo:[{u,f}], ts}; nos datos: nl, nd/y, ml, md, bx, bxs:[[u,f]]
 let BIO={};
 function bioOf(p){ if(!p) return null; for(const i of [p.id,...(p.mu||[]).map(x=>x[0])]){ const b=BIO[String(i)]; if(b) return b; } return null; }
-function bioEff(p){ const b=bioOf(p)||{}; return {nl:b.nl||p.nl||'',y:b.y||p.y||'',bx:b.b||p.bx||'',bxu:b.u||p.bxu||'',bxf:b.f||p.bxf||'',man:!!bioOf(p)}; }
-function ageOf(y){ const n=parseInt(y,10); if(!n||n<1880) return null; const a=new Date().getFullYear()-n; return a>0&&a<120?a:null; }
-function birthLine(p){ const e=bioEff(p), a=ageOf(e.y); return [e.nl,e.y?e.y+(a!=null?' ('+a+')':''):''].filter(Boolean).join(', '); }
+function srcList(b,p){
+  const a=b&&(b.fo||[]).filter(x=>x&&(x.u||x.f)).map(x=>[x.u||'',x.f||'']); if(a&&a.length) return a;
+  if(b&&(b.u||b.f)) return [[b.u||'',b.f||'']];
+  if((p.bxs||[]).length) return p.bxs; return p.bxu||p.bxf?[[p.bxu||'',p.bxf||'']]:[];
+}
+function bioEff(p){ const b=bioOf(p)||{};
+  return {nl:b.nl||p.nl||'',nd:b.nd||b.y||p.nd||p.y||'',dl:b.dl||p.ml||'',dd:b.dd||p.md||'',bx:b.b||p.bx||'',fo:srcList(bioOf(p),p),man:!!bioOf(p)}; }
+function pDate(s){ s=String(s||'').trim(); let m=s.match(/^(\d{1,2})\/(\d{1,2})\/(\d{4})$/); if(m){ const d=+m[1],mo=+m[2],y=+m[3]; const t=new Date(Date.UTC(y,mo-1,d)); return t.getUTCDate()===d&&t.getUTCMonth()===mo-1?{y,m:mo,d}:null; }
+  m=s.match(/^(\d{4})$/); return m?{y:+m[1]}:null; }
+function fDate(s){ const x=pDate(s); return x?(x.d?String(x.d).padStart(2,'0')+'/'+String(x.m).padStart(2,'0')+'/'+x.y:String(x.y)):String(s||''); }
+function ageBetween(a,b){ if(!a||!b) return null; let n=b.y-a.y; if(a.d&&b.d&&(b.m<a.m||(b.m===a.m&&b.d<a.d))) n--; return n>=0&&n<120?n:null; }
+function ageOf(y){ const now=new Date(); return ageBetween(pDate(y),{y:now.getFullYear(),m:now.getMonth()+1,d:now.getDate()}); }
+function birthLine(p){ const e=bioEff(p), b=pDate(e.nd);
+  const born=[e.nl,e.nd?fDate(e.nd):''].filter(Boolean).join(', ');
+  if(e.dd||e.dl){ const dd=pDate(e.dd), a=ageBetween(b,dd); return (born||'?')+' - '+[e.dl,e.dd?fDate(e.dd):''].filter(Boolean).join(', ')+(a!=null?' ('+a+')':''); }
+  const a=ageOf(e.nd); return born+(born&&a!=null?' ('+a+')':''); }
+function ageTip(p){ const e=bioEff(p); return (e.dd||e.dl?'Nacemento - falecemento':'Lugar e data de nacemento')+(pDate(e.nd)?'; entre parénteses, idade'+(e.dd?' ao falecer':'')+((pDate(e.nd)||{}).d&&(!e.dd||(pDate(e.dd)||{}).d)?'':' aproximada (só se coñece o ano)'):'')+(e.man?' · dato editado a man':''); }
+function srcRow(u,f){ return `<div class="biosrcrow"><input class="uinput bsu" placeholder="Ligazón (https://…)" value="${esc(u||'')}"><input class="uinput bsf" placeholder="Nome da fonte" value="${esc(f||'')}"><button class="btn bsx" type="button" title="Quitar esta fonte">✕</button></div>`; }
 function bioPanel(p){
   if(!OWNER||!DBH) return '';
-  const e=bioEff(p), b=bioOf(p);
+  const b=bioOf(p)||{}, fo=srcList(bioOf(p),{});
+  const ph=(v)=>v?` placeholder="${esc(v)}"`:'';
   return `<section class="blk unionp" id="bioed"><h2>Editar biografía <span class="tag">só ti ves isto</span></h2>
-    <p class="sub">Corrixe ou completa o lugar e o ano de nacemento e engade un texto biográfico. Os cambios vense ao momento na ficha e gárdanse á parte (como as unións) ata consolidalos nos datos. Un campo baleiro mantén o valor das fontes.</p>
+    <p class="sub">Corrixe ou completa os datos biográficos. As datas van en formato DD/MM/AAAA (ou só AAAA, se non se coñece o día). Os cambios vense ao momento na ficha e gárdanse á parte (como as unións) ata consolidalos nos datos. Un campo baleiro mantén o valor das fontes (en gris).</p>
     <div class="bioform">
-      <label>Lugar de nacemento<input id="bnl" class="uinput" value="${esc(b&&b.nl||'')}" placeholder="${esc(p.nl||'')}"></label>
-      <label>Ano de nacemento<input id="by" class="uinput" inputmode="numeric" maxlength="4" value="${esc(b&&b.y||'')}" placeholder="${esc(p.y||'')}"></label>
-      <label>Texto biográfico<textarea id="bb" class="uinput" rows="6" placeholder="${esc(p.bx||'')}">${esc(b&&b.b||'')}</textarea></label>
-      <label>Ligazón da fonte<input id="bu" class="uinput" value="${esc(b&&b.u||'')}" placeholder="${esc(p.bxu||'https://…')}"></label>
-      <label>Nome da fonte<input id="bf" class="uinput" value="${esc(b&&b.f||'')}" placeholder="${esc(p.bxf||'p. ex. Parlamento de Andalucía')}"></label>
+      <div class="bio2"><label>Lugar de nacemento<input id="bnl" class="uinput" value="${esc(b.nl||'')}"${ph(p.nl)}></label>
+      <label>Data de nacemento<input id="bnd" class="uinput" value="${esc(b.nd||b.y||'')}"${ph(p.nd?fDate(p.nd):p.y||'DD/MM/AAAA')}></label></div>
+      <div class="bio2"><label>Lugar de falecemento<input id="bdl" class="uinput" value="${esc(b.dl||'')}"${ph(p.ml)}></label>
+      <label>Data de falecemento<input id="bdd" class="uinput" value="${esc(b.dd||'')}"${ph(p.md?fDate(p.md):'DD/MM/AAAA')}></label></div>
+      <label>Texto biográfico<textarea id="bb" class="uinput" rows="6"${ph(p.bx)}>${esc(b.b||'')}</textarea></label>
+      <div><div class="sub" style="margin-bottom:4px">Fontes</div><div id="bsrcs">${(fo.length?fo:[['','']]).map(x=>srcRow(x[0],x[1])).join('')}</div>
+      <button class="btn" id="bsadd" type="button" style="margin-top:6px">+ Engadir fonte</button></div>
     </div>
-    <div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin-top:8px"><button class="btn pri" id="bsave" type="button">Gardar</button>${b?'<button class="btn" id="bdel" type="button">Borrar a edición</button>':''}<span class="sub" id="bmsg" role="status">${b&&b.ts?'Editado o '+fmtD(b.ts.slice(0,10)):''}</span></div></section>`;
+    <div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin-top:10px"><button class="btn pri" id="bsave" type="button">Gardar</button>${bioOf(p)?'<button class="btn" id="bdel" type="button">Borrar a edición</button>':''}<span class="sub" id="bmsg" role="status">${b.ts?'Editado o '+fmtD(b.ts.slice(0,10)):''}</span></div></section>`;
 }
 // as biografías editadas cárganse ao comezo (non agardan á carga completa, como as unións)
 function initBios(){
@@ -1987,12 +2006,18 @@ function initBios(){
 }
 setTimeout(initBios,0);
 function wireBioPanel(p){
-  const sv=$('#bsave'); if(!sv) return; const msg=$('#bmsg');
+  const sv=$('#bsave'); if(!sv) return; const msg=$('#bmsg'), box=$('#bsrcs');
+  const wireX=()=>box.querySelectorAll('.bsx').forEach(x=>x.onclick=()=>{ x.closest('.biosrcrow').remove(); if(!box.children.length) box.insertAdjacentHTML('beforeend',srcRow('','')), wireX(); });
+  wireX(); $('#bsadd').onclick=()=>{ box.insertAdjacentHTML('beforeend',srcRow('','')); wireX(); box.lastElementChild.querySelector('.bsu').focus(); };
   sv.onclick=async()=>{
-    const v=id=>($('#'+id).value||'').trim(), y=v('by');
-    if(y&&!/^(18|19|20)\d\d$/.test(y)){ msg.textContent='O ano debe ter catro cifras.'; return; }
-    const d={id:String(p.id),n:p.n,nl:v('bnl'),y,b:v('bb'),u:v('bu'),f:v('bf'),ts:new Date().toISOString()};
-    if(!d.nl&&!d.y&&!d.b&&!d.u&&!d.f){ msg.textContent='Non hai nada que gardar.'; return; }
+    const v=id=>($('#'+id).value||'').trim(), nd=v('bnd'), dd=v('bdd');
+    for(const [x,l] of [[nd,'nacemento'],[dd,'falecemento']]) if(x&&!pDate(x)){ msg.textContent=`A data de ${l} debe ir como DD/MM/AAAA ou AAAA.`; return; }
+    const b0=pDate(nd||p.nd||p.y), d0=pDate(dd);
+    if(b0&&d0&&ageBetween(b0,d0)==null){ msg.textContent='A data de falecemento é anterior á de nacemento.'; return; }
+    const fo=[...box.querySelectorAll('.biosrcrow')].map(r=>({u:r.querySelector('.bsu').value.trim(),f:r.querySelector('.bsf').value.trim()})).filter(x=>x.u||x.f);
+    if(fo.some(x=>x.u&&!/^https?:\/\//i.test(x.u))){ msg.textContent='As ligazóns das fontes deben comezar por http:// ou https://.'; return; }
+    const d={id:String(p.id),n:p.n,nl:v('bnl'),nd:nd?fDate(nd):'',dl:v('bdl'),dd:dd?fDate(dd):'',b:v('bb'),fo,ts:new Date().toISOString()};
+    if(!d.nl&&!d.nd&&!d.dl&&!d.dd&&!d.b&&!fo.length){ msg.textContent='Non hai nada que gardar.'; return; }
     sv.disabled=true; msg.textContent='Gardando…';
     try{ await DBH.collection('bios').doc(String(p.id)).set(d); BIO[d.id]=d; route(); }catch(e){ msg.textContent='Non se puido gardar.'; sv.disabled=false; }
   };
@@ -2190,7 +2215,7 @@ document.addEventListener('click',e=>{
 });
 
 // ---- v70: informar dun erro (correo xa redactado; non se garda nada na páxina) ----
-const PORTAL_VER='v118';
+const PORTAL_VER='v119';
 document.addEventListener('change',e=>{const t=e.target; if(!t.classList||!t.classList.contains('yrsel')) return; t.closest('aside').querySelectorAll('.card[data-y]').forEach(c=>c.hidden=c.dataset.y!==t.value); const l=t.closest('aside').querySelector('.yrlink'); if(l&&t.dataset.ine){ l.href='#e-M'+t.value+'-'+t.dataset.ine; l.textContent='Ver as municipais '+t.value+' →'; }});
 const REPORT_EMAIL='jose.blanco2@usc.es';
 function errContext(){

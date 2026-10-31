@@ -4,10 +4,11 @@
   python3 consolidar_bios.py SRC_DIR bios.json [unions.json]
 
   SRC_DIR   : cartafol cos data*.json (o que se pasa a build_portal_gz.py pack)
-  bios.json : {id: {id, n, nl, y, b, u, f, ts}} exportado da colección «bios» (ArtifactData list)
+  bios.json : {id: {id, n, nl, nd, dl, dd, b, fo:[{u,f}], ts}} exportado da colección «bios» (ArtifactData list)
   unions.json (opcional): se a ficha editada foi unida a outra, a biografía vai á que se mantén
 
-Campos da persoa que escribe: nl (lugar de nacemento), y (ano), bx (texto), bxu (ligazón da fonte), bxf (nome da fonte).
+Campos da persoa que escribe: nl (lugar de nacemento), nd (data de nacemento, DD/MM/AAAA ou AAAA) e y (o seu ano),
+ml / md (lugar e data de falecemento), bx (texto) e bxs ([[ligazón, nome], …] das fontes).
 Un campo baleiro na edición non cambia o dato existente. Despois de consolidar, reconstrúese o portal e
 bórranse da base de datos os documentos consolidados (deixan de facer falta: o dato xa vén nos datos).
 """
@@ -30,10 +31,17 @@ for k, b in bios.items():
         miss.append(k); continue
     f, p = byid[pid]
     ch = []
-    for fld, dst in (('nl', 'nl'), ('y', 'y'), ('b', 'bx'), ('u', 'bxu'), ('f', 'bxf')):
-        v = (b.get(fld) or '').strip()
+    nd = (b.get('nd') or b.get('y') or '').strip()
+    vals = {'nl': b.get('nl'), 'nd': nd, 'y': nd[-4:] if nd else '', 'ml': b.get('dl'), 'md': b.get('dd'), 'bx': b.get('b')}
+    for dst, v in vals.items():
+        v = (v or '').strip()
         if v and p.get(dst) != v:
             p[dst] = v; ch.append(dst)
+    fo = [[(x.get('u') or '').strip(), (x.get('f') or '').strip()] for x in (b.get('fo') or []) if (x.get('u') or x.get('f'))]
+    if not fo and (b.get('u') or b.get('f')):
+        fo = [[(b.get('u') or '').strip(), (b.get('f') or '').strip()]]
+    if fo and p.get('bxs') != fo:
+        p['bxs'] = fo; p.pop('bxu', None); p.pop('bxf', None); ch.append('bxs')
     if ch:
         touched.add(f); done.append((k, pid, p['n'], ch))
 for f in touched:
