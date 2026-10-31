@@ -1736,6 +1736,17 @@ function renderCAx0(code){
 }
 document.addEventListener('click',e=>{ const b=e.target.closest&&e.target.closest('[data-goca]'); if(!b) return; Object.assign(state,{q:'',amb:'aut',cargo:'cargoAut',ccaa:b.dataset.goca,prov:'',mun:'',per:'',part:'',limit:60}); const q=document.getElementById('q'); if(q) q.value=''; location.hash='#inicio'; renderSearch(); });
 // ---- v112: páxina de España (#espana), co mesmo esquema que as páxinas das comunidades ----
+// v113: eixo fixo e común a todos os presidentes do Goberno (xullo 1976 – outubro 2026), como o da Xunta
+const LEGES0=Date.parse('1976-07-01'), LEGES1=Date.parse('2026-10-31');
+function tenureES(r){
+  const pc=t=>((t-LEGES0)/(LEGES1-LEGES0)*100);
+  const a=Math.max(LEGES0, r.i?Date.parse(r.i):LEGES0), b=r.f?Date.parse(r.f):LEGES1;
+  const L=pc(a), W=Math.max(.8,pc(b)-L);
+  const marks=LEGS_E.map(([n,d])=>`<b style="left:${pc(Date.parse(d)).toFixed(2)}%"></b>`).join('');
+  const labs=LEGS_E.map(([n,d],i)=>{ const x0=pc(Date.parse(d)), x1=i<LEGS_E.length-1?pc(Date.parse(LEGS_E[i+1][1])):100;
+    return x1-x0<2.5?'':`<span style="position:absolute;left:${((x0+x1)/2).toFixed(2)}%;transform:translateX(-50%)" title="${n} lexislatura (desde ${fmtD(d)})">${n==='Constituínte'?'C':n}</span>`; }).join('');
+  return `<div class="tenure" title="Período no cargo (xullo 1976 – outubro 2026), con marcas en cada cambio de lexislatura das Cortes Xerais"><i style="left:${L.toFixed(2)}%;width:${W.toFixed(2)}%"></i>${marks}</div><div class="tenure-axis" style="height:1.1em">${labs}</div>`;
+}
 function renderEspana(){ FAMX=1; try{ return renderEspana0(); } finally{ FAMX=0; } }
 function renderEspana0(){
   CMAP={};
@@ -1769,7 +1780,7 @@ function renderEspana0(){
   <div class="ph">${shareUI('España','espana','Ligazón directa á páxina de España')}<div class="meta"><span>Estado</span><span>17 comunidades e 2 cidades autónomas · 52 provincias · ${nf(nConc)} concellos</span><span><a href="#mapa">Mapa de España</a></span></div>
   <nav class="tnav" aria-label="Seccións">${nav.map(([id,l])=>`<a href="#espana" data-to="${id}">${l}</a>`).join('')}</nav></div>
   <div class="grid"><div>
-    <section class="blk" id="t-gov"><h2>Goberno de España · presidencia</h2>${runs.map(x=>`<div class="ev"><div class="when">${x.oi?'03/07/1976':fmtD(x.i)}<br>→ ${x.f?fmtD(x.f):'actualidade'}</div><div><div class="what"><a href="#p-${x.p.id}">${esc(x.p.n)}</a>${x.f?'':' <span class="badge on">en exercicio</span>'}</div><div class="sub">${x.n} nomeamento${x.n>1?'s':''} como presidente${x.p.s==='M'?'a':''} do Goberno</div>${tenureE({i:x.oi?'1976-07-03':x.i,f:x.f})}</div></div>`).join('')}
+    <section class="blk" id="t-gov"><h2>Goberno de España · presidencia</h2>${runs.map(x=>`<div class="ev"><div class="when">${x.oi?'03/07/1976':fmtD(x.i)}<br>→ ${x.f?fmtD(x.f):'actualidade'}</div><div><div class="what"><a href="#p-${x.p.id}">${esc(x.p.n)}</a>${x.f?'':' <span class="badge on">en exercicio</span>'}</div><div class="sub">${x.n} nomeamento${x.n>1?'s':''} como presidente${x.p.s==='M'?'a':''} do Goberno</div>${tenureES({i:x.oi?'1976-07-03':x.i,f:x.f})}</div></div>`).join('')}
       <p class="sub tnote">Fonte: reais decretos de nomeamento e cesamento no BOE (sección II.A), desde 1977. Os períodos en funcións entre o cesamento tras unhas eleccións e o novo nomeamento cóntanse no mandato seguinte.</p></section>
     ${cur.length?`<section class="blk"><h2>Goberno actual</h2><ul class="corp">${cur.map(x=>`<li><a href="#p-${x.p.id}">${esc(x.p.n)}</a><span>${esc(x.r.c)}</span></li>`).join('')}</ul>
       <p style="font-size:.85rem;margin:0"><button type="button" class="btn" data-goesp="1">Ver todos os altos cargos do Goberno no buscador</button></p></section>`:''}
@@ -2161,7 +2172,7 @@ document.addEventListener('click',e=>{
 });
 
 // ---- v70: informar dun erro (correo xa redactado; non se garda nada na páxina) ----
-const PORTAL_VER='v112';
+const PORTAL_VER='v113';
 document.addEventListener('change',e=>{const t=e.target; if(!t.classList||!t.classList.contains('yrsel')) return; t.closest('aside').querySelectorAll('.card[data-y]').forEach(c=>c.hidden=c.dataset.y!==t.value); const l=t.closest('aside').querySelector('.yrlink'); if(l&&t.dataset.ine){ l.href='#e-M'+t.value+'-'+t.dataset.ine; l.textContent='Ver as municipais '+t.value+' →'; }});
 const REPORT_EMAIL='jose.blanco2@usc.es';
 function errContext(){
