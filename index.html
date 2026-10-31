@@ -57,6 +57,7 @@ main{padding-block:16px 48px}
 .chip.el{background:var(--ok-soft)}
 .chip.el .k{color:var(--ok)}
 .chip.past{background:transparent;border-color:var(--line);color:var(--muted)}
+.chip.pm{background:var(--accent-soft);border-color:var(--accent)}.chip.pm .k{color:var(--accent);font-weight:600}.chip.pm.past{background:transparent}
 .lastp{display:flex;flex-wrap:wrap;align-items:baseline;gap:4px 10px;font-size:.95rem}
 .lastp .k{font-family:var(--f-mono);font-size:.68rem;letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
 .lastp b{font-weight:600}
@@ -402,23 +403,39 @@ function cargoLocal(c,s){
 }
 const rankLocal={'Alcalde':0,'Alcalde en Funciones':0,'Presidente Gestor':0,'Teniente de Alcalde':1,'Vocal gestor':2,'Concejal':2};
 
-function roleChips(p,max){
-  const out=[];
+function roleChipsAll(p){
+  const out=[]; const M=(r,h)=>({r,h});
   const X=p.r.filter(r=>r.t==='X').sort((a,b)=>(a.f?1:0)-(b.f?1:0)||String(b.i||'').localeCompare(String(a.i||'')));
-  p.r.filter(r=>r.t==='G').forEach(r=>out.push(`<span class="chip ${r.el?'el':''}"><span class="k">${r.el?'Deputado/a ':'Candidat. '}Congreso ${glab(gk(r))}</span>${esc(r.sg)} · ${esc(r.pr)} nº${r.o}${r.tp==='Suplente'?' (supl.)':''}</span>`));
-  p.r.filter(r=>r.t==='U').forEach(r=>out.push(`<span class="chip ${r.el?'el':''}"><span class="k">${r.el?'Eurodeputado/a ':'Candidat. '}Europeas ${r.d.slice(0,4)}</span>${esc(r.sg)} nº${r.o}${r.tp==='Suplente'?' (supl.)':''}</span>`));
-  p.r.filter(r=>r.t==='N').forEach(r=>out.push(`<span class="chip ${r.el?'el':''}"><span class="k">${r.el?'Senador/a ':'Candidat. '}Senado ${glab(gk(r))}</span>${esc(r.sg)} · ${esc(r.pr)}${r.tp==='Suplente'?' (supl.)':''}</span>`));
-  p.r.filter(r=>r.t==='Q').sort((a,b)=>b.i.localeCompare(a.i)).forEach(r=>out.push(`<span class="chip x past"><span class="k">Senado ${esc(r.lx)} · ${qProc(r,p)}</span>${esc(r.lu)}${r.sg?' · '+esc(r.sg):r.gr?' · '+esc(r.gr):''}</span>`));
-  p.r.filter(r=>r.t==='S').forEach(r=>out.push(`<span class="chip x ${r.f?'past':''}"><span class="k">Senado ${esc(r.lx)} · designación</span>${esc(r.ca)} · ${esc(r.sg||'')}</span>`));
-  p.r.filter(r=>r.t==='D').forEach(r=>out.push(`<span class="chip x ${r.f?'past':''}"><span class="k">Deputación ${esc(r.pr)} ${r.mn.replace(/(19|20)(\d\d)/g,'$2')}</span>${esc(depCargo(r,p))} · ${esc(r.pa)}</span>`));
-  p.r.filter(r=>r.t==='E').sort((a,b)=>(a.f?1:0)-(b.f?1:0)||String(b.i||'').localeCompare(String(a.i||''))).forEach(r=>out.push(`<span class="chip x ${r.f?'past':''}"><span class="k">Goberno de España</span>${esc(r.c)}${r.f?' · ata '+fmtD(r.f).slice(-4):''}</span>`));
-  p.r.filter(r=>r.t==='K').sort((a,b)=>(a.f?1:0)-(b.f?1:0)||String(b.i||'').localeCompare(String(a.i||''))).forEach(r=>out.push(`<span class="chip x ${r.f?'past':''}"><span class="k">${esc(r.ins)}</span>${esc(r.c)}${r.f?' · ata '+fmtD(r.f).slice(-4):''}</span>`));
-  X.forEach(r=>out.push(`<span class="chip x ${r.f?'past':''}"><span class="k">Xunta</span>${esc(r.c)}${r.f?' · ata '+fmtD(r.f).slice(-4):''}</span>`));
-  p.r.filter(r=>r.t==='C').sort((a,b)=>b.d.localeCompare(a.d)).forEach(r=>out.push(`<span class="chip ${r.el||r.tm?'el':''}"><span class="k">${r.el?'Electo/a ':r.tm?'Deput. (subst.) ':'Candidat. '}${r.e==='Parlament de Catalunya'?'Parlament ':''}${r.d.slice(0,4)}</span>${esc(r.sg)} · ${esc(r.pr)}${r.o!=null?' nº'+r.o:''}${r.tp==='Suplente'?' (supl.)':''}</span>`));
-  p.r.filter(r=>r.t==='A').forEach(r=>out.push(`<span class="chip ${r.f?'past':'x'}"><span class="k">${p.s==='M'?'Alcaldesa':'Alcalde'} ${r.mn.replace(/20(\d\d)$/,'$1')}</span>${esc(r.m)} · ${esc(r.ls)}${(midStart(r)||r.f)?' · '+yr(r.i)+'–'+(r.f?yr(r.f):r.mn.slice(-4)):''}</span>`));
-  p.r.filter(r=>r.t==='M').sort((a,b)=>b.y.localeCompare(a.y)).forEach(r=>out.push(`<span class="chip ${r.el?'el':'past'}"><span class="k">${r.el?'Electo/a mun. ':'Candidat. mun. '}${r.y}</span>${esc(r.m)} · ${esc(r.sg)} ${r.tp==='S'?'supl. ':''}nº${r.o}</span>`));
-  p.r.filter(r=>r.t==='L').sort((a,b)=>rankLocal[a.c]-rankLocal[b.c]).forEach(r=>out.push(`<span class="chip"><span class="k">Local</span>${esc(cargoLocal(r.c,p.s))} · ${esc(r.m)} · ${esc(r.pa)}</span>`));
-  return out.slice(0,max||99).join('');
+  p.r.filter(r=>r.t==='G').forEach(r=>out.push(M(r,`<span class="chip ${r.el?'el':''}"><span class="k">${r.el?'Deputado/a ':'Candidat. '}Congreso ${glab(gk(r))}</span>${esc(r.sg)} · ${esc(r.pr)} nº${r.o}${r.tp==='Suplente'?' (supl.)':''}</span>`)));
+  p.r.filter(r=>r.t==='U').forEach(r=>out.push(M(r,`<span class="chip ${r.el?'el':''}"><span class="k">${r.el?'Eurodeputado/a ':'Candidat. '}Europeas ${r.d.slice(0,4)}</span>${esc(r.sg)} nº${r.o}${r.tp==='Suplente'?' (supl.)':''}</span>`)));
+  p.r.filter(r=>r.t==='N').forEach(r=>out.push(M(r,`<span class="chip ${r.el?'el':''}"><span class="k">${r.el?'Senador/a ':'Candidat. '}Senado ${glab(gk(r))}</span>${esc(r.sg)} · ${esc(r.pr)}${r.tp==='Suplente'?' (supl.)':''}</span>`)));
+  p.r.filter(r=>r.t==='Q').sort((a,b)=>b.i.localeCompare(a.i)).forEach(r=>out.push(M(r,`<span class="chip x past"><span class="k">Senado ${esc(r.lx)} · ${qProc(r,p)}</span>${esc(r.lu)}${r.sg?' · '+esc(r.sg):r.gr?' · '+esc(r.gr):''}</span>`)));
+  p.r.filter(r=>r.t==='S').forEach(r=>out.push(M(r,`<span class="chip x ${r.f?'past':''}"><span class="k">Senado ${esc(r.lx)} · designación</span>${esc(r.ca)} · ${esc(r.sg||'')}</span>`)));
+  p.r.filter(r=>r.t==='D').forEach(r=>out.push(M(r,`<span class="chip x ${r.f?'past':''}"><span class="k">Deputación ${esc(r.pr)} ${r.mn.replace(/(19|20)(\d\d)/g,'$2')}</span>${esc(depCargo(r,p))} · ${esc(r.pa)}</span>`)));
+  p.r.filter(r=>r.t==='E').sort((a,b)=>(a.f?1:0)-(b.f?1:0)||String(b.i||'').localeCompare(String(a.i||''))).forEach(r=>out.push(M(r,`<span class="chip x ${r.f?'past':''}"><span class="k">Goberno de España</span>${esc(r.c)}${r.f?' · ata '+fmtD(r.f).slice(-4):''}</span>`)));
+  p.r.filter(r=>r.t==='K').sort((a,b)=>(a.f?1:0)-(b.f?1:0)||String(b.i||'').localeCompare(String(a.i||''))).forEach(r=>out.push(M(r,`<span class="chip x ${r.f?'past':''}"><span class="k">${esc(r.ins)}</span>${esc(r.c)}${r.f?' · ata '+fmtD(r.f).slice(-4):''}</span>`)));
+  X.forEach(r=>out.push(M(r,`<span class="chip x ${r.f?'past':''}"><span class="k">Xunta</span>${esc(r.c)}${r.f?' · ata '+fmtD(r.f).slice(-4):''}</span>`)));
+  p.r.filter(r=>r.t==='C').sort((a,b)=>b.d.localeCompare(a.d)).forEach(r=>out.push(M(r,`<span class="chip ${r.el||r.tm?'el':''}"><span class="k">${r.el?'Electo/a ':r.tm?'Deput. (subst.) ':'Candidat. '}${r.e==='Parlament de Catalunya'?'Parlament ':''}${r.d.slice(0,4)}</span>${esc(r.sg)} · ${esc(r.pr)}${r.o!=null?' nº'+r.o:''}${r.tp==='Suplente'?' (supl.)':''}</span>`)));
+  p.r.filter(r=>r.t==='A').forEach(r=>out.push(M(r,`<span class="chip ${r.f?'past':'x'}"><span class="k">${p.s==='M'?'Alcaldesa':'Alcalde'} ${r.mn.replace(/20(\d\d)$/,'$1')}</span>${esc(r.m)} · ${esc(r.ls)}${(midStart(r)||r.f)?' · '+yr(r.i)+'–'+(r.f?yr(r.f):r.mn.slice(-4)):''}</span>`)));
+  p.r.filter(r=>r.t==='M').sort((a,b)=>b.y.localeCompare(a.y)).forEach(r=>out.push(M(r,`<span class="chip ${r.el?'el':'past'}"><span class="k">${r.el?'Electo/a mun. ':'Candidat. mun. '}${r.y}</span>${esc(r.m)} · ${esc(r.sg)} ${r.tp==='S'?'supl. ':''}nº${r.o}</span>`)));
+  p.r.filter(r=>r.t==='L').sort((a,b)=>rankLocal[a.c]-rankLocal[b.c]).forEach(r=>out.push(M(r,`<span class="chip"><span class="k">Local</span>${esc(cargoLocal(r.c,p.s))} · ${esc(r.m)} · ${esc(r.pa)}</span>`)));
+  return out;
+}
+
+// v110: na lista de resultados, como máximo dúas etiquetas por persoa: o cargo vixente ou máis recente e a elección máis recente
+const CARGO_T='EKXQSDAL', ELEC_T='GNCUM', ELEC_PRI={G:0,N:1,C:2,U:3,M:4};
+function recDate(r){ return String(r.t==='M'?(DTE[r.y]||r.y):r.t==='L'?(r.d||''):'GNCU'.includes(r.t)?r.d:(r.i||'')); }
+function pmChip(r,p){ const pr=p.s==='M'?'Presidenta do Goberno':'Presidente do Goberno'; return `<span class="chip pm ${r.f?'past':''}"><span class="k">${pr}</span>Goberno de España${r.f?' · ata '+fmtD(r.f).slice(-4):' · en exercicio'}</span>`; }
+function roleChips(p,max){
+  const all=roleChipsAll(p);
+  const C=all.filter(x=>CARGO_T.includes(x.r.t)), Ev=all.filter(x=>ELEC_T.includes(x.r.t));
+  const act=r=>r.t==='L'||(r.t!=='Q'&&!r.f)?1:0;
+  C.sort((a,b)=>act(b.r)-act(a.r)||recDate(b.r).localeCompare(recDate(a.r))||((b.r.nv==='Presidencia')-(a.r.nv==='Presidencia')));
+  Ev.sort((a,b)=>recDate(b.r).localeCompare(recDate(a.r))||((b.r.el?1:0)-(a.r.el?1:0))||ELEC_PRI[a.r.t]-ELEC_PRI[b.r.t]);
+  const out=[];
+  if(C.length){ const x=C[0]; out.push(x.r.t==='E'&&x.r.nv==='Presidencia'?pmChip(x.r,p):x.h); }
+  if(Ev.length) out.push(Ev[0].h);
+  return out.slice(0,max||2).join('');
 }
 
 
@@ -607,7 +624,7 @@ function renderSearch(){
   <p class="terr"><span class="k">Territorios</span><a href="#mapa">Mapa</a><a href="#ca-gal">Galicia</a>${GPROV.map(([k,n])=>`<a href="#pr-${k}">${esc(n)}</a>`).join('')}${state.ccaa&&CASLUG[state.ccaa]&&state.ccaa!=='Galicia'?` · <a href="#ca-${CASLUG[state.ccaa]}">Páxina de ${esc(state.ccaa)}</a>`:''}${state.prov&&PRC[state.prov]?` · <a href="#pr-${PRC[state.prov]}">Páxina da provincia de ${esc(state.prov)}</a>`:''}${state.mun&&DATA.cn[state.mun]?` · <a href="#c-${state.mun}">Páxina do concello de ${esc(DATA.cn[state.mun][0])}</a>`:''}</p>
   <p class="terr"><span class="k">Xerais 2026</span><a href="#e-G2026-es">Candidaturas ao Congreso en toda España</a><a href="#e-N2026-es">Candidaturas ao Senado</a></p>
   <div class="summary"><span><strong>${nf(res.length)}</strong> persoas</span><span>${nf(nU)} nas europeas</span><span>${nf(nG)} en candidaturas ao Congreso</span><span>${nf(nN)} ao Senado</span><span>${nf(nX)} en gobernos autonómicos</span><span>${nf(nC)} en candidaturas autonómicas</span><span>${nf(nD)} en deputacións</span><span>${nf(nL)} en corporacións locais</span><span>${nf(nM)} en eleccións municipais</span></div>
-  ${res.length?`<ul class="list">${res.slice(0,state.limit).map(p=>`<li class="row"><a class="name" href="#p-${p.id}">${esc(p.n)}</a><div class="chips">${roleChips(p,6)}</div></li>`).join('')}</ul>`:
+  ${res.length?`<ul class="list">${res.slice(0,state.limit).map(p=>`<li class="row"><a class="name" href="#p-${p.id}">${esc(p.n)}</a><div class="chips">${roleChips(p,2)}</div></li>`).join('')}</ul>`:
     `<p class="empty">Non hai ningunha persoa que cumpra estes criterios. Proba cunha palabra máis curta ou limpa os filtros.</p>`}
   ${res.length>state.limit?`<div class="more"><button class="btn" id="more" type="button">Amosar ${Math.min(60,res.length-state.limit)} máis de ${nf(res.length-state.limit)}</button></div>`:''}`;
   ['amb','cargo','per','ccaa','prov','mun','part'].forEach(id=>{const el=$('#'+id); if(el) el.onchange=e=>{state[id]=e.target.value; if(id==='ccaa'){ if(state.prov&&PR2CA[state.prov]!==state.ccaa){state.prov='';} state.mun=''; if(state.per.includes('|')&&state.ccaa&&!state.per.startsWith(state.ccaa+'|')) state.per=''; }
@@ -2083,7 +2100,7 @@ document.addEventListener('click',e=>{
 });
 
 // ---- v70: informar dun erro (correo xa redactado; non se garda nada na páxina) ----
-const PORTAL_VER='v109';
+const PORTAL_VER='v110';
 document.addEventListener('change',e=>{const t=e.target; if(!t.classList||!t.classList.contains('yrsel')) return; t.closest('aside').querySelectorAll('.card[data-y]').forEach(c=>c.hidden=c.dataset.y!==t.value); const l=t.closest('aside').querySelector('.yrlink'); if(l&&t.dataset.ine){ l.href='#e-M'+t.value+'-'+t.dataset.ine; l.textContent='Ver as municipais '+t.value+' →'; }});
 const REPORT_EMAIL='jose.blanco2@usc.es';
 function errContext(){
