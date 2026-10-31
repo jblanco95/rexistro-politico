@@ -604,7 +604,7 @@ function renderSearch(){
     <button class="btn" id="reset" type="button">Limpar filtros</button>
   </div>
   ${fu.length?`<p class="loadbar note"><b>Cargando os datos desa elección…</b> Os resultados completaranse en canto cheguen.</p>`:loadNote()}
-  <p class="terr"><span class="k">Territorios</span><a href="#mapa">Mapa</a><a href="#ca-gal">Galicia</a>${GPROV.map(([k,n])=>`<a href="#pr-${k}">${esc(n)}</a>`).join('')}${state.prov&&PRC[state.prov]?` · <a href="#pr-${PRC[state.prov]}">Páxina da provincia de ${esc(state.prov)}</a>`:''}${state.mun&&DATA.cn[state.mun]?` · <a href="#c-${state.mun}">Páxina do concello de ${esc(DATA.cn[state.mun][0])}</a>`:''}</p>
+  <p class="terr"><span class="k">Territorios</span><a href="#mapa">Mapa</a><a href="#ca-gal">Galicia</a>${GPROV.map(([k,n])=>`<a href="#pr-${k}">${esc(n)}</a>`).join('')}${state.ccaa&&CASLUG[state.ccaa]&&state.ccaa!=='Galicia'?` · <a href="#ca-${CASLUG[state.ccaa]}">Páxina de ${esc(state.ccaa)}</a>`:''}${state.prov&&PRC[state.prov]?` · <a href="#pr-${PRC[state.prov]}">Páxina da provincia de ${esc(state.prov)}</a>`:''}${state.mun&&DATA.cn[state.mun]?` · <a href="#c-${state.mun}">Páxina do concello de ${esc(DATA.cn[state.mun][0])}</a>`:''}</p>
   <p class="terr"><span class="k">Xerais 2026</span><a href="#e-G2026-es">Candidaturas ao Congreso en toda España</a><a href="#e-N2026-es">Candidaturas ao Senado</a></p>
   <div class="summary"><span><strong>${nf(res.length)}</strong> persoas</span><span>${nf(nU)} nas europeas</span><span>${nf(nG)} en candidaturas ao Congreso</span><span>${nf(nN)} ao Senado</span><span>${nf(nX)} en gobernos autonómicos</span><span>${nf(nC)} en candidaturas autonómicas</span><span>${nf(nD)} en deputacións</span><span>${nf(nL)} en corporacións locais</span><span>${nf(nM)} en eleccións municipais</span></div>
   ${res.length?`<ul class="list">${res.slice(0,state.limit).map(p=>`<li class="row"><a class="name" href="#p-${p.id}">${esc(p.n)}</a><div class="chips">${roleChips(p,6)}</div></li>`).join('')}</ul>`:
@@ -1388,7 +1388,7 @@ function renderConcello(ine){
   if(!cn){app.innerHTML=`<p class="empty">Non atopamos este concello. <a href="#inicio">Volver á busca</a>.</p>`;return;}
   const subs=ids.map(id=>({p:BYID[id],r:BYID[id].r.find(r=>r.t==='L'&&r.ine===ine)})).filter(x=>x.r&&x.r.su);
   const PX=GALC.includes(String(ine).slice(0,2))?pxOf(ine):null;
-  app.innerHTML=`<div class="crumbs"><a href="#inicio">← Volver á busca</a>${terrCrumb(cn[1])}${GALC.includes(String(ine).slice(0,2))?' · <a href="#ca-gal">Galicia</a>':''}</div>
+  app.innerHTML=`<div class="crumbs"><a href="#inicio">← Volver á busca</a>${terrCrumb(cn[1])}${PR2CA[cn[1]]&&CASLUG[PR2CA[cn[1]]]&&PR2CA[cn[1]]!==cn[1]?' · '+caLink(PR2CA[cn[1]]):''}</div>
   <div class="ph">${shareUI(esc(cn[0]),'c-'+ine,'Ligazón directa á páxina do concello')}<div class="meta"><span>Concello · ${PRC[cn[1]]?`<a href="#pr-${PRC[cn[1]]}">${esc(cn[1])}</a>`:esc(cn[1])}</span>${PX?`<span>Partido xudicial (deputación): ${esc(PX)}</span>`:''}<span class="id">INE ${ine}</span></div></div>
   <div class="grid"><div>
     <section class="blk"><h2>Corporación actual · lexislatura 2023</h2>${ids.length?corpBlock(ine,null,0):'<p class="empty">Sen datos.</p>'}
@@ -1408,7 +1408,9 @@ const GPROV=[['15','A Coruña'],['27','Lugo'],['32','Ourense'],['36','Pontevedra
 const PRN=Object.fromEntries(GPROV), PRC=Object.fromEntries(GPROV.map(([a,b])=>[b,a]));
 const MUNY=['1979','1983','1987','1991','1995','1999','2003','2007','2011','2015','2019','2023'];
 // agrupación de siglas para as táboas de evolución (só nestas táboas; as páxinas de resultados levan as siglas da fonte)
-function fam(sg){ const k=pkey(sg||'');
+let FAMX=0; // v108: fóra de Galicia a familia socialista é «PSOE»
+function fam(sg){ const f=fam0(sg); return FAMX&&f==='PSdeG-PSOE'?'PSOE':f; }
+function fam0(sg){ const k=pkey(sg||'');
   if(/^PSGEG|SOCIALISTAGALEGOESQUERDA/.test(k)) return 'PSG-EG';
   if(/PSOE|^PSDEG|^PSDG|^PSG$|SOCIALISTASDEGALICIA/.test(k)) return 'PSdeG-PSOE';
   if(/^PP|PARTIDOPOPULAR|^AP($|PDP|PDL|UL|CP)|^CP$|^PDP$|ALIANZAPOPULAR|COALICIONPOPULAR/.test(k)) return 'PP';
@@ -1507,6 +1509,7 @@ function lastKey(K,c){ for(const [k] of GLIST) if(K[k+'|'+c]) return k; return n
 const MUNNOTE=pre=>'';
 const LU79=["27001", "27002", "27005", "27007", "27008", "27013", "27015", "27017", "27019", "27021", "27022", "27025", "27027", "27030", "27031", "27033", "27038", "27041", "27044", "27047", "27048", "27050", "27051", "27052", "27054", "27058", "27059", "27061", "27063", "27064", "27065", "27066"];
 function renderProvincia(cp){
+  if(!GALP_HAS(cp)) return renderProvX(cp);
   CMAP={};
   const c=PRN[cp];
   if(!c){app.innerHTML=`<p class="empty">Polo de agora só hai páxinas das provincias galegas. <a href="#ca-gal">Ir á páxina de Galicia</a>.</p>`;return;}
@@ -1539,8 +1542,8 @@ function renderProvincia(cp){
   window.scrollTo(0,0);
 }
 function renderCA(code){
+  if(code!=='gal') return renderCAx(code);
   CMAP={};
-  if(code!=='gal'){app.innerHTML=`<p class="empty">Polo de agora só hai páxina de Galicia. <a href="#ca-gal">Ir á páxina de Galicia</a>.</p>`;return;}
   const S=terrScan(), K=AUTCFG.Galicia, yA=K.ys[K.ys.length-1], RA=DATA.ar[yA+'|Galicia'];
   const PR=GPROV.map(x=>x[1]), PRE=GPROV.map(x=>x[0]);
   const runs=presRuns();
@@ -1570,6 +1573,144 @@ function renderCA(code){
     <div class="card" id="t-prov"><b>Provincias</b>${provCards}</div></aside></div>`;
   window.scrollTo(0,0);
 }
+// ---- v108: páxinas de todas as comunidades (#ca-xxx) e provincias (#pr-NN). Galicia segue coas súas (renderCA/renderProvincia) ----
+const CASLUG={'Andalucía':'and','Aragón':'ara','Principado de Asturias':'ast','Illes Balears':'bal','Canarias':'can','Cantabria':'cnt','Castilla y León':'cyl','Castilla-La Mancha':'clm','Cataluña':'cat','Comunitat Valenciana':'val','Extremadura':'ext','Galicia':'gal','Comunidad de Madrid':'mad','Región de Murcia':'mur','Comunidad Foral de Navarra':'nav','País Vasco':'pva','La Rioja':'rio','Ceuta':'ceu','Melilla':'mel'};
+const CASLUGR=Object.fromEntries(Object.entries(CASLUG).map(([a,b])=>[b,a]));
+const PALL=[["01","Araba/Álava"],["02","Albacete"],["03","Alacant/Alicante"],["04","Almería"],["05","Ávila"],["06","Badajoz"],["07","Illes Balears"],["08","Barcelona"],["09","Burgos"],["10","Cáceres"],["11","Cádiz"],["12","Castelló/Castellón"],["13","Ciudad Real"],["14","Córdoba"],["15","A Coruña"],["16","Cuenca"],["17","Girona"],["18","Granada"],["19","Guadalajara"],["20","Gipuzkoa"],["21","Huelva"],["22","Huesca"],["23","Jaén"],["24","León"],["25","Lleida"],["26","La Rioja"],["27","Lugo"],["28","Madrid"],["29","Málaga"],["30","Murcia"],["31","Navarra"],["32","Ourense"],["33","Asturias"],["34","Palencia"],["35","Las Palmas"],["36","Pontevedra"],["37","Salamanca"],["38","Santa Cruz de Tenerife"],["39","Cantabria"],["40","Segovia"],["41","Sevilla"],["42","Soria"],["43","Tarragona"],["44","Teruel"],["45","Toledo"],["46","València/Valencia"],["47","Valladolid"],["48","Bizkaia"],["49","Zamora"],["50","Zaragoza"],["51","Ceuta"],["52","Melilla"]];
+PALL.forEach(([k,n])=>{ PRN[k]=n; PRC[n]=k; });
+const caHref=ca=>CASLUG[ca]?'#ca-'+CASLUG[ca]:null;
+const caLink=ca=>CASLUG[ca]?`<a href="#ca-${CASLUG[ca]}">${esc(ca)}</a>`:esc(ca||'');
+// provincias dunha comunidade: [código INE, nome, illas]
+const caProvs=ca=>((INE_CA.find(x=>x[0]===ca)||[null,[]])[1]).map(x=>[PRC[x[0]],x[0],x[2]||null]);
+const QCA=[[/Andaluc/,'Andalucía'],[/Arag/,'Aragón'],[/Asturias/,'Principado de Asturias'],[/Balears/,'Illes Balears'],[/Canarias/,'Canarias'],[/Cantabria/,'Cantabria'],[/Castilla y Le/,'Castilla y León'],[/Mancha/,'Castilla-La Mancha'],[/Catalu/,'Cataluña'],[/Valencian/,'Comunitat Valenciana'],[/Extremadura/,'Extremadura'],[/Galicia/,'Galicia'],[/Madrid/,'Comunidad de Madrid'],[/Murcia/,'Región de Murcia'],[/Navarra/,'Comunidad Foral de Navarra'],[/Vasco/,'País Vasco'],[/Rioja/,'La Rioja']];
+const quCA=lu=>{ for(const [re,ca] of QCA) if(re.test(lu||'')) return ca; return null; };
+// rexistros persoais de toda España para as páxinas territoriais (unha soa pasada)
+let TSX=null;
+function terrScanX(){
+  if(TSX&&TSX.n===DV+'|'+DATA.p.length) return TSX;
+  const S={n:DV+'|'+DATA.p.length,N:[],C:[],G:[],Q:[],K:[]};
+  for(const p of DATA.p) for(const r of p.r){
+    const t=r.t;
+    if(t==='N'){ if(r.el) S.N.push({p,r}); }
+    else if(t==='C'){ if(r.el) S.C.push({p,r,ca:AUTE[r.e]||'Galicia'}); }
+    else if(t==='G'){ if(r.el) S.G.push({p,r}); }
+    else if(t==='Q'){ if(r.pt==='D') S.Q.push({p,r,ca:quCA(r.lu)}); }
+    else if(t==='S') S.Q.push({p,r,ca:CAINE[r.ca]?r.ca:PR2CA[r.ca]});
+    else if(t==='K') S.K.push({p,r});
+  }
+  return TSX=S;
+}
+const keySet=K=>new Set(Object.keys(K||{}).map(k=>k.slice(k.indexOf('|')+1)));
+// circunscricións do Senado dunha provincia (as illas en Baleares e Canarias)
+function senCircsP(p,nrs){ nrs=nrs||keySet(DATA.nr); if(nrs.has(p)) return [p]; return Object.keys(CPROV).filter(i=>CPROV[i]===p&&nrs.has(i)); }
+// circunscricións autonómicas dunha provincia: a propia provincia, ou as súas illas / zonas
+function autCircsP(ca,p){ const K=AUTCFG[ca]; if(!K) return []; if(K.ys.some(y=>DATA.ar[y+'|'+p])) return [p]; return K.provs.filter(x=>x===p||CPROV[x]===p); }
+// nomes de circunscrición que levan os rexistros C desa provincia
+function autRecCircs(ca,p){ const K=AUTCFG[ca]; if(!K) return []; const l=K.provs.filter(x=>x===p||CPROV[x]===p); return l.length?l:[p]; }
+function autColsX(ca,circs){ const K=AUTCFG[ca]; if(!K||!circs.length) return [];
+  return K.ys.map(y=>{ const Rs=circs.map(c=>DATA.ar[y+'|'+c]).filter(Boolean); if(!Rs.length) return null;
+    const m={}, t=[0,0,0,0,0,0]; Rs.forEach(R=>{ const f=famSum(R.l,4); for(const k in f) m[k]=(m[k]||0)+f[k]; R.t.forEach((v,i)=>t[i]+=Number(v)||0); });
+    return {h:y,href:circs.length===1&&CIRC[circs[0]]?`#e-A${y}-${CIRC[circs[0]]}`:null,m,t:t[5],R:t}; }); }
+const glabS=k=>glab(k).replace(' (abril)',' abr.').replace(' (novembro)',' nov.');
+function genColsCA(ca){ const PV=caProvs(ca), uni=PV.length===1?PV[0][1]:null;
+  return [...GLIST].reverse().map(([k])=>{ const R=uni?DATA.gr[k+'|'+uni]:grCA(k,ca); const cc=uni?CIRC[uni]:CIRC[ca];
+    return R&&{h:glabS(k),href:cc?`#e-G${k}-${cc}`:null,m:famSum(R.l,4),t:R.t[5],R:R.t}; }); }
+function senColsX(circs){ const S=terrScanX(), set=new Set(circs);
+  return [...GLIST].reverse().map(([k])=>{ const m={}; let n=0; S.N.forEach(({r})=>{ if(set.has(r.pr)&&gk(r)===k){ const f=fam(r.sg); m[f]=(m[f]||0)+1; n++; } });
+    return n?{h:glabS(k),href:circs.length===1&&CIRC[circs[0]]?`#e-N${k}-${CIRC[circs[0]]}`:null,m,t:n}:null; }); }
+function presRunsX(ca){
+  const L=terrScanX().K.filter(x=>x.r.cc===ca&&x.r.nv==='Presidencia'&&x.r.i).sort((a,b)=>String(a.r.i).localeCompare(String(b.r.i))), out=[];
+  L.forEach(x=>{ const z=out[out.length-1]; if(z&&z.p.id===x.p.id&&(!z.f||z.f>=x.r.i)) z.f=x.r.f||null; else out.push({p:x.p,i:x.r.i,f:x.r.f||null}); });
+  return out.reverse();
+}
+function insOf(ca){ const c={}; terrScanX().K.forEach(x=>{ if(x.r.cc===ca&&x.r.ins) c[x.r.ins]=(c[x.r.ins]||0)+1; }); return Object.entries(c).sort((a,b)=>b[1]-a[1]).map(x=>x[0])[0]||null; }
+const nEsc=n=>n+' escano'+(n==1?'':'s');
+const NVO={'Presidencia':0,'Vicepresidencia':1,'Consejero/a':2};
+const desList=des=>des.length?`<details class="fontes"><summary><b>Senadores/as designados/as pola comunidade autónoma</b> (${des.length})</summary><ul class="corp" style="margin-top:6px">${des.map(x=>`<li><a href="#p-${x.p.id}">${esc(x.p.n)}</a><span>${esc(x.r.lx||'')} lex. · ${esc(x.r.sg||x.r.gr||'')}${x.r.i?' · '+fmtD(x.r.i)+(x.r.f?'–'+fmtD(x.r.f):''):''}</span></li>`).join('')}</ul></details>`:'';
+const FAMNOTEX='As siglas agrúpanse por familias (PP con AP e coalicións; PSOE coas súas federacións; Podemos, IU e Cs coas súas coalicións).';
+// lapelas de electos/non electos na provincia (autonómicas, Congreso e Senado)
+function prTabsX(o,elH,nE){
+  const ord=R=>R&&R.l?R.l.map(x=>x[1]):[];
+  const S=[];
+  if(o.yA&&o.aRec.length) S.push({t:o.K.nome+' ('+o.yA+')',h:o.aHref,o:ord(DATA.ar[o.yA+'|'+o.aC[0]]),ne:o.aRec.flatMap(x=>neOf('C|'+o.ca+'|'+o.yA+'|'+x))});
+  if(o.kG) S.push({t:'Congreso ('+glab(o.kG)+')',h:'#e-G'+o.kG+'-'+CIRC[o.c],o:ord((DATA.gr||{})[o.kG+'|'+o.c]),ne:neOf('G|'+o.kG+'|'+o.c)});
+  if(o.kN) S.push({t:'Senado ('+glab(o.kN)+')',h:o.sC.length===1?'#e-N'+o.kN+'-'+CIRC[o.sC[0]]:null,o:[],ne:o.sC.flatMap(x=>neOf('N|'+o.kN+'|'+x))});
+  const L=S.filter(s=>s.ne.length); if(!L.length) return elH;
+  const n=L.reduce((a,s)=>a+s.ne.length,0);
+  return elTabs(elH,L.map(s=>`<details class="nesec"><summary><b>${esc(s.t)}</b> · ${nf(s.ne.length)}</summary>${s.h?`<a class="nenote" href="${s.h}">Resultados e listas completas →</a>`:''}${neList(s.ne,{order:s.o})}${supNote(s.ne)}</details>`).join(''),nE,n);
+}
+function renderProvX(cp){ FAMX=1; try{ return renderProvX0(cp); } finally{ FAMX=0; } }
+function renderProvX0(cp){
+  CMAP={};
+  const c=PRN[cp]; if(!c){ app.innerHTML=`<p class="empty">Non atopamos esta provincia. <a href="#mapa">Ir ao mapa</a>.</p>`; return; }
+  const ca=PR2CA[c], K=AUTCFG[ca], S=terrScanX(), nrs=keySet(DATA.nr);
+  const aC=autCircsP(ca,c), aRec=autRecCircs(ca,c), ac=autColsX(ca,aC), aLast=ac.filter(Boolean).slice(-1)[0], yA=aLast?aLast.h:null;
+  const aHref=aC.length===1&&CIRC[aC[0]]&&yA?`#e-A${yA}-${CIRC[aC[0]]}`:null;
+  const sC=senCircsP(c,nrs), kG=lastKey(DATA.gr,c), kN=sC.map(x=>lastKey(DATA.nr,x)).filter(Boolean)[0]||null;
+  const nConc=Object.keys(DATA.cn).filter(i=>i.slice(0,2)===cp&&(DATA.corp[i]||[]).length).length;
+  let pob=0,cen=0; Object.keys(DATA.cn).forEach(i=>{ if(i.slice(0,2)===cp){ const R=DATA.mr['2023|'+i]; if(R){pob+=R[6]||0;cen+=R[0]||0;} } });
+  const recIn=new Set(aRec);
+  const elA=yA?S.C.filter(x=>x.ca===ca&&recIn.has(x.r.pr)&&x.r.d.startsWith(yA)).sort((a,b)=>String(a.r.pr).localeCompare(String(b.r.pr))||pkey(a.r.sg).localeCompare(pkey(b.r.sg))||(a.r.o??99)-(b.r.o??99)).map(x=>({p:x.p,s:(aRec.length>1?x.r.pr+' · ':'')+x.r.sg+(x.r.o!=null?' · nº'+x.r.o:'')})):[];
+  const elG=S.G.filter(x=>x.r.pr===c&&gk(x.r)===kG).sort((a,b)=>pkey(a.r.sg).localeCompare(pkey(b.r.sg))||a.r.o-b.r.o).map(x=>({p:x.p,s:x.r.sg+' · nº'+x.r.o}));
+  const sIn=new Set(sC);
+  const elN=S.N.filter(x=>sIn.has(x.r.pr)&&gk(x.r)===kN).sort((a,b)=>String(a.r.pr).localeCompare(String(b.r.pr))||(b.r.vp||0)-(a.r.vp||0)).map(x=>({p:x.p,s:(sC.length>1?x.r.pr+' · ':'')+x.r.sg}));
+  const others=caProvs(ca).filter(x=>x[0]!==cp).map(([k,n])=>`<a href="#pr-${k}">${esc(n)}</a>`).join(' · ');
+  const mc=munCols([cp]);
+  const gcols=genCols(c), scols=senColsX(sC);
+  const autT=aC.length>1||aRec.length>1?'circunscricións de '+aRec.join(', '):'circunscrición de '+c;
+  const nav=[K&&ac.some(Boolean)?['t-aut','Autonómicas']:null,['t-gen','Congreso'],['t-sen','Senado'],['t-mun','Municipais'],['t-conc','Concellos']].filter(Boolean);
+  const nS=kN?sC.reduce((a,x)=>a+((DATA.nr[kN+'|'+x]||[])[5]||0),0):0;
+  app.innerHTML=`<div class="crumbs"><a href="#inicio">← Volver á busca</a> · ${caLink(ca)}</div>
+  <div class="ph">${shareUI('Provincia de '+esc(c),'pr-'+cp,'Ligazón directa á páxina da provincia')}<div class="meta"><span>${caLink(ca)} · código INE ${cp}</span><span>${nConc} concellos</span>${others?`<span>Outras provincias: ${others}</span>`:''}<span><a href="#mapa-pr${cp}">Mapa</a></span></div>
+  <nav class="tnav" aria-label="Seccións">${nav.map(([id,l])=>`<a href="#pr-${cp}" data-to="${id}">${l}</a>`).join('')}</nav></div>
+  <div class="grid"><div>
+    ${K&&ac.some(Boolean)?`<section class="blk" id="t-aut"><h2>${esc(K.nome)} · ${esc(autT)}</h2>${aLast?seatStrip(Object.entries(aLast.m).map(([k,v])=>({sg:k,s:v})).sort((a,b)=>b.s-a.s),aLast.t):''}
+      ${famMatrix(ac,{extra:[exTot('Escanos'),exPart]})}<p class="sub tnote">Escanos por partido en cada elección autonómica incorporada ao rexistro${aHref?' (preme no ano para ver os resultados completos e as listas)':''}. ${FAMNOTEX}</p></section>`:''}
+    <section class="blk" id="t-gen"><h2>Congreso dos Deputados · circunscrición de ${esc(c)}</h2>${famMatrix(gcols,{extra:[exTot('Escanos'),exPart]})}<p class="sub tnote">Escanos por partido. ${FAMNOTEX}</p></section>
+    <section class="blk" id="t-sen"><h2>Senado · ${sC.length>1?'circunscricións insulares de '+esc(c):'circunscrición de '+esc(c)}</h2>${famMatrix(scols,{extra:[exTot('Electos/as')]})}<p class="sub tnote">Senadores/as electos/as por partido${sC.length>1?' ('+sC.map(esc).join(', ')+')':''}.</p></section>
+    <section class="blk" id="t-mun"><h2>Eleccións municipais · concelleiros/as na provincia</h2>${famMatrix(mc,{max:10,other:'Outras candidaturas',extra:[exTot('Concelleiros/as'),exPart]})}<p class="sub tnote">Suma dos concelleiros/as electos/as en todos os concellos da provincia. Fóra de Galicia o rexistro só ten as municipais de 2023.${mc.some(x=>!x.full)?' * Ano incompleto.':''}</p></section>
+    <section class="blk" id="t-conc"><h2>Concellos</h2>${concTable(cp)}</section>
+  </div><aside style="display:grid;gap:12px;align-content:start"><div class="card"><div data-map="pr:${cp}"></div><a href="#mapa-pr${cp}" style="font-size:.85rem">Ver no mapa grande</a></div><div class="card">${statsDl([['Concellos',nf(nConc)],['Poboación (municipais 2023)',nf(pob)],['Censo electoral (municipais 2023)',nf(cen)],...(K?[[esc(K.nome),aLast?nEsc(aLast.t)+' ('+yA+')':'—']]:[]),['Congreso',kG?nEsc(DATA.gr[kG+'|'+c].t[5])+' ('+glab(kG)+')':'—'],['Senado',nS?nS+' electos/as':'—']])}</div>
+    <div class="card">${prTabsX({c,ca,K,yA,aC,aRec,aHref,kG,kN,sC},plist(elA,'Electos/as '+(K?'('+esc(K.nome)+', '+yA+')':''))+plist(elG,'Electos/as ao Congreso ('+glab(kG)+')')+plist(elN,'Electos/as ao Senado ('+glab(kN)+')'),elA.length+elG.length+elN.length)}
+      <p class="sub" style="color:var(--muted);font-size:.78rem;margin:0">Persoas proclamadas electas; non reflicte as substitucións posteriores.</p></div></aside></div>`;
+  window.scrollTo(0,0);
+}
+function renderCAx(code){ FAMX=1; try{ return renderCAx0(code); } finally{ FAMX=0; } }
+function renderCAx0(code){
+  CMAP={};
+  const ca=CASLUGR[code]; if(!ca){ app.innerHTML=`<p class="empty">Non atopamos esta comunidade. <a href="#mapa">Ir ao mapa</a>.</p>`; return; }
+  const S=terrScanX(), K=AUTCFG[ca], PV=caProvs(ca), PRE=PV.map(x=>x[0]), ine=CAINE[ca], nrs=keySet(DATA.nr);
+  const sC=PV.flatMap(([cp,n])=>senCircsP(n,nrs));
+  const ac=K?autColsX(ca,[K.tot]):[], last=ac.filter(Boolean).slice(-1)[0], yA=last?last.h:null;
+  const runs=presRunsX(ca), ins=insOf(ca);
+  const cur=S.K.filter(x=>x.r.cc===ca&&!x.r.f&&x.r.nv in NVO).sort((a,b)=>NVO[a.r.nv]-NVO[b.r.nv]||COLL.compare(a.r.c,b.r.c));
+  const des=S.Q.filter(x=>x.ca===ca).sort((a,b)=>String(b.r.i).localeCompare(String(a.r.i)));
+  const desNow=des.filter(x=>x.r.t==='S'&&!x.r.f).length;
+  const nConc=Object.keys(DATA.cn).filter(i=>PRE.includes(i.slice(0,2))&&(DATA.corp[i]||[]).length).length;
+  let pob=0; Object.keys(DATA.cn).forEach(i=>{ if(PRE.includes(i.slice(0,2))){ const R=DATA.mr['2023|'+i]; if(R) pob+=R[6]||0; } });
+  const mc=munCols(PRE), gcols=genColsCA(ca), gLast=gcols.filter(Boolean).slice(-1)[0], scols=senColsX(sC), sLast=scols.filter(Boolean).slice(-1)[0];
+  const k0=runs.length?runs[runs.length-1].i:null;
+  const provCards=PV.map(([cp,n])=>{ const nc=Object.keys(DATA.cn).filter(i=>i.slice(0,2)===cp&&(DATA.corp[i]||[]).length).length; const aC=autCircsP(ca,n); const kG=lastKey(DATA.gr,n);
+    return `<div class="ev"><div class="when"><a href="#pr-${cp}"><b>${esc(n)}</b></a></div><div><div class="sub">${nc} concellos</div><div class="links"><a href="#pr-${cp}">Páxina da provincia</a>${kG?`<a href="#e-G${kG}-${CIRC[n]}">Congreso ${esc(glab(kG))}</a>`:''}${yA&&aC.length===1&&CIRC[aC[0]]&&DATA.ar[yA+'|'+aC[0]]?`<a href="#e-A${yA}-${CIRC[aC[0]]}">Autonómicas ${yA}</a>`:''}</div></div></div>`; }).join('');
+  const nav=[runs.length||cur.length?['t-gov','Goberno']:null,K?['t-aut','Parlamento']:null,['t-gen','Congreso'],['t-sen','Senado'],['t-mun','Municipais'],['t-prov','Provincias']].filter(Boolean);
+  app.innerHTML=`<div class="crumbs"><a href="#inicio">← Volver á busca</a> · <a href="#mapa">Mapa de España</a></div>
+  <div class="ph">${shareUI(esc(ca),'ca-'+code,'Ligazón directa á páxina da comunidade')}<div class="meta"><span>${ine>'17'?'Cidade autónoma':'Comunidade autónoma'} · código INE ${ine}</span><span>${PV.length} provincia${PV.length>1?'s':''} · ${nConc} concellos</span><span>Provincia${PV.length>1?'s':''}: ${PV.map(([k,n])=>`<a href="#pr-${k}">${esc(n)}</a>`).join(' · ')}</span><span><a href="#mapa-ca${ine}">Mapa</a></span></div>
+  <nav class="tnav" aria-label="Seccións">${nav.map(([id,l])=>`<a href="#ca-${code}" data-to="${id}">${l}</a>`).join('')}</nav></div>
+  <div class="grid"><div>
+    ${runs.length?`<section class="blk" id="t-gov"><h2>${esc(ins||ca)} · presidencia</h2>${runs.map(x=>`<div class="ev"><div class="when">${fmtD(x.i)}<br>→ ${x.f?fmtD(x.f):'actualidade'}</div><div><div class="what"><a href="#p-${x.p.id}">${esc(x.p.n)}</a>${x.f?'':' <span class="badge on">en exercicio</span>'}</div></div></div>`).join('')}<p class="sub tnote">Presidencias rexistradas desde ${fmtD(k0)} (decretos de nomeamento e cesamento das lexislaturas incorporadas ao rexistro).</p></section>`:''}
+    ${cur.length?`<section class="blk"${runs.length?'':' id="t-gov"'}><h2>Goberno actual</h2><ul class="corp">${cur.map(x=>`<li><a href="#p-${x.p.id}">${esc(x.p.n)}</a><span>${esc(x.r.c)}</span></li>`).join('')}</ul>
+      <p style="font-size:.85rem;margin:0"><button type="button" class="btn" data-goca="${esc(ca)}">Ver todos os cargos autonómicos no buscador</button></p>
+      <p class="sub tnote">Fonte: decretos de nomeamento e cesamento no boletín oficial da comunidade.</p></section>`:''}
+    ${K?`<section class="blk" id="t-aut"><h2>${esc(K.nome)} · escanos por partido</h2>${last?seatStrip(Object.entries(last.m).map(([k,v])=>({sg:k,s:v})).sort((a,b)=>b.s-a.s),last.t):''}
+      ${famMatrix(ac,{extra:[exTot('Escanos'),exPart]})}<p class="sub tnote">Total da comunidade. Preme no ano para ver os resultados por circunscrición, as listas e os electos. O rexistro inclúe as eleccións ${K.ys.length>1?'de '+K.ys.join(', '):'de '+K.ys[0]}. ${FAMNOTEX}</p></section>`:''}
+    <section class="blk" id="t-gen"><h2>Congreso dos Deputados · escanos en ${esc(ca)}</h2>${famMatrix(gcols,{extra:[exTot('Escanos'),exPart]})}<p class="sub tnote">${PV.length>1?'Suma das '+PV.length+' circunscricións. ':''}${FAMNOTEX}</p></section>
+    <section class="blk" id="t-sen"><h2>Senado · senadores/as electos/as en ${esc(ca)}</h2>${famMatrix(scols,{extra:[exTot('Electos/as')]})}${desList(des)}</section>
+    <section class="blk" id="t-mun"><h2>Eleccións municipais · concelleiros/as en ${esc(ca)}</h2>${famMatrix(mc,{max:10,other:'Outras candidaturas',extra:[exTot('Concelleiros/as'),exPart]})}<p class="sub tnote">Suma dos concelleiros/as electos/as en todos os concellos. Fóra de Galicia o rexistro só ten as municipais de 2023.</p></section>
+  </div><aside style="display:grid;gap:12px;align-content:start"><div class="card"><div data-map="ca:${ine}"></div><a href="#mapa-ca${ine}" style="font-size:.85rem">Ver no mapa grande</a></div><div class="card">${statsDl([['Provincias',String(PV.length)],['Concellos',nf(nConc)],['Poboación (municipais 2023)',nf(pob)],...(K?[[esc(K.nome),last?nEsc(last.t)+' ('+yA+')':'—']]:[]),['Congreso',gLast?nEsc(gLast.t)+' ('+gLast.h+')':'—'],['Senado',(sLast?sLast.t+' electos/as':'—')+(desNow?' + '+desNow+' designados/as':'')]])}</div>
+    <div class="card" id="t-prov"><b>Provincias</b>${provCards}</div></aside></div>`;
+  window.scrollTo(0,0);
+}
+document.addEventListener('click',e=>{ const b=e.target.closest&&e.target.closest('[data-goca]'); if(!b) return; Object.assign(state,{q:'',amb:'aut',cargo:'cargoAut',ccaa:b.dataset.goca,prov:'',mun:'',per:'',part:'',limit:60}); const q=document.getElementById('q'); if(q) q.value=''; location.hash='#inicio'; renderSearch(); });
 document.addEventListener('click',e=>{ const a=e.target.closest&&e.target.closest('.tnav a[data-to]'); if(!a) return; e.preventDefault(); const t=document.getElementById(a.dataset.to); if(t) t.scrollIntoView({behavior:'smooth',block:'start'}); });
 // concello: táboa de todas as eleccións locais
 function munElecTable(ine){
@@ -1580,7 +1721,7 @@ function munElecTable(ine){
     return `<tr><td><a href="#e-M${y}-${ine}"><b>${y}</b></a><div class="cand">${fmtD(DTE[y])}</div></td><td>${partic(R)}</td><td>${R[5]}</td><td style="text-align:left;white-space:normal"><div class="chips">${seats.map(x=>`<span class="chip">${dot(pcol(x.sn||x.sg)).replace('margin-right:6px','')}${esc(x.sg)} ${x.s}</span>`).join('')}</div></td></tr>`; }).join('')}</tbody></table></div>`;
 }
 function pxOf(ine){ const cp=ine.slice(0,2), k=depLast(cp)[0], n=(DATA.cn[ine]||[])[0]; if(!k||!n) return null; const x=(DATA.dp[k].px||[]).find(x=>(x.concellos||[]).includes(n)); return x?x.px:null; }
-function terrCrumb(c){ const cp=PRC[c]; return cp?` · <a href="#pr-${cp}">Provincia de ${esc(c)}</a>`:c==='Galicia'?' · <a href="#ca-gal">Galicia</a>':''; }
+function terrCrumb(c){ const cp=PRC[c]; return cp?` · <a href="#pr-${cp}">Provincia de ${esc(c)}</a>`:CASLUG[c]?` · <a href="#ca-${CASLUG[c]}">${esc(c)}</a>`:''; }
 
 const GEOF='data/geo-e99f4ce4e5.wasm';
 // ---- v89: mapa administrativo (IGN, vía es-atlas 0.6.0): España → comunidade → provincia → concello ----
@@ -1624,7 +1765,7 @@ function fillMaps(){
   const els=[...document.querySelectorAll('[data-map]')]; if(!els.length) return;
   geoLoad().then(()=>els.forEach(el=>{ if(!el.isConnected) return; const [lv,code]=el.dataset.map.split(':');
     if(lv==='ca'){ const fs=GEO.p.filter(f=>PR_CA[f.id]===code);
-      el.innerHTML=mapBox(mapSVG(fs,{href:f=>GALP_HAS(f.id)?'#pr-'+f.id:'#mapa-pr'+f.id,name:f=>f.n,ctx:GEO.p.filter(f=>PR_CA[f.id]!==code),label:'Provincias',mh:'420px'}),'Preme nunha provincia');
+      el.innerHTML=mapBox(mapSVG(fs,{href:f=>PRN[f.id]?'#pr-'+f.id:'#mapa-pr'+f.id,name:f=>f.n,ctx:GEO.p.filter(f=>PR_CA[f.id]!==code),label:'Provincias',mh:'420px'}),'Preme nunha provincia');
     } else if(lv==='pr'){ const fs=GEO.m.filter(f=>f.id.slice(0,2)===code);
       el.innerHTML=mapBox(mapSVG(fs,{href:f=>'#c-'+f.id,name:munName,ctx:GEO.p.filter(f=>f.id!==code),over:[GEO.P[code]].filter(Boolean),label:'Concellos',mh:'520px'}),'Preme nun concello');
     } else if(lv==='mu'){ const cp=code.slice(0,2), fs=GEO.m.filter(f=>f.id.slice(0,2)===cp);
@@ -1644,17 +1785,17 @@ function renderMapa(arg){
       const cas=GEO.c.slice().sort((a,b)=>a.id.localeCompare(b.id));
       const one=id=>GEO.p.filter(f=>PR_CA[f.id]===id);
       title='España';
-      svg=mapSVG(cas,{href:f=>{const ps=one(f.id);return ps.length===1?'#mapa-pr'+ps[0].id:'#mapa-ca'+f.id;},name:f=>caName(f.id),has:f=>f.id==='12',thin:GEO.p,over:GEO.c,cb:1,label:'Comunidades autónomas'});
+      svg=mapSVG(cas,{href:f=>{const ps=one(f.id);return ps.length===1?'#mapa-pr'+ps[0].id:'#mapa-ca'+f.id;},name:f=>caName(f.id),has:f=>!!CASLUG[canome(f.id)],thin:GEO.p,over:GEO.c,cb:1,label:'Comunidades autónomas'});
       def='Preme nunha comunidade autónoma';
-      side=`<p class="sub">Comunidades e cidades autónomas (orde INE). As que teñen páxina propia van en gris.</p><ul class="corp">${cas.map(f=>`<li><a href="${one(f.id).length===1?'#mapa-pr'+one(f.id)[0].id:'#mapa-ca'+f.id}">${esc(caName(f.id))}</a><span>${f.id==='12'?'<a href="#ca-gal">páxina</a>':''}</span></li>`).join('')}</ul>`;
+      side=`<p class="sub">Comunidades e cidades autónomas (orde INE). Preme no mapa ou no nome para ver as súas provincias; «páxina» abre a páxina da comunidade.</p><ul class="corp">${cas.map(f=>`<li><a href="${one(f.id).length===1?'#mapa-pr'+one(f.id)[0].id:'#mapa-ca'+f.id}">${esc(caName(f.id))}</a><span>${CASLUG[canome(f.id)]?`<a href="#ca-${CASLUG[canome(f.id)]}">páxina</a>`:''}</span></li>`).join('')}</ul>`;
     } else if(lv==='ca'){
       const fs=GEO.p.filter(f=>PR_CA[f.id]===code); if(!fs.length){ app.innerHTML='<p class="empty">Non atopamos esta comunidade. <a href="#mapa">Volver ao mapa</a>.</p>'; return; }
       title=caName(code); crumbs+=` › <span>${esc(title)}</span>`;
-      svg=mapSVG(fs,{href:f=>'#mapa-pr'+f.id,name:f=>f.n,has:f=>GALP_HAS(f.id),ctx:GEO.p.filter(f=>PR_CA[f.id]!==code),label:'Provincias de '+title});
+      svg=mapSVG(fs,{href:f=>'#mapa-pr'+f.id,name:f=>f.n,has:f=>!!PRN[f.id],ctx:GEO.p.filter(f=>PR_CA[f.id]!==code),label:'Provincias de '+title});
       def='Preme nunha provincia';
       const ca=canome(code);
-      side=`${code==='12'?`<p><a class="btn" href="#ca-gal">Páxina de Galicia</a></p>`:`<p class="sub">Polo de agora só Galicia ten páxina de comunidade.${CAP[ca]&&CIRC[ca]?` Resultados: <a href="#e-G2023-${CIRC[ca]}">Congreso 2023 · total ${esc(ca)}</a>.`:''}</p>`}
-        <ul class="corp">${fs.sort((a,b)=>a.id.localeCompare(b.id)).map(f=>`<li><a href="#mapa-pr${f.id}">${esc(f.n)}</a><span>${GALP_HAS(f.id)?`<a href="#pr-${f.id}">páxina</a>`:''}</span></li>`).join('')}</ul>`;
+      side=`${caHref(ca)?`<p><a class="btn" href="${caHref(ca)}">Páxina de ${esc(ca)}</a></p>`:''}
+        <ul class="corp">${fs.sort((a,b)=>a.id.localeCompare(b.id)).map(f=>`<li><a href="#mapa-pr${f.id}">${esc(f.n)}</a><span>${PRN[f.id]?`<a href="#pr-${f.id}">páxina</a>`:''}</span></li>`).join('')}</ul>`;
     } else {
       const fs=GEO.m.filter(f=>f.id.slice(0,2)===code); if(!fs.length){ app.innerHTML='<p class="empty">Non atopamos esta provincia. <a href="#mapa">Volver ao mapa</a>.</p>'; return; }
       const cc=PR_CA[code], multi=GEO.p.filter(f=>PR_CA[f.id]===cc).length>1;
@@ -1663,7 +1804,7 @@ function renderMapa(arg){
       def='Preme nun concello';
       const pn=(DATA.circ||[]).find(x=>x[1]===code); const cn=pn?pn[0]:title;
       const ls=fs.map(f=>({id:f.id,n:munName(f)})).sort((a,b)=>COLL.compare(a.n,b.n));
-      side=`${GALP_HAS(code)?`<p><a class="btn" href="#pr-${code}">Páxina da provincia de ${esc(title)}</a></p>`:''}
+      side=`${PRN[code]?`<p><a class="btn" href="#pr-${code}">Páxina da provincia de ${esc(title)}</a>${caHref(canome(cc))&&!GALP_HAS(code)?` <a class="btn" href="${caHref(canome(cc))}">${esc(canome(cc))}</a>`:''}</p>`:''}
         <p class="sub">Xerais do 29/11/2026: <a href="#e-G2026-${code}">candidaturas ao Congreso</a>${DATA.nc&&DATA.nc['2026|'+cn]?` · <a href="#e-N2026-${code}">ao Senado</a>`:''}.</p>
         <p class="sub">Resultados na circunscrición: <a href="#e-G2023-${code}">Congreso 2023</a>${DATA.nr&&DATA.nr['2023|'+cn]?` · <a href="#e-N2023-${code}">Senado 2023</a>`:''}${GALP_HAS(code)?` · <a href="#e-A2024-${code}">Autonómicas 2024</a>`:''}.</p>
         <p class="sub" style="margin:0"><input class="circsearch ctf" placeholder="Filtrar concellos…" aria-label="Filtrar concellos" data-tb="ml-${code}"></p>
@@ -1884,7 +2025,8 @@ function needUnits(h){
   if((m=h.match(/^e-M(\d{4})-(\d{5})/))) return L(u=>u.y===periodOf(m[1])&&u.rg===rgOf(m[2]));
   if((m=h.match(/^e-[AGNU](\d{4})/))){ const p=periodOf(m[1]); return S(u=>u.y===p||u.y===p+4); }  // mandatos que pasan ao período seguinte
   if((m=h.match(/^d-(\d\d)-(\d{4})/))) return L(u=>u.y===periodOf(m[2])&&u.rg===PR_CA[m[1]]);
-  if(h.startsWith('pr-')||h.startsWith('ca-')) return [...S(()=>true),...L(u=>u.rg==='12')];
+  if((m=h.match(/^pr-(\d\d)/))){ const rg=PR_CA[m[1]]||'12'; return [...S(()=>true),...L(u=>u.rg===rg&&(rg==='12'||u.y===LATEST))]; }
+  if((m=h.match(/^ca-(\w+)/))){ const rg=CAINE[CASLUGR[m[1]]]||'12'; return [...S(()=>true),...L(u=>u.rg===rg&&(rg==='12'||u.y===LATEST))]; }
   return [];
 }
 // filtro por unha elección, mandato ou lexislatura concreta: os bloques dese período (e da comunidade, se se escolleu)
@@ -1941,7 +2083,7 @@ document.addEventListener('click',e=>{
 });
 
 // ---- v70: informar dun erro (correo xa redactado; non se garda nada na páxina) ----
-const PORTAL_VER='v108';
+const PORTAL_VER='v109';
 document.addEventListener('change',e=>{const t=e.target; if(!t.classList||!t.classList.contains('yrsel')) return; t.closest('aside').querySelectorAll('.card[data-y]').forEach(c=>c.hidden=c.dataset.y!==t.value); const l=t.closest('aside').querySelector('.yrlink'); if(l&&t.dataset.ine){ l.href='#e-M'+t.value+'-'+t.dataset.ine; l.textContent='Ver as municipais '+t.value+' →'; }});
 const REPORT_EMAIL='jose.blanco2@usc.es';
 function errContext(){
