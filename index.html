@@ -267,8 +267,8 @@ let DATA=null, P=[], BYID={}, FULL=false;
 const COLL=new Intl.Collator('gl');
 const state={q:'',amb:'',ccaa:'',prov:'',mun:'',cargo:'',per:'',part:'',limit:60};
 const AMB=[['eur','Europeo'],['est','Estatal'],['aut','Autonómico'],['prov','Provincial'],['loc','Local']];
-const CARGOS=[['candEur','Candidato/a ao Parlamento Europeo','eur'],['elEur','Eurodeputado/a electo/a','eur'],['candEst','Candidato/a ao Congreso','est'],['elEst','Deputado/a electo/a ao Congreso','est'],['candSen','Candidato/a ao Senado','est'],['elSen','Senador/a (electo/a ou designado/a)','est'],['desSen','Senador/a designado/a (autonómico/a ou real)','est'],['goberno','Cargo no Goberno de España','est'],['candAut','Candidato/a autonómico/a','aut'],['elAut','Electo/a autonómico/a','aut'],['cargoAut','Cargo autonómico','aut'],['dep','Deputado/a provincial','prov'],['candLoc','Candidato/a local','loc'],['elLoc','Electo/a local','loc'],['cargoLoc','Cargo local (alcalde/sa, concelleiro/a, tenente de alcalde)','loc']];
-const AMBT={eur:'U',est:'GNQS',aut:'CXK',prov:'D',loc:'LMA'};
+const CARGOS=[['candEur','Candidato/a ao Parlamento Europeo','eur'],['elEur','Eurodeputado/a electo/a','eur'],['candEst','Candidato/a ao Congreso','est'],['elEst','Deputado/a electo/a ao Congreso','est'],['candSen','Candidato/a ao Senado','est'],['elSen','Senador/a (electo/a ou designado/a)','est'],['desSen','Senador/a designado/a (autonómico/a ou real)','est'],['goberno','Cargo no goberno de España','est'],['candAut','Candidato/a autonómico/a','aut'],['elAut','Electo/a autonómico/a','aut'],['cargoAut','Cargo no goberno autonómico','aut'],['dep','Deputado/a provincial','prov'],['candLoc','Candidato/a local','loc'],['elLoc','Electo/a local','loc'],['cargoLoc','Cargo local (alcalde/sa, concelleiro/a, tenente de alcalde)','loc']];
+const AMBT={eur:'U',est:'GNQSE',aut:'CXK',prov:'D',loc:'LMA'};
 const CARGOT={candEur:r=>r.t==='U',elEur:r=>r.t==='U'&&r.el,candSen:r=>r.t==='N',elSen:r=>(r.t==='N'&&r.el)||r.t==='Q'||r.t==='S',desSen:r=>(r.t==='Q'&&r.pt!=='E')||r.t==='S',candEst:r=>r.t==='G',elEst:r=>r.t==='G'&&r.el,candLoc:r=>r.t==='M',elLoc:r=>r.t==='M'&&r.el,cargoLoc:r=>r.t==='L'||r.t==='A',dep:r=>r.t==='D',candAut:r=>r.t==='C',elAut:r=>r.t==='C'&&r.el,cargoAut:r=>r.t==='X'||r.t==='K',goberno:r=>r.t==='E'};
 const LOCY=[['2023','Eleccións municipais 2023'],['2019','Eleccións municipais 2019'],['2015','Eleccións municipais 2015'],['2011','Eleccións municipais 2011'],['2007','Eleccións municipais 2007'],['2003','Eleccións municipais 2003'],['1999','Eleccións municipais 1999'],['1995','Eleccións municipais 1995'],['1991','Eleccións municipais 1991'],['1987','Eleccións municipais 1987'],['1983','Eleccións municipais 1983'],['1979','Eleccións municipais 1979']];
 const AUTY=[['2024','Eleccións 2024'],['2020','Eleccións 2020 · XI lexislatura (2020–2024)'],['2016','Eleccións 2016 · X lexislatura (2016–2020)'],['2012','Eleccións 2012 · IX lexislatura (2012–2016)'],['2009','Eleccións 2009 · VIII lexislatura (2009–2012)'],['2005','Eleccións 2005 · VII lexislatura (2005–2009)'],['2001','Eleccións 2001 · VI lexislatura (2001–2005)'],['1997','Eleccións 1997 · V lexislatura (1997–2001)'],['1993','Eleccións 1993 · IV lexislatura (1993–1997)'],['1989','Eleccións 1989 · III lexislatura (1989–1993)'],['1985','Eleccións 1985 · II lexislatura (1985–1989)'],['1981','Eleccións 1981 · I lexislatura (1981–1985)']];
@@ -604,8 +604,8 @@ function renderSearch(){
   const res=filtered(); if(!res) return;  // o Web Worker aínda está a buscar
   const parts=optionList();
   const sel=(id,label,opts)=>`<select id="${id}" aria-label="${label}"><option value="">${label}</option>${opts.map(([v,t])=>`<option value="${esc(v)}" ${state[id]===v?'selected':''}>${esc(t)}</option>`).join('')}</select>`;
-  const NA={U:0,G:0,N:0,X:0,C:0,L:0,M:0,D:0}, NT=['U','G','N','C','L','M','D'], NB=NT.map(AB), NC=new Int32Array(7), BXK=AB('X')|AB('K');
-  let cX=0; const cnt=a=>{ for(let j=0;j<7;j++) if(a&NB[j]) NC[j]++; if(a&BXK) cX++; };
+  const NA={U:0,G:0,N:0,X:0,C:0,L:0,M:0,D:0}, NT=['U','G','N','C','L','M','D'], NB=NT.map(AB), NC=new Int32Array(7), BXK=AB('X')|AB('K'), BE=AB('E');
+  let cX=0, cE=0; const cnt=a=>{ for(let j=0;j<7;j++) if(a&NB[j]) NC[j]++; if(a&BXK) cX++; if(a&BE) cE++; };
   if(res===P){ for(let c=0;c<ALLP.length;c++) if(!DEAD[c]) cnt(AMBC[c]); } else for(let i=0;i<res.length;i++) cnt(res[i]._a);
   NT.forEach((t,j)=>NA[t]=NC[j]); NA.X=cX;
   const {U:nU,G:nG,N:nN,X:nX,C:nC,L:nL,M:nM,D:nD}=NA;
@@ -614,7 +614,7 @@ function renderSearch(){
     ${sel('amb','Calquera ámbito',AMB)}
     ${sel('cargo','Calquera cargo',CARGOS.filter(c=>!state.amb||c[2]===state.amb).map(c=>[c[0],c[1]]))}
     ${EUR?'':sel('ccaa','Calquera comunidade',INE_CA.map(([ca])=>[ca,ca]))}
-    ${state.cargo?sel('per',state.cargo==='cargoAut'?'Calquera lexislatura':state.cargo==='cargoLoc'?'Calquera mandato':'Calquera elección',perOpts()):''}
+    ${state.cargo?sel('per',(state.cargo==='cargoAut'||state.cargo==='goberno')?'Calquera lexislatura':state.cargo==='cargoLoc'?'Calquera mandato':'Calquera elección',perOpts()):''}
     ${EUR?'':sel('prov','Calquera provincia',provOpts())}
     ${!EUR&&state.prov&&Object.values(DATA.cn).some(v=>v[1]===state.prov)?sel('mun','Calquera concello',Object.entries(DATA.cn).filter(([k,v])=>v[1]===state.prov).sort((a,b)=>a[1][0].localeCompare(b[1][0],'gl')).map(([k,v])=>[k,v[0]])):''}
     ${sel('part','Calquera partido',parts.map(([k,v])=>[k,`${k} (${nf(v)})`]))}
@@ -623,7 +623,7 @@ function renderSearch(){
   ${fu.length?`<p class="loadbar note"><b>Cargando os datos desa elección…</b> Os resultados completaranse en canto cheguen.</p>`:loadNote()}
   <p class="terr"><span class="k">Territorios</span><a href="#mapa">Mapa</a><a href="#espana">España</a><a href="#ca-gal">Galicia</a>${GPROV.map(([k,n])=>`<a href="#pr-${k}">${esc(n)}</a>`).join('')}${state.ccaa&&CASLUG[state.ccaa]&&state.ccaa!=='Galicia'?` · <a href="#ca-${CASLUG[state.ccaa]}">Páxina de ${esc(state.ccaa)}</a>`:''}${state.prov&&PRC[state.prov]?` · <a href="#pr-${PRC[state.prov]}">Páxina da provincia de ${esc(state.prov)}</a>`:''}${state.mun&&DATA.cn[state.mun]?` · <a href="#c-${state.mun}">Páxina do concello de ${esc(DATA.cn[state.mun][0])}</a>`:''}</p>
   <p class="terr"><span class="k">Xerais 2026</span><a href="#e-G2026-es">Candidaturas ao Congreso en toda España</a><a href="#e-N2026-es">Candidaturas ao Senado</a></p>
-  <div class="summary"><span><strong>${nf(res.length)}</strong> persoas</span><span>${nf(nU)} nas europeas</span><span>${nf(nG)} en candidaturas ao Congreso</span><span>${nf(nN)} ao Senado</span><span>${nf(nX)} en gobernos autonómicos</span><span>${nf(nC)} en candidaturas autonómicas</span><span>${nf(nD)} en deputacións</span><span>${nf(nL)} en corporacións locais</span><span>${nf(nM)} en eleccións municipais</span></div>
+  <div class="summary"><span><strong>${nf(res.length)}</strong> persoas</span><span>${nf(nU)} nas europeas</span><span>${nf(nG)} en candidaturas ao Congreso</span><span>${nf(nN)} ao Senado</span><span>${nf(cE)} no Goberno de España</span><span>${nf(nX)} en gobernos autonómicos</span><span>${nf(nC)} en candidaturas autonómicas</span><span>${nf(nD)} en deputacións</span><span>${nf(nL)} en corporacións locais</span><span>${nf(nM)} en eleccións municipais</span></div>
   ${res.length?`<ul class="list">${res.slice(0,state.limit).map(p=>`<li class="row"><a class="name" href="#p-${p.id}">${esc(p.n)}</a><div class="chips">${roleChips(p,2)}</div></li>`).join('')}</ul>`:
     `<p class="empty">Non hai ningunha persoa que cumpra estes criterios. Proba cunha palabra máis curta ou limpa os filtros.</p>`}
   ${res.length>state.limit?`<div class="more"><button class="btn" id="more" type="button">Amosar ${Math.min(60,res.length-state.limit)} máis de ${nf(res.length-state.limit)}</button></div>`:''}`;
@@ -638,20 +638,8 @@ const LEG0=Date.parse('1981-12-19'), LEG1=Date.parse('2026-10-01');
 function lxs(s){const O=LEGS.map(x=>x[0]);if(!s)return[];const [a,b]=s.split('–');const i=O.indexOf(a),j=O.indexOf(b||a);return O.slice(i,j+1);}
 const LEGS_E=[['Constituínte','1977-07-13'],['I','1979-03-27'],['II','1982-11-18'],['III','1986-07-15'],['IV','1989-11-21'],['V','1993-06-29'],['VI','1996-03-27'],['VII','2000-04-05'],['VIII','2004-04-02'],['IX','2008-04-01'],['X','2011-12-13'],['XI','2016-01-13'],['XII','2016-07-19'],['XIII','2019-05-21'],['XIV','2019-12-03'],['XV','2023-08-17']];
 const LEGE_END=Date.parse('2026-10-31');
-// v111: o eixo abrangue só as lexislaturas do mandato (desde 1977)
-function tenureE(r){
-  const t0=Date.parse('1977-01-01');
-  const ti=r.i?Date.parse(r.i):(r.f?Date.parse(r.f)-864e5*30:t0), tf=r.f?Date.parse(r.f):LEGE_END;
-  const idx=t=>{ let k=0; LEGS_E.forEach(([n,d],i)=>{ if(t>=Date.parse(d)) k=i; }); return k; };
-  const a0=idx(ti), a1=idx(tf);
-  const W0=a0===0&&ti<Date.parse(LEGS_E[0][1])?t0:Date.parse(LEGS_E[a0][1]), W1=a1+1<LEGS_E.length?Date.parse(LEGS_E[a1+1][1]):LEGE_END;
-  const pc=t=>Math.min(100,Math.max(0,(t-W0)/(W1-W0)*100));
-  const L=pc(ti), W=Math.max(.8,pc(tf)-L);
-  const seg=LEGS_E.slice(a0,a1+1);
-  const marks=seg.slice(1).map(([n,d])=>`<b style="left:${pc(Date.parse(d)).toFixed(2)}%"></b>`).join('');
-  const labs=seg.map(([n,d],i)=>{const x0=pc(Math.max(W0,Date.parse(d))), x1=i<seg.length-1?pc(Date.parse(seg[i+1][1])):100; return `<span style="position:absolute;left:${((x0+x1)/2).toFixed(2)}%;transform:translateX(-50%)" title="${n} lexislatura (desde ${fmtD(d)})">${n==='Constituínte'?'Const.':n}</span>`;}).join('');
-  return `<div class="tenure" title="Período no cargo, con marcas en cada cambio de lexislatura das Cortes Xerais"><i style="left:${L.toFixed(2)}%;width:${W.toFixed(2)}%"></i>${marks}</div><div class="tenure-axis" style="height:1.1em">${labs}</div>`;
-}
+// v114: eixo fixo e común (xullo 1976 – outubro 2026) en todas as fichas, como o da Xunta
+function tenureE(r){ if(r.i) return tenureES(r); const f=r.f?Date.parse(r.f):null; return tenureES(Object.assign({},r,{i:r.oi&&/19(76|77)/.test(r.oi)?'1976-07-03':f?new Date(f-864e5*30).toISOString().slice(0,10):null})); }
 const KLEX={"Andalucía": [["XI", "2018-12-02"], ["XII", "2022-06-19"], ["XIII", "2026-05-17"]], "Aragón": [["XI", "2023-05-28"], ["XII", "2026-02-08"]], "Principado de Asturias": [["XI", "2019-05-26"], ["XII", "2023-05-28"]], "Illes Balears": [["X", "2019-05-26"], ["XI", "2023-05-28"]], "Canarias": [["X", "2019-05-26"], ["XI", "2023-05-28"]], "Cantabria": [["X", "2019-05-26"], ["XI", "2023-05-28"]], "Castilla y León": [["X", "2019-05-26"], ["XI", "2022-02-13"], ["XII", "2026-03-15"]], "Castilla-La Mancha": [["X", "2019-05-26"], ["XI", "2023-05-28"]], "Cataluña": [["XIV", "2021-02-14"], ["XV", "2024-05-12"]], "Comunitat Valenciana": [["X", "2019-04-28"], ["XI", "2023-05-28"]], "Extremadura": [["XI", "2023-05-28"], ["XII", "2025-12-21"]], "Comunidad de Madrid": [["XII", "2021-05-04"], ["XIII", "2023-05-28"]], "Región de Murcia": [["X", "2019-05-26"], ["XI", "2023-05-28"]], "Comunidad Foral de Navarra": [["X", "2019-05-26"], ["XI", "2023-05-28"]], "País Vasco": [["XII", "2020-07-12"], ["XIII", "2024-04-21"]], "La Rioja": [["X", "2019-05-26"], ["XI", "2023-05-28"]]};
 const KEND=Date.parse('2026-10-18');
 function tenureK(r){
@@ -2125,6 +2113,7 @@ function filterUnits(){
   let y;
   if(/^\d{4}/.test(v)) y=v.slice(0,4);
   else if(v.includes('|')){ const b=v.split('|')[1]; y=/^\d{4}$/.test(b)?b:b==='act'?String(LATEST):((LEGS.find(x=>x[0]===b)||[])[1]||'').slice(0,4); }
+  else if(c==='goberno'){ const L=LEGS_E.find(x=>x[0]===v); y=L?L[1].slice(0,4):String(LATEST); }
   else y=String(LATEST);
   if(!y) return [];
   const p=periodOf(y), rg=state.ccaa?CAINE[state.ccaa]:null;
@@ -2172,7 +2161,7 @@ document.addEventListener('click',e=>{
 });
 
 // ---- v70: informar dun erro (correo xa redactado; non se garda nada na páxina) ----
-const PORTAL_VER='v113';
+const PORTAL_VER='v114';
 document.addEventListener('change',e=>{const t=e.target; if(!t.classList||!t.classList.contains('yrsel')) return; t.closest('aside').querySelectorAll('.card[data-y]').forEach(c=>c.hidden=c.dataset.y!==t.value); const l=t.closest('aside').querySelector('.yrlink'); if(l&&t.dataset.ine){ l.href='#e-M'+t.value+'-'+t.dataset.ine; l.textContent='Ver as municipais '+t.value+' →'; }});
 const REPORT_EMAIL='jose.blanco2@usc.es';
 function errContext(){
