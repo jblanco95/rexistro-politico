@@ -71,7 +71,7 @@ for r in sorted(add,key=lambda r:r.get('i') or r.get('f')):
                 done=True; st['completa_existente']+=1; break
         if done: break
     if done: continue
-    if r.get('f') and r['f']>=CUT and any(x['t']=='E' and sim(x['c'],r['c'])>=0.6 for p in BYN.get(k,[]) for x in p['r']): st['xa_no_existente']+=1; continue
+    if r.get('f') and r['f']>=CUT and any(x['t']=='E' and sim(x['c'],r['c'])>=0.6 and (not x.get('i') or (r.get('i') and dd(x['i'],r['i'])<45) or x.get('f')==r.get('f')) for p in BYN.get(k,[]) for x in p['r']): st['xa_no_existente']+=1; continue
     cand=BYN.get(k,[])
     pick=None
     if cand:
