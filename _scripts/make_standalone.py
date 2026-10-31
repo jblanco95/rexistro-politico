@@ -1,12 +1,14 @@
 #!/usr/bin/env python3
 """Xera a versión independente (GitHub Pages) do portal a partir da versión empaquetada para o artifact.
 
-  python3 make_standalone.py PUB_DIR SITE_DIR [unions.json] [--indexar]
+  python3 make_standalone.py PUB_DIR SITE_DIR [unions.json] [--bios=bios.json] [--indexar]
 
   PUB_DIR : saída de build_portal_gz.py pack (index.html + data/*.wasm)
   SITE_DIR: cartafol do repositorio de GitHub Pages (index.html, data/, fonts/, .nojekyll…)
   unions.json (opcional): {id_fusionado: {keep, ...}} — unións manuais feitas no panel do artifact,
             que fóra de claude.ai se aplican desde este ficheiro (non hai base de datos).
+  --bios=bios.json (opcional): {id: {nl, y, b, u, f, ...}} — biografías editadas a man no panel do artifact
+            e aínda non consolidadas nos datos (consolidar_bios.py); aplícanse igual ca as unións.
 
 Cambios respecto ao artifact:
   - documento HTML completo (doctype, lang="gl", viewport, descrición), sen o envoltorio que
@@ -21,6 +23,8 @@ import sys, os, re, json, shutil, glob
 args = [a for a in sys.argv[1:] if not a.startswith('--')]
 pub, site = args[0], args[1]
 uni = json.load(open(args[2], encoding='utf-8')) if len(args) > 2 else {}
+_bf = [a.split('=', 1)[1] for a in sys.argv[1:] if a.startswith('--bios=')]
+bios = json.load(open(_bf[0], encoding='utf-8')) if _bf else {}
 # beta: fóra dos buscadores salvo que se pase --indexar
 NOINDEX = '--indexar' not in sys.argv
 s = open(os.path.join(pub, 'index.html'), encoding='utf-8').read()
@@ -78,6 +82,9 @@ rep("async function initUnions(){\n  if(!window.claude||typeof claude.use!=='fun
     "const STATIC_UNI=" + json.dumps(uni, ensure_ascii=False, separators=(',', ':')) + ";\n"
     "async function initUnions(){\n  if(!window.claude||typeof claude.use!=='function'){ UNI=Object.assign({},STATIC_UNI); if(applyUnions()) route(); return; }")
 
+# 3b) biografías manuais estáticas (aínda non consolidadas): dispoñibles desde o principio
+rep("let BIO={};", "let BIO=" + json.dumps(bios, ensure_ascii=False, separators=(',', ':')) + ";")
+
 # 4) aviso legal (#aviso-legal)
 AVISO = r'''
 function renderAviso(){
@@ -121,4 +128,4 @@ if NOINDEX:
     open(rb, 'w').write('User-agent: *\nDisallow: /\n')
 elif os.path.exists(rb):
     os.remove(rb)
-print('noindex' if NOINDEX else 'indexable', '| ok:', os.path.join(site, 'index.html'), len(s), 'bytes;', len(glob.glob(os.path.join(site, 'data', '*.wasm'))), 'ficheiros de datos;', len(uni), 'unións')
+print('noindex' if NOINDEX else 'indexable', '| ok:', os.path.join(site, 'index.html'), len(s), 'bytes;', len(glob.glob(os.path.join(site, 'data', '*.wasm'))), 'ficheiros de datos;', len(uni), 'unións;', len(bios), 'biografías manuais')

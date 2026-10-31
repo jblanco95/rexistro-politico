@@ -22,10 +22,12 @@ Desde a versión do artifact en claude.ai, cos scripts de `_scripts/`:
 
 ```bash
 python3 _scripts/build_portal_gz.py pack SRC_DIR PUB_DIR
-python3 _scripts/make_standalone.py PUB_DIR . _scripts/unions.json
+python3 _scripts/make_standalone.py PUB_DIR . _scripts/unions.json --bios=_scripts/bios.json
 ```
 
 - `SRC_DIR`: `index.html` do artifact (`_scripts/artifact/index.html`) e `data.json` + `data2…dataN.json`.
 - `PUB_DIR`: versión para o artifact (`index.html` + `data/`); hai que copiar nela `data/geo-*.wasm`.
 - `_scripts/unions.json`: unións manuais de fichas feitas no artifact, que aquí se aplican sen base de datos.
+- `_scripts/bios.json`: biografías editadas a man no artifact (panel «Editar biografía» da ficha, colección `bios` da base de datos) aínda non consolidadas; aplícanse igual ca as unións.
+- `python3 _scripts/consolidar_bios.py SRC_DIR _scripts/bios.json _scripts/unions.json` pasa esas biografías aos `data*.json` (campos `nl`, `y`, `bx`, `bxu`, `bxf`); despois reconstrúese e bórranse da base de datos os documentos consolidados.
 - `python3 _scripts/build_portal_gz.py unpack PUB_DIR OUT_DIR` fai o camiño inverso (de `data/` a `data.json` + partes).
